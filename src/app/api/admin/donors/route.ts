@@ -1,7 +1,7 @@
 import { auth } from '@/auth.config'
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
-import { hash } from 'bcryptjs'
+import { hash } from 'bcrypt'
 
 export async function POST(request: NextRequest) {
   try {

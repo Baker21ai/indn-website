@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
-import { sendVerificationEmail } from '@/lib/email'
+// import { sendVerificationEmail } from '@/lib/email' // Disabled for MVP - missing @react-email/render dependency
 import crypto from 'crypto'
 
 export async function POST(req: NextRequest) {
@@ -44,11 +44,12 @@ export async function POST(req: NextRequest) {
       },
     })
 
-    // Send verification email
-    await sendVerificationEmail(user.email, verificationToken)
+    // Send verification email - DISABLED FOR MVP
+    // TODO: Install @react-email/render and re-enable email verification
+    // await sendVerificationEmail(user.email, verificationToken)
 
     return NextResponse.json({
-      message: 'Verification email has been sent. Please check your inbox.',
+      message: 'Verification token generated successfully.',
     })
   } catch (error) {
     console.error('Resend verification error:', error)

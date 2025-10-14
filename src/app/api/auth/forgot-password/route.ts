@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
-import { sendPasswordResetEmail } from '@/lib/email'
+// import { sendPasswordResetEmail } from '@/lib/email' // Disabled for MVP - missing @react-email/render dependency
 import { checkRateLimit } from '@/lib/rate-limit'
 import crypto from 'crypto'
 
@@ -47,12 +47,13 @@ export async function POST(req: NextRequest) {
         },
       })
 
-      // Send reset email
-      await sendPasswordResetEmail(user.email, resetToken)
+      // Send reset email - DISABLED FOR MVP
+      // TODO: Install @react-email/render and re-enable email
+      // await sendPasswordResetEmail(user.email, resetToken)
     }
 
     return NextResponse.json({
-      message: 'If an account exists with that email, a password reset link has been sent.',
+      message: 'Password reset token generated. (Email disabled for MVP)',
     })
   } catch (error) {
     console.error('Forgot password error:', error)
