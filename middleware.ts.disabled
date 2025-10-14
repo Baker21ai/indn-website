@@ -61,5 +61,10 @@ export default auth((req) => {
 })
 
 export const config = {
-  matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
+  // Only run middleware on specific routes to reduce bundle size
+  matcher: [
+    '/portal/:path*',
+    '/login',
+    '/register',
+  ],
 }
