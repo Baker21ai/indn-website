@@ -9,7 +9,7 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import { UploadSimple, X, Shield, Paw, Mountain, Bird } from 'phosphor-react'
+import { Upload, X, Shield, PawPrint, Mountain, Bird } from 'lucide-react'
 import Image from 'next/image'
 
 export function AddDonorForm() {
@@ -197,25 +197,25 @@ export function AddDonorForm() {
                   <SelectItem value="none">None</SelectItem>
                   <SelectItem value="turtle">
                     <div className="flex items-center gap-2">
-                      <Shield size={16} weight="regular" />
+                      <Shield size={16} />
                       Turtle ($100-$999)
                     </div>
                   </SelectItem>
                   <SelectItem value="wolf">
                     <div className="flex items-center gap-2">
-                      <Paw size={16} weight="regular" />
+                      <PawPrint size={16} />
                       Wolf ($1,000-$4,999)
                     </div>
                   </SelectItem>
                   <SelectItem value="bear">
                     <div className="flex items-center gap-2">
-                      <Mountain size={16} weight="regular" />
+                      <Mountain size={16} />
                       Bear ($5,000-$9,999)
                     </div>
                   </SelectItem>
                   <SelectItem value="eagle">
                     <div className="flex items-center gap-2">
-                      <Bird size={16} weight="regular" />
+                      <Bird size={16} />
                       Eagle ($10,000+)
                     </div>
                   </SelectItem>
@@ -299,7 +299,7 @@ export function AddDonorForm() {
                         onClick={removeLogo}
                         className="border-red-500 text-red-500 hover:bg-red-50"
                       >
-                        <X size={16} weight="bold" className="mr-1" />
+                        <X size={16} className="mr-1" />
                         Remove Logo
                       </Button>
                     </div>
@@ -310,7 +310,7 @@ export function AddDonorForm() {
                   onClick={() => fileInputRef.current?.click()}
                   className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer hover:border-terracotta hover:bg-terracotta/5 transition-colors"
                 >
-                  <UploadSimple size={48} weight="regular" className="mx-auto mb-4 text-stone-gray" />
+                  <Upload size={48} className="mx-auto mb-4 text-stone-gray" />
                   <p className="text-sm font-medium mb-1">
                     {uploadingLogo ? 'Uploading...' : 'Click to upload company logo'}
                   </p>

@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { getTierName, getTierColor } from '@/lib/donations'
 import { DonorTier } from '@prisma/client'
-import { Buildings, User, Shield, PawPrint, Mountains, Bird } from 'phosphor-react'
+import { Building, User, Shield, PawPrint, Mountain, Bird } from 'lucide-react'
 
 interface Donor {
   id: string
@@ -84,13 +84,13 @@ export default function DonorWallPage() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold text-terracotta mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-terracotta mb-4 tracking-tight">
             Our Generous Supporters
           </h1>
-          <p className="text-lg text-stone-gray max-w-2xl mx-auto">
+          <p className="text-lg text-stone-gray max-w-2xl mx-auto font-normal leading-relaxed">
             Thank you to the individuals and organizations making our mission possible
           </p>
-          <p className="text-xl font-semibold mt-4 text-charcoal">
+          <p className="text-xl font-semibold mt-4 text-charcoal tracking-tight">
             {filteredDonors.length} {filteredDonors.length === 1 ? 'Supporter' : 'Supporters'}
           </p>
         </div>
@@ -115,25 +115,25 @@ export default function DonorWallPage() {
                 <SelectItem value="all">All Tiers</SelectItem>
                 <SelectItem value="eagle">
                   <div className="flex items-center gap-2">
-                    <Bird size={16} weight="regular" />
+                    <Bird size={16} />
                     Eagle
                   </div>
                 </SelectItem>
                 <SelectItem value="bear">
                   <div className="flex items-center gap-2">
-                    <Mountains size={16} weight="regular" />
+                    <Mountain size={16} />
                     Bear
                   </div>
                 </SelectItem>
                 <SelectItem value="wolf">
                   <div className="flex items-center gap-2">
-                    <PawPrint size={16} weight="regular" />
+                    <PawPrint size={16} />
                     Wolf
                   </div>
                 </SelectItem>
                 <SelectItem value="turtle">
                   <div className="flex items-center gap-2">
-                    <Shield size={16} weight="regular" />
+                    <Shield size={16} />
                     Turtle
                   </div>
                 </SelectItem>
@@ -196,9 +196,9 @@ export default function DonorWallPage() {
                       ) : (
                         <div className="w-24 h-24 rounded-full bg-gradient-to-br from-terracotta/20 to-sage-green/20 flex items-center justify-center">
                           {donor.donorType === 'company' ? (
-                            <Buildings size={48} weight="regular" className="text-terracotta" />
+                            <Building size={48} className="text-terracotta" />
                           ) : (
-                            <User size={48} weight="regular" className="text-sage-green" />
+                            <User size={48} className="text-sage-green" />
                           )}
                         </div>
                       )}

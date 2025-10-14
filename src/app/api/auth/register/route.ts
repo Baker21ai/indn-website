@@ -3,7 +3,7 @@ import { hash } from 'bcrypt'
 import { prisma } from '@/lib/db'
 import { z } from 'zod'
 import crypto from 'crypto'
-import { sendVerificationEmail } from '@/lib/email'
+// import { sendVerificationEmail } from '@/lib/email' // Disabled for MVP - missing @react-email/render dependency
 import { checkRateLimit } from '@/lib/rate-limit'
 
 const registerSchema = z.object({
@@ -50,9 +50,13 @@ export async function POST(request: NextRequest) {
     // Generate verification token
     const verificationToken = crypto.randomBytes(32).toString('hex')
 
+    // Generate unique ID for user
+    const userId = crypto.randomUUID()
+
     // Create user
     const user = await prisma.users.create({
       data: {
+        id: userId,
         email: validatedData.email,
         passwordHash,
         name: validatedData.name,
@@ -60,6 +64,7 @@ export async function POST(request: NextRequest) {
         role: validatedData.role,
         isActive: true,
         verificationToken,
+        updatedAt: new Date(),
       },
       select: {
         id: true,
@@ -73,19 +78,26 @@ export async function POST(request: NextRequest) {
     if (validatedData.role === 'volunteer') {
       await prisma.volunteer_profiles.create({
         data: {
+          id: crypto.randomUUID(),
           userId: user.id,
           applicationStatus: 'approved', // Auto-approve for MVP
+          updatedAt: new Date(),
         },
       })
     }
 
-    // Send verification email
-    await sendVerificationEmail(user.email, verificationToken)
+    // Send verification email - DISABLED FOR MVP
+    // TODO: Install @react-email/render and re-enable email verification
+    // try {
+    //   await sendVerificationEmail(user.email, verificationToken)
+    // } catch (emailError) {
+    //   console.warn('Failed to send verification email:', emailError)
+    // }
 
     return NextResponse.json(
       {
         success: true,
-        message: 'Registration successful! Please check your email to verify your account.',
+        message: 'Registration successful! You can now sign in.',
         user: {
           id: user.id,
           email: user.email,
