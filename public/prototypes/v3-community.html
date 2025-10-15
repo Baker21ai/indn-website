@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Circle - INDN | Indigenous Nations Diversity Network</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.8;
+            color: #2C3E50;
+            background: #F7F4F0;
+        }
+
+        /* Hero - Circular/Organic Design */
+        .hero {
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1E3A5F 0%, #2D5F3F 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(224, 122, 58, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -40%;
+            left: -30%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(45, 95, 63, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            max-width: 900px;
+            padding: 40px;
+        }
+
+        .circle-ornament {
+            width: 80px;
+            height: 80px;
+            border: 3px solid rgba(224, 122, 58, 0.5);
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .circle-ornament::before {
+            content: '';
+            width: 40px;
+            height: 40px;
+            border: 2px solid #E07A3A;
+            border-radius: 50%;
+        }
+
+        .hero h1 {
+            font-family: 'Crimson Text', serif;
+            font-size: 4rem;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 30px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            font-weight: 300;
+            line-height: 1.7;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Values Circle Section */
+        .values-section {
+            padding: 120px 40px;
+            background: white;
+        }
+
+        .values-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-header {
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-family: 'Crimson Text', serif;
+            font-size: 3rem;
+            color: #1E3A5F;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .section-header p {
+            font-size: 1.3rem;
+            color: #6B7280;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        .values-circle {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .value-card {
+            background: #F7F4F0;
+            padding: 50px 30px;
+            border-radius: 50%;
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 3px solid transparent;
+        }
+
+        .value-card:hover {
+            background: white;
+            border-color: #E07A3A;
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(224, 122, 58, 0.15);
+        }
+
+        .value-card h3 {
+            font-size: 1.3rem;
+            color: #1E3A5F;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .value-card p {
+            font-size: 0.95rem;
+            color: #6B7280;
+            line-height: 1.6;
+        }
+
+        /* Story Section - Gentle Narrative */
+        .story-section {
+            background: linear-gradient(135deg, #2D5F3F 0%, #1E3A5F 100%);
+            color: white;
+            padding: 120px 40px;
+        }
+
+        .story-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .story-container h2 {
+            font-family: 'Crimson Text', serif;
+            font-size: 3rem;
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .story-text {
+            font-size: 1.25rem;
+            line-height: 2;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .story-quote {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 50px 0;
+            border-left: 4px solid #E07A3A;
+        }
+
+        .story-quote p {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.6rem;
+            font-style: italic;
+            line-height: 1.7;
+        }
+
+        /* Community Voices */
+        .voices-section {
+            background: white;
+            padding: 120px 40px;
+        }
+
+        .voices-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .voices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            margin-top: 60px;
+        }
+
+        .voice-card {
+            background: #F7F4F0;
+            padding: 50px 40px;
+            border-radius: 30px;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .voice-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 6rem;
+            color: #E07A3A;
+            opacity: 0.2;
+            font-family: 'Crimson Text', serif;
+            line-height: 1;
+        }
+
+        .voice-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .voice-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .voice-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4A5568;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .voice-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .voice-avatar {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #1E3A5F 0%, #2D5F3F 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .voice-author-info h4 {
+            font-size: 1.1rem;
+            color: #1E3A5F;
+            margin-bottom: 3px;
+        }
+
+        .voice-author-info p {
+            font-size: 0.9rem;
+            color: #E07A3A;
+        }
+
+        /* Programs - Interconnected */
+        .programs-section {
+            background: #F7F4F0;
+            padding: 120px 40px;
+        }
+
+        .programs-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .programs-web {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .program-node {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 30px;
+            box-shadow: 0 4px 20px rgba(30, 58, 95, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .program-node::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 40px;
+            height: 40px;
+            background: #E07A3A;
+            border-radius: 50%;
+            opacity: 0.2;
+        }
+
+        .program-node:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(30, 58, 95, 0.15);
+        }
+
+        .program-node:hover::before {
+            opacity: 1;
+        }
+
+        .program-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #1E3A5F 0%, #2D5F3F 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 2rem;
+        }
+
+        .program-node h3 {
+            font-size: 1.6rem;
+            color: #1E3A5F;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .program-node p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #6B7280;
+            margin-bottom: 20px;
+        }
+
+        .program-impact {
+            font-size: 0.95rem;
+            color: #E07A3A;
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        /* Blessing Section - Reverent */
+        .blessing-section {
+            background: white;
+            padding: 120px 40px;
+        }
+
+        .blessing-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .blessing-intro {
+            max-width: 700px;
+            margin: 0 auto 70px;
+            font-size: 1.2rem;
+            line-height: 1.9;
+            color: #6B7280;
+            font-weight: 300;
+        }
+
+        .blessing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+        }
+
+        .blessing-card {
+            background: #F7F4F0;
+            padding: 60px 40px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .blessing-card:hover {
+            background: linear-gradient(135deg, rgba(30, 58, 95, 0.05) 0%, rgba(45, 95, 63, 0.05) 100%);
+            transform: translateY(-5px);
+        }
+
+        .blessing-ornament {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #E07A3A;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+        }
+
+        .blessing-card h4 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.5rem;
+            color: #1E3A5F;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .blessing-affiliation {
+            color: #E07A3A;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .blessing-card p {
+            color: #6B7280;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Join Section - Invitation */
+        .join-section {
+            background: linear-gradient(135deg, #1E3A5F 0%, #2D5F3F 100%);
+            color: white;
+            padding: 120px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .join-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            border: 2px solid rgba(224, 122, 58, 0.1);
+            border-radius: 50%;
+        }
+
+        .join-section::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            border: 2px solid rgba(224, 122, 58, 0.15);
+            border-radius: 50%;
+        }
+
+        .join-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .join-container h2 {
+            font-family: 'Crimson Text', serif;
+            font-size: 3.5rem;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .join-container > p {
+            font-size: 1.4rem;
+            margin-bottom: 60px;
+            opacity: 0.95;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        .join-pathways {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-bottom: 70px;
+        }
+
+        .pathway {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px 30px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .pathway:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #E07A3A;
+            transform: translateY(-5px);
+        }
+
+        .pathway-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .pathway h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .pathway p {
+            font-size: 1rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .pathway-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #E07A3A;
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+
+        .pathway-link:hover {
+            opacity: 0.8;
+        }
+
+        .contact-invitation {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 60px;
+            margin-top: 60px;
+        }
+
+        .contact-invitation h3 {
+            font-size: 1.6rem;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .contacts-gentle {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            flex-wrap: wrap;
+        }
+
+        .contact-gentle {
+            text-align: center;
+        }
+
+        .contact-gentle strong {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .contact-gentle a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            display: block;
+            margin: 8px 0;
+            transition: color 0.3s;
+        }
+
+        .contact-gentle a:hover {
+            color: #E07A3A;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .section-header h2,
+            .story-container h2 {
+                font-size: 2.5rem;
+            }
+
+            .values-circle {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .programs-web {
+                grid-template-columns: 1fr;
+            }
+
+            .join-container h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero {
+                min-height: 70vh;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .values-circle {
+                grid-template-columns: 1fr;
+            }
+
+            .value-card {
+                border-radius: 20px;
+                aspect-ratio: auto;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .story-text {
+                font-size: 1.1rem;
+            }
+
+            .story-quote p {
+                font-size: 1.3rem;
+            }
+
+            .voice-card,
+            .program-node,
+            .blessing-card {
+                padding: 40px 30px;
+                border-radius: 20px;
+            }
+
+            .join-pathways {
+                grid-template-columns: 1fr;
+            }
+
+            .contacts-gentle {
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="circle-ornament"></div>
+            <h1>Welcome to Our Circle</h1>
+            <p class="hero-subtitle">Where ancestral wisdom meets tomorrow's possibilities, and every young person belongs to something greater than themselves</p>
+        </div>
+    </section>
+
+    <!-- Six Values (adapted from Six Rs) -->
+    <section class="values-section">
+        <div class="values-container">
+            <div class="section-header">
+                <h2>Rooted in Our Values</h2>
+                <p>Everything we do flows from the principles that have guided Indigenous communities for generations</p>
+            </div>
+
+            <div class="values-circle">
+                <div class="value-card">
+                    <h3>Respect</h3>
+                    <p>For elders, traditions, land, and every person in our circle</p>
+                </div>
+                <div class="value-card">
+                    <h3>Reciprocity</h3>
+                    <p>What we receive, we give back. What we learn, we share.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Relationality</h3>
+                    <p>We are connected—to each other, our ancestors, and future generations</p>
+                </div>
+                <div class="value-card">
+                    <h3>Responsibility</h3>
+                    <p>To preserve culture and prepare youth for the world they'll inherit</p>
+                </div>
+                <div class="value-card">
+                    <h3>Relevance</h3>
+                    <p>Honoring tradition while embracing what youth need today</p>
+                </div>
+                <div class="value-card">
+                    <h3>Representation</h3>
+                    <p>Every voice matters, every story deserves to be heard</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story -->
+    <section class="story-section">
+        <div class="story-container">
+            <h2>How This Circle Began</h2>
+            <p class="story-text">In 2023, when the San Juan Bautista Indian Market closed, something precious was lost. Not just an event, but a gathering place. A home for Indigenous youth in San Benito County to see themselves reflected, to connect with their heritage, to simply belong.</p>
+
+            <p class="story-text">We didn't wait for someone else to fill that void. Our community came together—elders who carried knowledge, families who carried hope, and youth who carried tomorrow's dreams—and created something new.</p>
+
+            <div class="story-quote">
+                <p>"We are the only organization providing year-round Indigenous cultural programming in San Benito County. But we're not here to replace what was lost. We're here to build what's needed."</p>
+            </div>
+
+            <p class="story-text">From 500 to 1,000+ participants in three years. From one annual event to monthly gatherings, youth-led programs, gardens growing food for families, and AI workshops preparing our youth for futures we can barely imagine.</p>
+
+            <p class="story-text">This is what happens when a community refuses to let its youth fall through the cracks.</p>
+        </div>
+    </section>
+
+    <!-- Community Voices -->
+    <section class="voices-section">
+        <div class="voices-container">
+            <div class="section-header">
+                <h2>In Their Own Words</h2>
+                <p>The heartbeat of our work lives in the voices of those we serve</p>
+            </div>
+
+            <div class="voices-grid">
+                <div class="voice-card">
+                    <div class="voice-content">
+                        <p class="voice-text">Before INDN, I didn't know my tribe's name. Now I teach drumming to younger kids and I'm planning to study Indigenous Studies in college.</p>
+                        <div class="voice-author">
+                            <div class="voice-avatar">M</div>
+                            <div class="voice-author-info">
+                                <h4>Maria, 16</h4>
+                                <p>Youth Leader</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="voice-card">
+                    <div class="voice-content">
+                        <p class="voice-text">I drive 45 minutes each way for Cultural Nights because there's nowhere else my children can be surrounded by their community like this.</p>
+                        <div class="voice-author">
+                            <div class="voice-avatar">S</div>
+                            <div class="voice-author-info">
+                                <h4>Sarah</h4>
+                                <p>Parent & Volunteer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="voice-card">
+                    <div class="voice-content">
+                        <p class="voice-text">Seeing our youth lead programs, teach their peers, and grow food for their families—this is the future our ancestors dreamed of.</p>
+                        <div class="voice-author">
+                            <div class="voice-avatar">E</div>
+                            <div class="voice-author-info">
+                                <h4>Elder Voice</h4>
+                                <p>Community Advisor</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs -->
+    <section class="programs-section">
+        <div class="programs-container">
+            <div class="section-header">
+                <h2>How We Walk Together</h2>
+                <p>Our programs don't exist in isolation—they're interconnected, just like our community</p>
+            </div>
+
+            <div class="programs-web">
+                <div class="program-node">
+                    <div class="program-icon">🌙</div>
+                    <h3>Cultural Nights</h3>
+                    <p>Monthly gatherings where 15-25+ families share meals, learn traditional arts, and keep the drum circle beating. Three generations learning from each other.</p>
+                    <div class="program-impact">Building belonging, one circle at a time</div>
+                </div>
+
+                <div class="program-node">
+                    <div class="program-icon">🌱</div>
+                    <h3>Youth Garden</h3>
+                    <p>Growing 100+ pounds of food annually while elders share plant knowledge passed down through generations. Youth feed families while feeding their souls.</p>
+                    <div class="program-impact">Connecting hands to earth, youth to elders</div>
+                </div>
+
+                <div class="program-node">
+                    <div class="program-icon">💫</div>
+                    <h3>Four Directions Initiative</h3>
+                    <p>Career, education, health, and digital media programs where youth don't just attend—they lead. Older youth teach AI literacy to younger peers. Everyone grows together.</p>
+                    <div class="program-impact">Leading today, transforming tomorrow</div>
+                </div>
+
+                <div class="program-node">
+                    <div class="program-icon">🎪</div>
+                    <h3>Annual Pow Wow</h3>
+                    <p>From 500 to 1,000+ participants. Our flagship gathering where the entire year's work blooms into celebration, connection, and collective joy.</p>
+                    <div class="program-impact">1,000+ hearts beating as one</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blessings -->
+    <section class="blessing-section">
+        <div class="blessing-container">
+            <div class="section-header">
+                <h2>Guided by Our Leaders</h2>
+            </div>
+
+            <p class="blessing-intro">Our work is blessed and guided by tribal leaders who have stewarded their communities for generations. Their trust is our foundation. Their wisdom lights our path.</p>
+
+            <div class="blessing-grid">
+                <div class="blessing-card">
+                    <div class="blessing-ornament"></div>
+                    <h4>Ann Marie Sayers</h4>
+                    <p class="blessing-affiliation">Indian Canyon</p>
+                    <p>Cultural keeper and guardian of sacred traditions</p>
+                </div>
+
+                <div class="blessing-card">
+                    <div class="blessing-ornament"></div>
+                    <h4>Kanyon Sayers-Roods</h4>
+                    <p class="blessing-affiliation">Costanoan Research</p>
+                    <p>Scholar preserving and sharing cultural knowledge</p>
+                </div>
+
+                <div class="blessing-card">
+                    <div class="blessing-ornament"></div>
+                    <h4>Valentin Lopez</h4>
+                    <p class="blessing-affiliation">Amah Mutsun Tribal Band</p>
+                    <p>Tribal chairman and community advocate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Our Circle -->
+    <section class="join-section">
+        <div class="join-container">
+            <h2>Join Our Circle</h2>
+            <p>There's a place for you here. Multiple ways to walk with us, support our youth, and strengthen this community.</p>
+
+            <div class="join-pathways">
+                <div class="pathway">
+                    <div class="pathway-icon">🤝</div>
+                    <h3>Donate</h3>
+                    <p>Plant seeds for the next generation of Indigenous leaders</p>
+                    <a href="#donate" class="pathway-link">Give →</a>
+                </div>
+
+                <div class="pathway">
+                    <div class="pathway-icon">🌟</div>
+                    <h3>Volunteer</h3>
+                    <p>Share your time, skills, and heart with our community</p>
+                    <a href="#volunteer" class="pathway-link">Join Us →</a>
+                </div>
+
+                <div class="pathway">
+                    <div class="pathway-icon">📧</div>
+                    <h3>Stay Connected</h3>
+                    <p>Receive stories, updates, and invitations to our circle</p>
+                    <a href="#newsletter" class="pathway-link">Subscribe →</a>
+                </div>
+
+                <div class="pathway">
+                    <div class="pathway-icon">🎪</div>
+                    <h3>Attend Events</h3>
+                    <p>Experience our community at Cultural Nights and Pow Wows</p>
+                    <a href="#events" class="pathway-link">See Events →</a>
+                </div>
+            </div>
+
+            <div class="contact-invitation">
+                <h3>Have questions? Want to talk? We're here.</h3>
+                <div class="contacts-gentle">
+                    <div class="contact-gentle">
+                        <strong>Elvira Zaragoza Robinson</strong>
+                        <a href="mailto:ezrlaw1948@gmail.com">ezrlaw1948@gmail.com</a>
+                        <a href="tel:+18318015530">(831) 801-5530</a>
+                    </div>
+                    <div class="contact-gentle">
+                        <strong>Charles Wall</strong>
+                        <a href="mailto:charleswallandfam@gmail.com">charleswallandfam@gmail.com</a>
+                        <a href="tel:+17752710322">(775) 271-0322</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

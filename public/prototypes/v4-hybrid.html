@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About INDN - Indigenous Nations Diversity Network</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: #2C3E50;
+            background: #FEFDFB;
+        }
+
+        /* Hero - Circular Design with Bold Statement */
+        .hero {
+            position: relative;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1E3A5F 0%, #2D5F3F 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            height: 700px;
+            border: 2px solid rgba(224, 122, 58, 0.15);
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 450px;
+            height: 450px;
+            border: 3px solid rgba(224, 122, 58, 0.25);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            max-width: 900px;
+            padding: 40px;
+        }
+
+        .circle-center {
+            width: 120px;
+            height: 120px;
+            border: 4px solid #E07A3A;
+            border-radius: 50%;
+            margin: 0 auto 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(224, 122, 58, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .circle-center::before {
+            content: '';
+            width: 60px;
+            height: 60px;
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+        }
+
+        .hero h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            line-height: 1.6;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+            font-style: italic;
+        }
+
+        /* Mission Banner - Bold */
+        .mission-banner {
+            background: white;
+            border-top: 8px solid #E07A3A;
+            padding: 80px 40px;
+        }
+
+        .mission-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .mission-label {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #E07A3A;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .mission-text {
+            font-size: 2rem;
+            line-height: 1.5;
+            color: #1A1A1A;
+            font-weight: 600;
+        }
+
+        /* Impact Stats - Bold Cards */
+        .impact-section {
+            background: #F8F8F8;
+            padding: 100px 40px;
+        }
+
+        .impact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: #1A1A1A;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 70px;
+            font-weight: 300;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .impact-card {
+            background: white;
+            padding: 50px 40px;
+            text-align: center;
+            border-left: 6px solid #E07A3A;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .impact-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(234, 107, 62, 0.2);
+        }
+
+        .impact-value {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #E07A3A;
+            line-height: 1;
+            margin-bottom: 15px;
+        }
+
+        .impact-label {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #1A1A1A;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .impact-description {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Story Section - Narrative */
+        .story-section {
+            background: white;
+            padding: 120px 40px;
+        }
+
+        .story-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .story-container h2 {
+            font-family: 'Crimson Text', serif;
+            font-size: 3rem;
+            color: #1E3A5F;
+            margin-bottom: 40px;
+            line-height: 1.2;
+            font-weight: 600;
+        }
+
+        .story-text {
+            font-size: 1.25rem;
+            line-height: 1.9;
+            color: #4A4A4A;
+            margin-bottom: 30px;
+        }
+
+        .story-quote {
+            background: linear-gradient(135deg, #1E3A5F 0%, #2D5F3F 100%);
+            color: white;
+            padding: 50px;
+            border-radius: 20px;
+            margin: 60px 0;
+            position: relative;
+        }
+
+        .story-quote::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            font-size: 8rem;
+            color: rgba(255, 255, 255, 0.1);
+            font-family: 'Crimson Text', serif;
+            line-height: 1;
+        }
+
+        .story-quote p {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.8rem;
+            font-style: italic;
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Values Circle Section */
+        .values-section {
+            background: #F7F4F0;
+            padding: 120px 40px;
+        }
+
+        .values-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .value-card {
+            background: white;
+            padding: 50px 30px;
+            border-radius: 50%;
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 3px solid transparent;
+            box-shadow: 0 4px 20px rgba(30, 58, 95, 0.08);
+        }
+
+        .value-card:hover {
+            border-color: #E07A3A;
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(224, 122, 58, 0.2);
+        }
+
+        .value-card h3 {
+            font-size: 1.3rem;
+            color: #1E3A5F;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .value-card p {
+            font-size: 0.95rem;
+            color: #6B7280;
+            line-height: 1.6;
+        }
+
+        /* Programs - Interconnected Cards */
+        .programs-section {
+            background: white;
+            padding: 120px 40px;
+        }
+
+        .programs-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .program-card {
+            background: #F8F8F8;
+            padding: 50px 40px;
+            border-radius: 20px;
+            position: relative;
+            transition: all 0.3s ease;
+            border-top: 6px solid #E07A3A;
+        }
+
+        .program-card::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            width: 50px;
+            height: 50px;
+            background: #E07A3A;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(224, 122, 58, 0.2);
+        }
+
+        .program-card:hover::before {
+            opacity: 0.2;
+        }
+
+        .program-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #1E3A5F 0%, #2D5F3F 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+        }
+
+        .program-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1A1A1A;
+        }
+
+        .program-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4A5568;
+            margin-bottom: 25px;
+        }
+
+        .program-stat {
+            font-size: 0.95rem;
+            color: #E07A3A;
+            font-weight: 700;
+            font-style: italic;
+            padding-top: 20px;
+            border-top: 2px solid #E07A3A;
+        }
+
+        /* Blessing Section */
+        .blessing-section {
+            background: linear-gradient(135deg, #1E3A5F 0%, #2D5F3F 100%);
+            color: white;
+            padding: 120px 40px;
+        }
+
+        .blessing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .blessing-intro {
+            max-width: 800px;
+            margin: 0 auto 70px;
+            font-size: 1.3rem;
+            line-height: 1.9;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .blessing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+
+        .blessing-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 60px 40px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .blessing-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #E07A3A;
+            transform: translateY(-5px);
+        }
+
+        .blessing-ornament {
+            width: 60px;
+            height: 60px;
+            border: 3px solid #E07A3A;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .blessing-ornament::before {
+            content: '';
+            width: 30px;
+            height: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+        }
+
+        .blessing-card h4 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .blessing-affiliation {
+            color: #E07A3A;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .blessing-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+
+        /* CTA Section - Multiple Pathways */
+        .cta-section {
+            background: white;
+            padding: 120px 40px;
+        }
+
+        .cta-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .cta-container h2 {
+            font-family: 'Crimson Text', serif;
+            font-size: 3.5rem;
+            margin-bottom: 30px;
+            font-weight: 600;
+            color: #1E3A5F;
+        }
+
+        .cta-container > p {
+            font-size: 1.4rem;
+            margin-bottom: 60px;
+            color: #6B7280;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        .cta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .cta-pathway {
+            background: linear-gradient(135deg, #F7F4F0 0%, white 100%);
+            padding: 50px 35px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .cta-pathway:hover {
+            border-color: #E07A3A;
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(224, 122, 58, 0.15);
+        }
+
+        .pathway-icon {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+        }
+
+        .cta-pathway h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #1E3A5F;
+            font-weight: 700;
+        }
+
+        .cta-pathway p {
+            font-size: 1.05rem;
+            color: #6B7280;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .pathway-button {
+            display: inline-block;
+            padding: 14px 35px;
+            background: #E07A3A;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .pathway-button:hover {
+            background: #1E3A5F;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(30, 58, 95, 0.3);
+        }
+
+        .pathway-button-primary {
+            background: #1E3A5F;
+            font-size: 1.1rem;
+            padding: 18px 45px;
+        }
+
+        .pathway-button-primary:hover {
+            background: #E07A3A;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            border-top: 2px solid #E5E5E5;
+            padding-top: 80px;
+            margin-top: 80px;
+        }
+
+        .contact-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 50px;
+            color: #1E3A5F;
+            font-weight: 600;
+        }
+
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact-box {
+            background: #F7F4F0;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .contact-box strong {
+            display: block;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #1E3A5F;
+            font-weight: 700;
+        }
+
+        .contact-box a {
+            color: #4A5568;
+            text-decoration: none;
+            display: block;
+            margin: 10px 0;
+            font-size: 1.05rem;
+            transition: color 0.3s;
+        }
+
+        .contact-box a:hover {
+            color: #E07A3A;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .mission-text {
+                font-size: 1.6rem;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .story-quote p {
+                font-size: 1.4rem;
+            }
+
+            .cta-container h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero {
+                min-height: 70vh;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .circle-center {
+                width: 80px;
+                height: 80px;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .value-card {
+                border-radius: 20px;
+                aspect-ratio: auto;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .story-text {
+                font-size: 1.1rem;
+            }
+
+            .story-quote {
+                padding: 40px 30px;
+            }
+
+            .story-quote p {
+                font-size: 1.2rem;
+            }
+
+            .impact-value {
+                font-size: 3rem;
+            }
+
+            .program-card,
+            .blessing-card,
+            .contact-box {
+                padding: 40px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="circle-center"></div>
+            <h1>The Only Organization Serving Indigenous Youth in San Benito County</h1>
+            <p class="hero-subtitle">Where ancestral wisdom meets tomorrow's possibilities, and every young person belongs to something greater than themselves</p>
+        </div>
+    </section>
+
+    <!-- Mission Banner -->
+    <section class="mission-banner">
+        <div class="mission-content">
+            <div class="mission-label">Our Mission</div>
+            <p class="mission-text">To educate, preserve, and celebrate Indigenous culture while advancing the physical and spiritual well-being of Indigenous people.</p>
+        </div>
+    </section>
+
+    <!-- Impact Stats -->
+    <section class="impact-section">
+        <div class="impact-container">
+            <h2 class="section-title">Proven Impact</h2>
+            <p class="section-subtitle">Three years of measurable results building culturally grounded, economically empowered leaders</p>
+
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="impact-value">1,000+</div>
+                    <div class="impact-label">Lives Touched</div>
+                    <p class="impact-description">Annual Pow Wow participants celebrating culture and community</p>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-value">100%</div>
+                    <div class="impact-label">Growth Rate</div>
+                    <p class="impact-description">From 500 to 1,000+ participants in just three years</p>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-value">25+</div>
+                    <div class="impact-label">Youth Leaders</div>
+                    <p class="impact-description">Monthly program participants driving community change</p>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-value">100+</div>
+                    <div class="impact-label">Pounds of Food</div>
+                    <p class="impact-description">Grown annually in youth-led garden for families</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story -->
+    <section class="story-section">
+        <div class="story-container">
+            <h2>How This Circle Began</h2>
+            <p class="story-text">In 2023, when the San Juan Bautista Indian Market closed, something precious was lost. Not just an event, but a gathering place. A home for Indigenous youth in San Benito County to see themselves reflected, to connect with their heritage, to simply belong.</p>
+
+            <p class="story-text">We didn't wait for someone else to fill that void. Our community came together—elders who carried knowledge, families who carried hope, and youth who carried tomorrow's dreams—and created something new.</p>
+
+            <div class="story-quote">
+                <p>"We are the only organization providing year-round Indigenous cultural programming in San Benito County. But we're not here to replace what was lost. We're here to build what's needed."</p>
+            </div>
+
+            <p class="story-text">From one annual event to monthly gatherings. From passive participants to empowered leaders. From youth at risk to youth leading the charge—teaching AI literacy, growing food for families, running sports leagues, producing multimedia content.</p>
+
+            <p class="story-text">This is what happens when a community refuses to let its youth fall through the cracks.</p>
+        </div>
+    </section>
+
+    <!-- Values Circle -->
+    <section class="values-section">
+        <div class="values-container">
+            <h2 class="section-title">Rooted in Our Values</h2>
+            <p class="section-subtitle">Everything we do flows from principles that have guided Indigenous communities for generations</p>
+
+            <div class="values-grid">
+                <div class="value-card">
+                    <h3>Respect</h3>
+                    <p>For elders, traditions, land, and every person in our circle</p>
+                </div>
+                <div class="value-card">
+                    <h3>Reciprocity</h3>
+                    <p>What we receive, we give back. What we learn, we share.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Relationality</h3>
+                    <p>We are connected to each other, our ancestors, and future generations</p>
+                </div>
+                <div class="value-card">
+                    <h3>Responsibility</h3>
+                    <p>To preserve culture and prepare youth for the world they'll inherit</p>
+                </div>
+                <div class="value-card">
+                    <h3>Relevance</h3>
+                    <p>Honoring tradition while embracing what youth need today</p>
+                </div>
+                <div class="value-card">
+                    <h3>Representation</h3>
+                    <p>Every voice matters, every story deserves to be heard</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs -->
+    <section class="programs-section">
+        <div class="programs-container">
+            <h2 class="section-title">How We Build The Future</h2>
+            <p class="section-subtitle">Comprehensive programming addressing youth development from every angle</p>
+
+            <div class="programs-grid">
+                <div class="program-card">
+                    <div class="program-icon">🌙</div>
+                    <h3>Cultural Nights</h3>
+                    <p>Monthly gatherings where 15-25+ families share traditional meals, learn drumming, and keep cultural knowledge alive. Three generations learning from each other.</p>
+                    <div class="program-stat">Building belonging, one circle at a time</div>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-icon">🌱</div>
+                    <h3>Youth Garden</h3>
+                    <p>Growing 100+ pounds of food annually while elders share plant knowledge passed down through generations. Youth feed families while feeding their souls.</p>
+                    <div class="program-stat">Connecting hands to earth, youth to elders</div>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-icon">💫</div>
+                    <h3>Four Directions Initiative</h3>
+                    <p>Career, education, health, and digital media programs where youth lead. Older youth teach AI literacy to younger peers. Everyone grows together.</p>
+                    <div class="program-stat">Leading today, transforming tomorrow</div>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-icon">🎪</div>
+                    <h3>Annual Pow Wow</h3>
+                    <p>From 500 to 1,000+ participants. Our flagship gathering where the entire year's work blooms into celebration, connection, and collective joy.</p>
+                    <div class="program-stat">1,000+ hearts beating as one</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blessings -->
+    <section class="blessing-section">
+        <div class="blessing-container">
+            <h2 class="section-title" style="color: white;">Guided by Our Leaders</h2>
+            <p class="blessing-intro">Our work is blessed and guided by tribal leaders who have stewarded their communities for generations. Their trust is our foundation. Their wisdom lights our path.</p>
+
+            <div class="blessing-grid">
+                <div class="blessing-card">
+                    <div class="blessing-ornament"></div>
+                    <h4>Ann Marie Sayers</h4>
+                    <p class="blessing-affiliation">Indian Canyon</p>
+                    <p>Cultural keeper and guardian of sacred traditions</p>
+                </div>
+
+                <div class="blessing-card">
+                    <div class="blessing-ornament"></div>
+                    <h4>Kanyon Sayers-Roods</h4>
+                    <p class="blessing-affiliation">Costanoan Research</p>
+                    <p>Scholar preserving and sharing cultural knowledge</p>
+                </div>
+
+                <div class="blessing-card">
+                    <div class="blessing-ornament"></div>
+                    <h4>Valentin Lopez</h4>
+                    <p class="blessing-affiliation">Amah Mutsun Tribal Band</p>
+                    <p>Tribal chairman and community advocate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="cta-container">
+            <h2>Join Our Circle</h2>
+            <p>There's a place for you here. Multiple ways to walk with us, support our youth, and strengthen this community.</p>
+
+            <div class="cta-grid">
+                <div class="cta-pathway">
+                    <div class="pathway-icon">💝</div>
+                    <h3>Donate</h3>
+                    <p>Plant seeds for the next generation of Indigenous leaders</p>
+                    <a href="#donate" class="pathway-button pathway-button-primary">Make Your Impact</a>
+                </div>
+
+                <div class="cta-pathway">
+                    <div class="pathway-icon">🌟</div>
+                    <h3>Volunteer</h3>
+                    <p>Share your time, skills, and heart with our community</p>
+                    <a href="#volunteer" class="pathway-button">Join Us</a>
+                </div>
+
+                <div class="cta-pathway">
+                    <div class="pathway-icon">🎪</div>
+                    <h3>Attend Events</h3>
+                    <p>Experience our community at Cultural Nights and Pow Wows</p>
+                    <a href="#events" class="pathway-button">See Events</a>
+                </div>
+
+                <div class="cta-pathway">
+                    <div class="pathway-icon">📧</div>
+                    <h3>Stay Connected</h3>
+                    <p>Receive stories, updates, and invitations to our circle</p>
+                    <a href="#newsletter" class="pathway-button">Subscribe</a>
+                </div>
+            </div>
+
+            <div class="contact-section">
+                <h3>Have questions? Want to talk? We're here.</h3>
+                <div class="contacts-grid">
+                    <div class="contact-box">
+                        <strong>Elvira Zaragoza Robinson</strong>
+                        <a href="mailto:ezrlaw1948@gmail.com">ezrlaw1948@gmail.com</a>
+                        <a href="tel:+18318015530">(831) 801-5530</a>
+                    </div>
+                    <div class="contact-box">
+                        <strong>Charles Wall</strong>
+                        <a href="mailto:charleswallandfam@gmail.com">charleswallandfam@gmail.com</a>
+                        <a href="tel:+17752710322">(775) 271-0322</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

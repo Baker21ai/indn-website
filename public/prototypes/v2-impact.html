@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impact & Mission - INDN | Indigenous Nations Diversity Network</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1A1A1A;
+            background: white;
+        }
+
+        /* Hero - Bold Statement */
+        .hero {
+            background: #1A1A1A;
+            color: white;
+            padding: 140px 40px 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, #EA6B3E 0%, #C4573A 100%);
+            clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
+            opacity: 0.9;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-label {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #EA6B3E;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 40px;
+            max-width: 800px;
+        }
+
+        .hero-stat {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #EA6B3E;
+            margin-bottom: 15px;
+        }
+
+        .hero-stat-label {
+            font-size: 1.3rem;
+            opacity: 0.85;
+            font-weight: 300;
+        }
+
+        /* Mission Statement - High Contrast */
+        .mission-banner {
+            background: white;
+            border-top: 8px solid #EA6B3E;
+            border-bottom: 8px solid #EA6B3E;
+            padding: 80px 40px;
+        }
+
+        .mission-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .mission-content h2 {
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #EA6B3E;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .mission-content p {
+            font-size: 1.8rem;
+            line-height: 1.5;
+            color: #1A1A1A;
+            font-weight: 400;
+        }
+
+        /* Data Dashboard Section */
+        .data-section {
+            background: #F8F8F8;
+            padding: 100px 40px;
+        }
+
+        .data-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: #1A1A1A;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 70px;
+            font-weight: 300;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 50px 40px;
+            text-align: center;
+            border-left: 6px solid #EA6B3E;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .metric-value {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #EA6B3E;
+            line-height: 1;
+            margin-bottom: 15px;
+        }
+
+        .metric-label {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #1A1A1A;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .metric-description {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Principles Section */
+        .principles-section {
+            background: #1A1A1A;
+            color: white;
+            padding: 100px 40px;
+        }
+
+        .principles-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            margin-top: 60px;
+        }
+
+        .principle {
+            border-left: 4px solid #EA6B3E;
+            padding-left: 30px;
+        }
+
+        .principle-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #EA6B3E;
+            margin-bottom: 15px;
+            line-height: 1;
+        }
+
+        .principle h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .principle p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* Programs - Bold Cards */
+        .programs-section {
+            background: white;
+            padding: 100px 40px;
+        }
+
+        .programs-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .program-card {
+            background: #F8F8F8;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .program-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: #EA6B3E;
+        }
+
+        .program-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(234, 107, 62, 0.2);
+        }
+
+        .program-card-content {
+            padding: 50px 40px;
+        }
+
+        .program-card h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1A1A1A;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .program-card p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #4A4A4A;
+        }
+
+        .program-stat {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 2px solid #EA6B3E;
+            font-weight: 700;
+            color: #EA6B3E;
+            font-size: 1.1rem;
+        }
+
+        /* Authority Section - Credibility */
+        .authority-section {
+            background: #F8F8F8;
+            padding: 100px 40px;
+        }
+
+        .authority-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .authority-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 60px;
+        }
+
+        .authority-box {
+            background: white;
+            padding: 60px 50px;
+            border-left: 8px solid #EA6B3E;
+        }
+
+        .authority-box h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .authority-box ul {
+            list-style: none;
+        }
+
+        .authority-box li {
+            padding: 15px 0;
+            border-bottom: 1px solid #E5E5E5;
+            font-size: 1.1rem;
+            color: #1A1A1A;
+        }
+
+        .authority-box li:last-child {
+            border-bottom: none;
+        }
+
+        .authority-box li strong {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .authority-box li span {
+            color: #EA6B3E;
+            font-size: 0.95rem;
+        }
+
+        /* CTA - Multiple Pathways */
+        .cta-section {
+            background: #EA6B3E;
+            color: white;
+            padding: 100px 40px;
+        }
+
+        .cta-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .cta-container h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .cta-container > p {
+            font-size: 1.5rem;
+            margin-bottom: 60px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 80px;
+        }
+
+        .cta-button {
+            padding: 20px 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 0;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 3px solid white;
+        }
+
+        .cta-button-primary {
+            background: white;
+            color: #EA6B3E;
+        }
+
+        .cta-button-primary:hover {
+            background: #1A1A1A;
+            color: white;
+            border-color: #1A1A1A;
+        }
+
+        .cta-button-secondary {
+            background: transparent;
+            color: white;
+        }
+
+        .cta-button-secondary:hover {
+            background: white;
+            color: #EA6B3E;
+        }
+
+        .contact-section {
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+            padding-top: 60px;
+            margin-top: 60px;
+        }
+
+        .contact-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .contact-box strong {
+            display: block;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .contact-box a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin: 10px 0;
+            font-size: 1.1rem;
+            transition: opacity 0.3s;
+        }
+
+        .contact-box a:hover {
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .hero::before {
+                width: 100%;
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                opacity: 0.2;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .mission-content p {
+                font-size: 1.4rem;
+            }
+
+            .authority-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-container h2 {
+                font-size: 2.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .cta-button {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero {
+                padding: 80px 25px 60px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-stat {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .metric-value {
+                font-size: 3rem;
+            }
+
+            .programs-section,
+            .data-section,
+            .principles-section,
+            .authority-section {
+                padding: 60px 25px;
+            }
+
+            .program-card-content,
+            .authority-box {
+                padding: 40px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-label">Indigenous Nations Diversity Network</div>
+            <h1>THE ONLY ORGANIZATION SERVING INDIGENOUS YOUTH IN SAN BENITO COUNTY</h1>
+            <div style="margin-top: 60px;">
+                <div class="hero-stat">1,000+</div>
+                <div class="hero-stat-label">Lives impacted annually through year-round programming</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Statement -->
+    <section class="mission-banner">
+        <div class="mission-content">
+            <h2>Our Mission</h2>
+            <p>To educate, preserve, and celebrate Indigenous culture while advancing the physical and spiritual well-being of Indigenous people.</p>
+        </div>
+    </section>
+
+    <!-- Impact Data -->
+    <section class="data-section">
+        <div class="data-container">
+            <h2 class="section-title">Proven Impact</h2>
+            <p class="section-subtitle">Three years of measurable results building culturally grounded, economically empowered leaders</p>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">100%</div>
+                    <div class="metric-label">Growth Rate</div>
+                    <p class="metric-description">From 500 to 1,000+ annual Pow Wow participants in just three years</p>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">25+</div>
+                    <div class="metric-label">Youth Leaders</div>
+                    <p class="metric-description">Monthly program participants (60% youth) driving community change</p>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">100+</div>
+                    <div class="metric-label">Pounds of Food</div>
+                    <p class="metric-description">Grown annually in youth-led garden for families in need</p>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">12</div>
+                    <div class="metric-label">Months Active</div>
+                    <p class="metric-description">Year-round programming ensuring consistent cultural connection</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Principles -->
+    <section class="principles-section">
+        <div class="principles-container">
+            <h2 class="section-title" style="color: white;">Our Principles</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.8);">The values that guide every decision, every program, every interaction</p>
+
+            <div class="principles-grid">
+                <div class="principle">
+                    <div class="principle-number">01</div>
+                    <h3>Cultural Integrity</h3>
+                    <p>Every program honors Indigenous traditions while equipping youth for modern challenges. We don't compromise heritage for progress—we integrate both.</p>
+                </div>
+                <div class="principle">
+                    <div class="principle-number">02</div>
+                    <h3>Youth Leadership</h3>
+                    <p>Young people don't just attend—they design, lead, and evaluate programs. This isn't programming for youth. It's programming by youth.</p>
+                </div>
+                <div class="principle">
+                    <div class="principle-number">03</div>
+                    <h3>Community Trust</h3>
+                    <p>Blessed by tribal leaders and trusted by families, our legitimacy comes from the community we serve, not outside validation.</p>
+                </div>
+                <div class="principle">
+                    <div class="principle-number">04</div>
+                    <h3>Evidence-Based Action</h3>
+                    <p>Every claim backed by data. Every program measured. Every dollar accounted for. Transparency builds trust, and trust builds impact.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs -->
+    <section class="programs-section">
+        <div class="programs-container">
+            <h2 class="section-title">Four Pillars of Impact</h2>
+            <p class="section-subtitle">Comprehensive programming addressing youth development from every angle</p>
+
+            <div class="programs-grid">
+                <div class="program-card">
+                    <div class="program-card-content">
+                        <h3>Career & Business</h3>
+                        <p>AI literacy workshops where older youth teach younger peers technology skills, ensuring no one gets left behind in the digital revolution.</p>
+                        <div class="program-stat">Preparing youth for 21st century careers</div>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-card-content">
+                        <h3>Education</h3>
+                        <p>Scholarship fund partnering with local colleges to support youth who preserve and promote Indigenous tradition and culture.</p>
+                        <div class="program-stat">Building pathways to higher education</div>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-card-content">
+                        <h3>Physical Health</h3>
+                        <p>Youth-organized sports leagues developing leadership through coaching and refereeing while promoting wellness and teamwork.</p>
+                        <div class="program-stat">15-20+ active participants monthly</div>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-card-content">
+                        <h3>Media & Digital</h3>
+                        <p>Youth-produced multimedia projects teaching content creation, AI tools, and digital archiving to preserve culture for future generations.</p>
+                        <div class="program-stat">Cultural Fashion Shows & digital storytelling</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Authority / Credibility -->
+    <section class="authority-section">
+        <div class="authority-container">
+            <h2 class="section-title">Trusted & Endorsed</h2>
+            <p class="section-subtitle">Our work is validated by the leaders and organizations that matter</p>
+
+            <div class="authority-grid">
+                <div class="authority-box">
+                    <h3>Tribal Leadership Blessing</h3>
+                    <ul>
+                        <li>
+                            <strong>Ann Marie Sayers</strong>
+                            <span>Indian Canyon</span>
+                        </li>
+                        <li>
+                            <strong>Kanyon Sayers-Roods</strong>
+                            <span>Costanoan Research</span>
+                        </li>
+                        <li>
+                            <strong>Valentin Lopez</strong>
+                            <span>Amah Mutsun Tribal Band</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="authority-box">
+                    <h3>Strategic Partners</h3>
+                    <ul>
+                        <li>
+                            <strong>Youth Alliance</strong>
+                            <span>Fiscal Sponsor | 501(c)(3)</span>
+                        </li>
+                        <li>
+                            <strong>Hollister High School</strong>
+                            <span>Venue & Student Engagement</span>
+                        </li>
+                        <li>
+                            <strong>Martha's Kitchen</strong>
+                            <span>Food Security Partner</span>
+                        </li>
+                        <li>
+                            <strong>Bulldog Boxing</strong>
+                            <span>Youth Fitness Programs</span>
+                        </li>
+                        <li>
+                            <strong>San Benito County Fair</strong>
+                            <span>Major Event Venue</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="cta-container">
+            <h2>Take Action Now</h2>
+            <p>Multiple ways to support Indigenous youth leadership and cultural preservation</p>
+
+            <div class="cta-buttons">
+                <a href="#donate" class="cta-button cta-button-primary">Donate Today</a>
+                <a href="#volunteer" class="cta-button cta-button-secondary">Volunteer</a>
+                <a href="#partner" class="cta-button cta-button-secondary">Partner With Us</a>
+            </div>
+
+            <div class="contact-section">
+                <h3>Direct Contact</h3>
+                <div class="contacts-grid">
+                    <div class="contact-box">
+                        <strong>Elvira Zaragoza Robinson</strong>
+                        <a href="mailto:ezrlaw1948@gmail.com">ezrlaw1948@gmail.com</a>
+                        <a href="tel:+18318015530">(831) 801-5530</a>
+                    </div>
+                    <div class="contact-box">
+                        <strong>Charles Wall</strong>
+                        <a href="mailto:charleswallandfam@gmail.com">charleswallandfam@gmail.com</a>
+                        <a href="tel:+17752710322">(775) 271-0322</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

@@ -12,6 +12,7 @@ const navigation = [
   { name: 'Board', href: '/about/board' },
   { name: 'Programs', href: '/programs' },
   { name: 'Events', href: '/events' },
+  { name: 'Prototypes', href: '/prototypes' },
   { name: 'Donate', href: '/donate' },
 ]
 
