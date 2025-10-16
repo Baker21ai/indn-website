@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/auth.config'
 import { prisma } from '@/lib/db'
+import { Prisma } from '@prisma/client'
 
 export async function GET(request: NextRequest) {
   try {
@@ -14,7 +15,7 @@ export async function GET(request: NextRequest) {
     const targetAudience = searchParams.get('targetAudience')
 
     // Build query based on user role
-    const where: any = {
+    const where: Prisma.announcementWhereInput = {
       publishedAt: {
         not: null,
       },

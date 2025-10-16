@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Heart, ArrowRight, QrCode, ExternalLink } from 'lucide-react'
+import { Card, CardContent } from '@/components/ui/card'
+import { Heart, ArrowRight, ExternalLink } from 'lucide-react'
 import Image from 'next/image'
 
 export default function DonatePage() {
@@ -30,14 +30,13 @@ export default function DonatePage() {
               {/* Left: QR Code */}
               <div className="text-center">
                 <div className="inline-block p-8 bg-white rounded-2xl shadow-card">
-                  {/* Placeholder for QR code - replace with actual QR code image */}
-                  <div className="w-64 h-64 bg-gradient-to-br from-terracotta/10 to-sage-green/10 rounded-xl flex items-center justify-center border-4 border-dashed border-terracotta/30">
-                    <div className="text-center">
-                      <QrCode className="w-16 h-16 mx-auto mb-4 text-terracotta" />
-                      <p className="text-sm text-stone-gray font-medium">QR Code Placeholder</p>
-                      <p className="text-xs text-stone-gray/70 mt-1">Add your donation QR code here</p>
-                    </div>
-                  </div>
+                  <Image
+                    src="/images/barcode.png"
+                    alt="Donation QR Code - Scan to donate"
+                    width={256}
+                    height={256}
+                    className="w-64 h-64 rounded-xl"
+                  />
                 </div>
                 <p className="mt-6 text-stone-gray font-medium">Scan to donate instantly</p>
               </div>

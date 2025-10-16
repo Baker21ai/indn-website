@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/auth.config'
 import { prisma } from '@/lib/db'
+import { Prisma } from '@prisma/client'
 import { writeFile, mkdir } from 'fs/promises'
 import { join } from 'path'
 
@@ -28,7 +29,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Build query
-    const where: any = {
+    const where: Prisma.documentWhereInput = {
       accessLevel: {
         in: accessLevels,
       },

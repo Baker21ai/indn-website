@@ -58,7 +58,7 @@ const prototypes = [
     id: 4,
     title: 'Version 4: Hybrid',
     subtitle: 'Recommended Synthesis',
-    description: 'Combines the best elements: V3\'s cultural authenticity, V1\'s emotional storytelling, and V2\'s bold data presentation.',
+    description: 'Combines the best elements: V3&apos;s cultural authenticity, V1&apos;s emotional storytelling, and V2&apos;s bold data presentation.',
     icon: Sparkles,
     color: 'from-terracotta via-sage-green to-sky-blue',
     features: [
@@ -111,8 +111,8 @@ export default function PrototypesPage() {
 
           <div className="bg-warm-gray/10 rounded-2xl p-6 max-w-2xl mx-auto">
             <p className="text-sm text-stone-gray">
-              <strong className="text-charcoal">For Board Review:</strong> Click "View
-              Prototype" on any card to see the full design. These are standalone HTML
+              <strong className="text-charcoal">For Board Review:</strong> Click &quot;View
+              Prototype&quot; on any card to see the full design. These are standalone HTML
               pages showcasing different design directions for feedback and
               discussion.
             </p>
@@ -298,16 +298,16 @@ export default function PrototypesPage() {
                       Call-to-Action
                     </td>
                     <td className="px-6 py-4 text-sm text-stone-gray">
-                      "Stand with Us"
+                      &quot;Stand with Us&quot;
                     </td>
                     <td className="px-6 py-4 text-sm text-stone-gray">
-                      "Take Action Now"
+                      &quot;Take Action Now&quot;
                     </td>
                     <td className="px-6 py-4 text-sm text-stone-gray">
-                      "Join Our Circle"
+                      &quot;Join Our Circle&quot;
                     </td>
                     <td className="px-6 py-4 text-sm text-charcoal font-medium">
-                      "Join Our Circle"
+                      &quot;Join Our Circle&quot;
                     </td>
                   </tr>
                   <tr>

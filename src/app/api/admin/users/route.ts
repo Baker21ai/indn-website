@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/auth.config'
 import { prisma } from '@/lib/db'
+import { Prisma } from '@prisma/client'
 import { hash } from 'bcrypt'
 import { z } from 'zod'
 
@@ -21,7 +22,7 @@ export async function GET(req: NextRequest) {
     const search = searchParams.get('search')
 
     // Build where clause
-    const where: any = {}
+    const where: Prisma.usersWhereInput = {}
 
     if (role) {
       where.role = role

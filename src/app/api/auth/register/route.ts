@@ -3,7 +3,11 @@ import { hash } from 'bcrypt'
 import { prisma } from '@/lib/db'
 import { z } from 'zod'
 import crypto from 'crypto'
-// import { sendVerificationEmail } from '@/lib/email' // Disabled for MVP - missing @react-email/render dependency
+import {
+  sendVerificationEmail,
+  sendWelcomeEmail,
+  sendAdminNotification,
+} from '@/lib/email'
 import { checkRateLimit } from '@/lib/rate-limit'
 
 const registerSchema = z.object({
@@ -86,13 +90,40 @@ export async function POST(request: NextRequest) {
       })
     }
 
-    // Send verification email - DISABLED FOR MVP
-    // TODO: Install @react-email/render and re-enable email verification
-    // try {
-    //   await sendVerificationEmail(user.email, verificationToken)
-    // } catch (emailError) {
-    //   console.warn('Failed to send verification email:', emailError)
-    // }
+    // Send verification email
+    try {
+      await sendVerificationEmail(user.email, verificationToken)
+    } catch (emailError) {
+      console.warn('Failed to send verification email:', emailError)
+    }
+
+    // Send welcome email
+    try {
+      await sendWelcomeEmail(user.email, user.name, validatedData.role)
+    } catch (emailError) {
+      console.warn('Failed to send welcome email:', emailError)
+    }
+
+    // Send admin notification
+    try {
+      const notificationType =
+        validatedData.role === 'volunteer'
+          ? 'new_volunteer'
+          : validatedData.role === 'board_member'
+            ? 'new_board_member'
+            : 'new_user'
+
+      await sendAdminNotification(notificationType, {
+        title: `New ${validatedData.role === 'volunteer' ? 'Volunteer' : 'Board Member'} Registration`,
+        message: `A new user has registered on the INDN website.`,
+        userName: user.name,
+        userEmail: user.email,
+        userRole: validatedData.role,
+        actionUrl: `${process.env.NEXTAUTH_URL}/portal/admin/users`,
+      })
+    } catch (emailError) {
+      console.warn('Failed to send admin notification:', emailError)
+    }
 
     return NextResponse.json(
       {

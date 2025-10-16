@@ -47,7 +47,7 @@ export default function BoardPage() {
           <p className="text-xl text-stone-gray mb-12 max-w-3xl mx-auto leading-relaxed font-normal">
             Our board members bring decades of experience in Indigenous
             advocacy, cultural preservation, and community leadership. Together,
-            they guide INDN's mission to honor heritage and empower future
+            they guide INDN&apos;s mission to honor heritage and empower future
             generations.
           </p>
         </div>

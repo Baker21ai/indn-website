@@ -14,7 +14,16 @@ export default function EventDetailPage() {
   const router = useRouter()
   const params = useParams()
   const { data: session } = useSession()
-  const [event, setEvent] = useState<any>(null)
+  const [event, setEvent] = useState<{
+    id: string
+    title: string
+    description: string
+    startDate: string
+    endDate?: string
+    location?: string
+    isVirtual: boolean
+    category: string
+  } | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState('')
@@ -165,11 +174,11 @@ export default function EventDetailPage() {
         {isSignedUp ? (
           <Card>
             <CardHeader>
-              <CardTitle className="text-sage-green">You're Registered!</CardTitle>
+              <CardTitle className="text-sage-green">You&apos;re Registered!</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-stone-gray mb-4">
-                You have successfully signed up for this event. We'll send you more details as the event approaches.
+                You have successfully signed up for this event. We&apos;ll send you more details as the event approaches.
               </p>
               <Link href="/portal/volunteer/events">
                 <Button variant="outline">Back to Events</Button>

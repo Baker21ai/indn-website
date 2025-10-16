@@ -92,7 +92,7 @@ export default async function VolunteerDashboardPage() {
                 {upcomingEvents.length}
               </div>
               <p className="text-sm text-muted-foreground mt-1">
-                Events you're registered for
+                Events you&apos;re registered for
               </p>
             </CardContent>
           </Card>
@@ -124,7 +124,7 @@ export default async function VolunteerDashboardPage() {
               {upcomingEvents.length === 0 ? (
                 <div className="text-center py-8">
                   <p className="text-stone-gray mb-4">
-                    You haven't registered for any events yet
+                    You haven&apos;t registered for any events yet
                   </p>
                   <Link href="/portal/volunteer/events">
                     <Button className="bg-terracotta hover:bg-terracotta/90">
