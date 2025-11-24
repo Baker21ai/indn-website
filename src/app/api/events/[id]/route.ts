@@ -40,7 +40,6 @@ export async function GET(
 
     return NextResponse.json({ event, isSignedUp })
   } catch (error) {
-    console.error('Event fetch error:', error)
     return NextResponse.json(
       { error: 'Failed to fetch event' },
       { status: 500 }

@@ -1,0 +1,375 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "INDN Logo INDN Diversity Network" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - img "INDN Logo" [ref=e9]
+        - generic [ref=e10]:
+          - generic [ref=e11]: INDN
+          - generic [ref=e12]: Diversity Network
+      - generic [ref=e13]:
+        - button "Toggle menu" [ref=e14]:
+          - img
+        - generic [ref=e18]:
+          - link "INDN Logo INDN Diversity Network" [ref=e20] [cursor=pointer]:
+            - /url: /
+            - img "INDN Logo" [ref=e24]
+            - generic [ref=e25]:
+              - generic [ref=e26]: INDN
+              - generic [ref=e27]: Diversity Network
+          - navigation [ref=e28]:
+            - link "Home" [ref=e29] [cursor=pointer]:
+              - /url: "#home"
+              - img [ref=e30]
+              - generic [ref=e33]: Home
+            - link "Board" [ref=e34] [cursor=pointer]:
+              - /url: "#board"
+              - img [ref=e35]
+              - generic [ref=e39]: Board
+            - link "Events" [ref=e40] [cursor=pointer]:
+              - /url: "#events"
+              - img [ref=e41]
+              - generic [ref=e43]: Events
+            - link "Sponsors" [ref=e44] [cursor=pointer]:
+              - /url: "#sponsors"
+              - img [ref=e45]
+              - generic [ref=e50]: Sponsors
+            - link "Become a Sponsor" [ref=e51] [cursor=pointer]:
+              - /url: "#become-sponsor"
+              - img [ref=e52]
+              - generic [ref=e54]: Become a Sponsor
+  - main [ref=e56]:
+    - generic [ref=e57]:
+      - generic [ref=e61]:
+        - img "Indigenous Nations Diversity Network" [ref=e64]
+        - heading "Welcome to Our Circle" [level=1] [ref=e65]
+        - paragraph [ref=e66]: Where ancestral wisdom meets tomorrow's possibilities, and every young person belongs to something greater than themselves
+      - generic [ref=e68]:
+        - generic [ref=e69]:
+          - heading "Rooted in Our Values" [level=2] [ref=e70]
+          - paragraph [ref=e71]: Everything we do flows from the principles that have guided Indigenous communities for generations
+        - generic [ref=e72]:
+          - generic [ref=e73]:
+            - heading "Respect" [level=3] [ref=e74]
+            - paragraph [ref=e75]: For elders, traditions, land, and every person in our circle
+          - generic [ref=e76]:
+            - heading "Reciprocity" [level=3] [ref=e77]
+            - paragraph [ref=e78]: What we receive, we give back. What we learn, we share.
+          - generic [ref=e79]:
+            - heading "Relationality" [level=3] [ref=e80]
+            - paragraph [ref=e81]: We are connected to each other, our ancestors, and future generations
+          - generic [ref=e82]:
+            - heading "Responsibility" [level=3] [ref=e83]
+            - paragraph [ref=e84]: To preserve culture and prepare youth for the world they will inherit
+          - generic [ref=e85]:
+            - heading "Relevance" [level=3] [ref=e86]
+            - paragraph [ref=e87]: Honoring tradition while embracing what youth need today
+          - generic [ref=e88]:
+            - heading "Representation" [level=3] [ref=e89]
+            - paragraph [ref=e90]: Every voice matters, every story deserves to be heard
+      - generic [ref=e92]:
+        - heading "How This Circle Began" [level=2] [ref=e93]
+        - paragraph [ref=e94]: In 2023, when the San Juan Bautista Indian Market closed, something precious was lost. Not just an event, but a gathering place. A home for Indigenous youth in San Benito County to see themselves reflected, to connect with their heritage, to simply belong.
+        - paragraph [ref=e95]: We didn't wait for someone else to fill that void. Our community came together. Elders who carried knowledge, families who carried hope, and youth who carried tomorrow's dreams created something new.
+        - paragraph [ref=e97]: “We are the only organization providing year-round Indigenous cultural programming in San Benito County. But we're not here to replace what was lost. We're here to build what's needed.”
+        - paragraph [ref=e98]: From 500 to 1,000+ participants in three years. From one annual event to monthly gatherings, youth-led programs, gardens growing food for families, and AI workshops preparing our youth for futures we can barely imagine.
+        - paragraph [ref=e99]: This is what happens when a community refuses to let its youth fall through the cracks.
+      - generic [ref=e101]:
+        - generic [ref=e102]:
+          - generic [ref=e103]:
+            - img [ref=e104]
+            - generic [ref=e109]: Leadership & Guidance
+          - heading "Meet Our Board" [level=2] [ref=e110]
+          - paragraph [ref=e111]: Our board members bring decades of experience in Indigenous advocacy, cultural preservation, and community leadership. Together, they guide INDN's mission to honor heritage and empower future generations.
+        - generic [ref=e112]:
+          - generic [ref=e115]:
+            - img "Elvira Zaragoza Robinson" [ref=e118]
+            - heading "Elvira Zaragoza Robinson" [level=3] [ref=e119]
+            - paragraph [ref=e120]: Akimel O'Odham (Pima)
+            - paragraph [ref=e121]: Attorney, Author, and Cultural Organizer
+            - paragraph [ref=e123]: Elvira Zaragoza Robinson is an attorney, author, and cultural organizer with a lifelong commitment to justice and Indigenous empowerment. She holds a Juris Doctor from Santa Clara University and a Bachelor of Arts from San Jose State University. Elvira's work spans criminal law, estate planning, and publishing children's books that celebrate Native culture.
+            - button "Read Full Bio" [ref=e124]:
+              - img
+              - text: Read Full Bio
+          - generic [ref=e127]:
+            - img "Charles Wall" [ref=e130]
+            - heading "Charles Wall" [level=3] [ref=e131]
+            - paragraph [ref=e132]: Muscogee, Kiowa, Azorean, and Irish Descent
+            - paragraph [ref=e133]: Director and Educator
+            - paragraph [ref=e135]: Charles Wall is a seasoned director and educator in American Indian programs, Parks & Recreation, and Social Services. With formal training in JEDI (Justice, Equity, Diversity, Inclusion), he brings decades of experience building inclusive, community-centered initiatives. Charles is a graduate of Concordia University and the UC Davis Graduate School of Management.
+            - button "Read Full Bio" [ref=e136]:
+              - img
+              - text: Read Full Bio
+          - generic [ref=e139]:
+            - img "James White Bear Connor" [ref=e142]
+            - heading "James White Bear Connor" [level=3] [ref=e143]
+            - paragraph [ref=e144]: Assiniboine Tribe - Fort Peck Montana
+            - paragraph [ref=e145]: Security and AI Executive
+            - paragraph [ref=e147]: James White Bear Connor is a pioneering security and AI executive with decades of leading innovation in risk management and intelligent threat detection. He has held leadership roles at Oracle, Symantec, and now leads Corporate Engagements at Ambient.ai. His security strategies have protected companies like Yahoo, Facebook, and Wells Fargo.
+            - button "Read Full Bio" [ref=e148]:
+              - img
+              - text: Read Full Bio
+          - generic [ref=e151]:
+            - img "Fr. Jerry Drino" [ref=e154]
+            - heading "Fr. Jerry Drino" [level=3] [ref=e155]
+            - paragraph [ref=e156]: Episcopal Priest & Theologian (M.Div., D.D.)
+            - paragraph [ref=e157]: Episcopal Priest & Theologian
+            - paragraph [ref=e159]: Fr. Jerry Drino is an Episcopal priest and theologian with over six decades of ministry alongside Indigenous peoples, including the G'wichin, Lakota, Kanaka Maoli, and Diné. He holds an M.Div. (Master of Divinity) and has been recognized with a D.D. (Doctor of Divinity) for his contributions to Native ministry. He currently serves as Canon Theologian for the Episcopal Church in Navajoland and as a Native Ministry tutor at the Vancouver School of Theology.
+            - button "Read Full Bio" [ref=e160]:
+              - img
+              - text: Read Full Bio
+          - generic [ref=e163]:
+            - img "Kanyon \"Coyote\" Sayers-Roods" [ref=e166]
+            - heading "Kanyon \"Coyote\" Sayers-Roods" [level=3] [ref=e167]
+            - paragraph [ref=e168]: Mutsun-Ohlone | Two-Spirit Woman
+            - paragraph [ref=e169]: Multimedia Artist, Educator, and Tribal Chairwoman
+            - paragraph [ref=e171]: Kanyon is a multimedia artist, educator, and truth-teller whose work catalyzes decolonizing dialogue and Indigenous visibility. As Tribal Chairwoman of the Indian Canyon Nation and CEO of Kanyon Konsulting, she leads with a dynamic blend of tradition and innovation, inspiring both cultural revival and systemic change.
+            - button "Read Full Bio" [ref=e172]:
+              - img
+              - text: Read Full Bio
+          - generic [ref=e175]:
+            - img "Bernice Cuauhxihuitl Aguilera Toney" [ref=e178]
+            - heading "Bernice Cuauhxihuitl Aguilera Toney" [level=3] [ref=e179]
+            - paragraph [ref=e180]: Calpulli Tonalehqueh
+            - paragraph [ref=e181]: Cultural Steward and Program Manager
+            - paragraph [ref=e183]: Bernice is a cultural steward, mother of three, and community bridge builder dedicated to equity, healing, and Indigenous knowledge. A member of Calpulli Tonalehqueh, she walks the path of Chicomecoatl (7 Serpent), traveling across the continent to learn from Native teachers and uphold the prayers of the Eagle and Condor. Her life's work uplifts youth, families, and cultural traditions through justice-centered systems change.
+            - button "Read Full Bio" [ref=e184]:
+              - img
+              - text: Read Full Bio
+      - generic [ref=e186]:
+        - generic [ref=e187]:
+          - heading "How We Walk Together" [level=2] [ref=e188]
+          - paragraph [ref=e189]: Our programs are interconnected, just like our community
+        - generic [ref=e190]:
+          - generic [ref=e191]:
+            - img [ref=e194]
+            - heading "Cultural Nights" [level=3] [ref=e196]
+            - paragraph [ref=e197]: Monthly gatherings where 15-25+ families share meals, learn traditional arts, and keep the drum circle beating. Three generations learning from each other.
+            - generic [ref=e198]: Building belonging, one circle at a time
+          - generic [ref=e199]:
+            - img [ref=e202]
+            - heading "Youth Garden" [level=3] [ref=e205]
+            - paragraph [ref=e206]: Growing 100+ pounds of food annually while elders share plant knowledge passed down through generations. Youth feed families while feeding their souls.
+            - generic [ref=e207]: Connecting hands to earth, youth to elders
+          - generic [ref=e208]:
+            - img [ref=e211]
+            - heading "Four Directions Initiative" [level=3] [ref=e214]
+            - paragraph [ref=e215]: Career, education, health, and digital media programs where youth lead, not just attend. Older youth teach AI literacy to younger peers. Everyone grows together.
+            - generic [ref=e216]: Leading today, transforming tomorrow
+          - generic [ref=e217]:
+            - img [ref=e220]
+            - heading "Annual Pow Wow" [level=3] [ref=e224]
+            - paragraph [ref=e225]: From 500 to 1,000+ participants. Our flagship gathering where the entire year of work blooms into celebration, connection, and collective joy.
+            - generic [ref=e226]: 1,000+ hearts beating as one
+      - generic [ref=e228]:
+        - heading "Guided by Our Leaders" [level=2] [ref=e230]
+        - paragraph [ref=e231]: Our work is blessed and guided by tribal leaders who have stewarded their communities for generations. Their trust is our foundation. Their wisdom lights our path.
+        - generic [ref=e232]:
+          - generic [ref=e233]:
+            - heading "Ann Marie Sayers" [level=4] [ref=e235]
+            - paragraph [ref=e236]: Indian Canyon
+            - paragraph [ref=e237]: Cultural keeper and guardian of sacred traditions
+          - generic [ref=e238]:
+            - heading "Kanyon Sayers-Roods" [level=4] [ref=e240]
+            - paragraph [ref=e241]: Costanoan Research
+            - paragraph [ref=e242]: Scholar preserving and sharing cultural knowledge
+          - generic [ref=e243]:
+            - heading "Valentin Lopez" [level=4] [ref=e245]
+            - paragraph [ref=e246]: Amah Mutsun Tribal Band
+            - paragraph [ref=e247]: Tribal chairman and community advocate
+      - generic [ref=e249]:
+        - generic [ref=e250]:
+          - heading "Upcoming Events" [level=2] [ref=e251]
+          - paragraph [ref=e252]: Join us in celebrating indigenous culture, community, and tradition
+        - generic [ref=e253]:
+          - img "3rd Annual Hollister Powwow & Native Gathering" [ref=e258]
+          - generic [ref=e259]:
+            - generic [ref=e260]:
+              - generic [ref=e261]: Cultural Celebration
+              - generic [ref=e262]: 3-Day Event
+              - generic [ref=e263]: Free Admission
+              - generic [ref=e264]: Family Friendly
+            - generic [ref=e265]:
+              - generic [ref=e266]:
+                - img [ref=e267]
+                - generic [ref=e269]:
+                  - paragraph [ref=e270]: Dates
+                  - paragraph [ref=e271]: November 7-9, 2025
+                  - paragraph [ref=e272]: Friday - Sunday
+              - generic [ref=e273]:
+                - img [ref=e274]
+                - generic [ref=e277]:
+                  - paragraph [ref=e278]: Location
+                  - paragraph [ref=e279]: Bolado Park
+                  - paragraph [ref=e280]: Tres Pinos, CA
+              - generic [ref=e281]:
+                - img [ref=e282]
+                - generic [ref=e287]:
+                  - paragraph [ref=e288]: Admission
+                  - paragraph [ref=e289]: FREE
+                  - paragraph [ref=e290]: Community Event
+            - generic [ref=e292]:
+              - generic [ref=e293]:
+                - heading "Contact & Information" [level=3] [ref=e294]:
+                  - img [ref=e295]
+                  - text: Contact & Information
+                - generic [ref=e299]:
+                  - img [ref=e300]
+                  - generic [ref=e302]:
+                    - paragraph [ref=e303]: General Info
+                    - link "(831) 801-5530" [ref=e304] [cursor=pointer]:
+                      - /url: tel:+18318015530
+              - generic [ref=e305]:
+                - heading "RV & Tent Camping" [level=3] [ref=e306]:
+                  - img [ref=e307]
+                  - text: RV & Tent Camping
+                - generic [ref=e311]:
+                  - paragraph [ref=e312]: Camping available at the event site for the weekend
+                  - generic [ref=e313]:
+                    - img [ref=e314]
+                    - generic [ref=e316]:
+                      - paragraph [ref=e317]: Camping Reservations
+                      - link "(831) 628-9421" [ref=e318] [cursor=pointer]:
+                        - /url: tel:+18316289421
+      - generic [ref=e320]:
+        - heading "Our Generous Sponsors" [level=2] [ref=e321]
+        - paragraph [ref=e322]: Thank you to the individuals and organizations making our mission possible
+        - generic [ref=e323]:
+          - paragraph [ref=e324]: Our sponsors help preserve indigenous culture, support educational programs, and empower communities across 12+ tribal nations.
+          - link "View All Sponsors" [ref=e325] [cursor=pointer]:
+            - /url: /sponsors
+      - generic [ref=e327]:
+        - generic [ref=e328]:
+          - generic [ref=e329]:
+            - img [ref=e330]
+            - generic [ref=e332]: Make an Impact Today
+          - heading "Become a Sponsor" [level=2] [ref=e333]
+          - paragraph [ref=e334]: Your generous sponsorship helps preserve indigenous culture, empower communities, and build a brighter future for indigenous nations.
+        - generic [ref=e338]:
+          - generic [ref=e339]:
+            - img "Sponsorship QR Code" [ref=e341]
+            - paragraph [ref=e342]: Scan to become a sponsor instantly
+          - generic [ref=e343]:
+            - heading "Make Your Impact" [level=3] [ref=e344]
+            - paragraph [ref=e345]: Every sponsorship helps us preserve indigenous culture, support educational programs, and empower communities.
+            - generic [ref=e346]:
+              - generic [ref=e347]:
+                - generic [ref=e348]: $2.5M+
+                - generic [ref=e349]: Total Raised
+              - generic [ref=e350]:
+                - generic [ref=e351]: 1,000+
+                - generic [ref=e352]: Lives Impacted
+            - link "Become a Sponsor" [ref=e353] [cursor=pointer]:
+              - /url: https://example.com/sponsor
+              - img
+              - text: Become a Sponsor
+              - img
+            - paragraph [ref=e354]: Secure sponsorship processing
+        - generic [ref=e356]:
+          - heading "Sponsorship Tiers" [level=3] [ref=e357]
+          - generic [ref=e358]:
+            - generic [ref=e359]:
+              - img [ref=e361]
+              - heading "Turtle Tier" [level=4] [ref=e363]
+              - paragraph [ref=e364]: $100 - $999
+              - paragraph [ref=e365]: Foundation supporter
+            - generic [ref=e366]:
+              - img [ref=e368]
+              - heading "Wolf Tier" [level=4] [ref=e370]
+              - paragraph [ref=e371]: $1,000 - $4,999
+              - paragraph [ref=e372]: Community champion
+            - generic [ref=e373]:
+              - img [ref=e375]
+              - heading "Bear Tier" [level=4] [ref=e377]
+              - paragraph [ref=e378]: $5,000 - $9,999
+              - paragraph [ref=e379]: Culture protector
+            - generic [ref=e380]:
+              - img [ref=e382]
+              - heading "Eagle Tier" [level=4] [ref=e386]
+              - paragraph [ref=e387]: $10,000+
+              - paragraph [ref=e388]: Visionary leader
+      - generic [ref=e392]:
+        - heading "Join Our Circle" [level=2] [ref=e393]
+        - paragraph [ref=e394]: There's a place for you here. Multiple ways to walk with us, support our youth, and strengthen this community.
+        - generic [ref=e395]:
+          - link "Become a Sponsor Plant seeds for the next generation of Indigenous leaders →" [ref=e396] [cursor=pointer]:
+            - /url: /sponsor
+            - img [ref=e398]
+            - heading "Become a Sponsor" [level=3] [ref=e403]
+            - paragraph [ref=e404]: Plant seeds for the next generation of Indigenous leaders
+            - generic [ref=e405]: →
+          - link "Volunteer Share your time, skills, and heart with our community →" [ref=e406] [cursor=pointer]:
+            - /url: /register
+            - img [ref=e408]
+            - heading "Volunteer" [level=3] [ref=e410]
+            - paragraph [ref=e411]: Share your time, skills, and heart with our community
+            - generic [ref=e412]: →
+          - link "Stay Connected Receive stories, updates, and invitations to our circle →" [ref=e413] [cursor=pointer]:
+            - /url: "#newsletter"
+            - img [ref=e415]
+            - heading "Stay Connected" [level=3] [ref=e418]
+            - paragraph [ref=e419]: Receive stories, updates, and invitations to our circle
+            - generic [ref=e420]: →
+          - link "Attend Events Experience our community at Cultural Nights and Pow Wows →" [ref=e421] [cursor=pointer]:
+            - /url: /events
+            - img [ref=e423]
+            - heading "Attend Events" [level=3] [ref=e425]
+            - paragraph [ref=e426]: Experience our community at Cultural Nights and Pow Wows
+            - generic [ref=e427]: →
+        - generic [ref=e428]:
+          - heading "Have questions? Want to talk? We're here." [level=3] [ref=e429]
+          - generic [ref=e430]:
+            - generic [ref=e431]:
+              - strong [ref=e432]: Elvira Zaragoza Robinson
+              - link "ezrlaw1948@gmail.com" [ref=e433] [cursor=pointer]:
+                - /url: mailto:ezrlaw1948@gmail.com
+              - link "(831) 801-5530" [ref=e434] [cursor=pointer]:
+                - /url: tel:+18318015530
+            - generic [ref=e435]:
+              - strong [ref=e436]: Charles Wall
+              - link "charleswallandfam@gmail.com" [ref=e437] [cursor=pointer]:
+                - /url: mailto:charleswallandfam@gmail.com
+              - link "(775) 271-0322" [ref=e438] [cursor=pointer]:
+                - /url: tel:+17752710322
+  - contentinfo [ref=e439]:
+    - generic [ref=e440]:
+      - generic [ref=e441]:
+        - generic [ref=e442]:
+          - generic [ref=e443]:
+            - img "Indigenous Nations Diversity Network"
+          - paragraph [ref=e444]: Supporting Indigenous communities through cultural preservation, youth empowerment, and community connection.
+        - generic [ref=e445]:
+          - heading "Quick Links" [level=3] [ref=e446]
+          - navigation [ref=e447]:
+            - link "About Us" [ref=e448] [cursor=pointer]:
+              - /url: /about
+            - link "Our Board" [ref=e449] [cursor=pointer]:
+              - /url: /about/board
+            - link "Programs" [ref=e450] [cursor=pointer]:
+              - /url: /programs
+            - link "Events" [ref=e451] [cursor=pointer]:
+              - /url: /events
+            - link "Donate" [ref=e452] [cursor=pointer]:
+              - /url: /donate
+            - link "Volunteer" [ref=e453] [cursor=pointer]:
+              - /url: /volunteer
+        - generic [ref=e454]:
+          - heading "Contact Us" [level=3] [ref=e455]
+          - generic [ref=e456]:
+            - generic [ref=e457]:
+              - paragraph [ref=e458]: Elvira Zaragoza Robinson
+              - link "ezrlaw1948@gmail.com" [ref=e459] [cursor=pointer]:
+                - /url: mailto:ezrlaw1948@gmail.com
+              - link "(831) 801-5530" [ref=e460] [cursor=pointer]:
+                - /url: tel:+18318015530
+            - generic [ref=e461]:
+              - paragraph [ref=e462]: Charles Wall
+              - link "charleswallandfam@gmail.com" [ref=e463] [cursor=pointer]:
+                - /url: mailto:charleswallandfam@gmail.com
+              - link "(775) 271-0322" [ref=e464] [cursor=pointer]:
+                - /url: tel:+17752710322
+      - paragraph [ref=e466]: © 2025 Indigenous Nations Diversity Network. All rights reserved.
+```

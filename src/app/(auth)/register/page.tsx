@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -27,7 +28,7 @@ const registerSchema = z.object({
   password: z.string().min(8, 'Password must be at least 8 characters'),
   confirmPassword: z.string(),
   phone: z.string().optional(),
-  role: z.enum(['volunteer', 'board_member']).default('volunteer'),
+  role: z.enum(['board_member']).default('board_member'),
 }).refine((data) => data.password === data.confirmPassword, {
   message: "Passwords don't match",
   path: ['confirmPassword'],
@@ -53,7 +54,7 @@ export default function RegisterPage() {
       password: '',
       confirmPassword: '',
       phone: '',
-      role: 'volunteer',
+      role: 'board_member',
     },
   })
 
@@ -96,7 +97,22 @@ export default function RegisterPage() {
   if (success) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-warm-gray p-4">
-        <Card className="w-full max-w-md">
+        <div className="w-full max-w-md space-y-6">
+          {/* Logo */}
+          <div className="flex justify-center">
+            <div className="bg-white px-8 py-4 rounded-xl shadow-card">
+              <Image
+                src="/images/logo/indn-full-logo.jpg"
+                alt="Indigenous Nations Diversity Network"
+                width={300}
+                height={90}
+                className="w-full max-w-[300px] h-auto"
+                priority
+              />
+            </div>
+          </div>
+
+          <Card className="w-full">
           <CardHeader>
             <CardTitle className="text-2xl font-serif text-sage-green">
               Registration Successful!
@@ -111,13 +127,29 @@ export default function RegisterPage() {
             </div>
           </CardContent>
         </Card>
+        </div>
       </div>
     )
   }
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-warm-gray p-4">
-      <Card className="w-full max-w-md">
+      <div className="w-full max-w-md space-y-6">
+        {/* Logo */}
+        <div className="flex justify-center">
+          <div className="bg-white px-8 py-4 rounded-xl shadow-card">
+            <Image
+              src="/images/logo/indn-full-logo.jpg"
+              alt="Indigenous Nations Diversity Network"
+              width={300}
+              height={90}
+              className="w-full max-w-[300px] h-auto"
+              priority
+            />
+          </div>
+        </div>
+
+        <Card className="w-full">
         <CardHeader>
           <CardTitle className="text-2xl font-serif text-terracotta">
             Join INDN
@@ -240,15 +272,6 @@ export default function RegisterPage() {
                         disabled={isLoading}
                       >
                         <div className="flex items-center space-x-2">
-                          <RadioGroupItem value="volunteer" id="volunteer" />
-                          <label
-                            htmlFor="volunteer"
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                          >
-                            Volunteer
-                          </label>
-                        </div>
-                        <div className="flex items-center space-x-2">
                           <RadioGroupItem value="board_member" id="board_member" />
                           <label
                             htmlFor="board_member"
@@ -291,6 +314,7 @@ export default function RegisterPage() {
           </Form>
         </CardContent>
       </Card>
+      </div>
     </div>
   )
 }

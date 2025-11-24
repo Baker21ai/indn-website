@@ -13,7 +13,11 @@ export default async function PortalPage() {
     redirect('/portal/admin/dashboard')
   } else if (session.user.role === 'board_member') {
     redirect('/portal/board/dashboard')
+  } else if (session.user.role === 'volunteer') {
+    // Volunteer portal temporarily disabled - redirect to board dashboard
+    redirect('/portal/board/dashboard')
   } else {
-    redirect('/portal/volunteer/dashboard')
+    // Unknown role - redirect to login
+    redirect('/login')
   }
 }

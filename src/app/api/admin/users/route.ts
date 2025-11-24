@@ -60,7 +60,7 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json({ users })
   } catch (error) {
-    console.error('Error fetching users:', error)
+    // Error occurred - return generic message
     return NextResponse.json(
       { error: 'Failed to fetch users' },
       { status: 500 }
@@ -153,7 +153,7 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    console.error('Error creating user:', error)
+    // Error occurred - return generic message
     return NextResponse.json(
       { error: 'Failed to create user' },
       { status: 500 }

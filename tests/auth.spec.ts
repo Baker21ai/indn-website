@@ -4,19 +4,22 @@ const BASE_URL = 'http://localhost:3002'
 
 test.describe('Authentication Flow', () => {
   const testUser = {
-    name: 'Test Volunteer',
+    name: 'Test Board Member',
     email: `test-${Date.now()}@example.com`,
     password: 'TestPassword123!',
     phone: '555-1234',
   }
 
-  test('should register a new volunteer account', async ({ page }) => {
+  test('should register a new board member account (volunteer registration disabled)', async ({ page }) => {
     // Navigate to registration page
     await page.goto(`${BASE_URL}/register`)
     await expect(page).toHaveTitle(/Join INDN|INDN/)
 
     // Check if we're on the registration page
     await expect(page.locator('text=Join INDN')).toBeVisible()
+
+    // Verify volunteer option is NOT visible
+    await expect(page.locator('label[for="volunteer"]')).not.toBeVisible()
 
     // Fill out registration form
     await page.fill('input[name="name"]', testUser.name)
@@ -28,8 +31,9 @@ test.describe('Authentication Flow', () => {
     await passwordFields.nth(0).fill(testUser.password)
     await passwordFields.nth(1).fill(testUser.password)
 
-    // Select volunteer role (click the label, not the hidden input)
-    await page.click('label[for="volunteer"]')
+    // Board member role should be selected by default (only option)
+    // Verify board member option is visible
+    await expect(page.locator('label[for="board_member"]')).toBeVisible()
 
     // Submit the form
     await page.click('button[type="submit"]')
@@ -41,7 +45,7 @@ test.describe('Authentication Flow', () => {
     await page.waitForURL(`${BASE_URL}/login`, { timeout: 5000 })
   })
 
-  test('should login with newly created account', async ({ page }) => {
+  test('should login with newly created board member account', async ({ page }) => {
     // First register the account
     await page.goto(`${BASE_URL}/register`)
     await page.fill('input[name="name"]', testUser.name)
@@ -50,7 +54,7 @@ test.describe('Authentication Flow', () => {
     const passwordFields = page.locator('input[type="password"]')
     await passwordFields.nth(0).fill(testUser.password)
     await passwordFields.nth(1).fill(testUser.password)
-    await page.click('label[for="volunteer"]')
+    // Board member is the only option (volunteer disabled)
     await page.click('button[type="submit"]')
 
     // Wait for redirect to login
@@ -61,14 +65,14 @@ test.describe('Authentication Flow', () => {
     await page.fill('input[type="password"]', testUser.password)
     await page.click('button[type="submit"]')
 
-    // Should redirect to volunteer dashboard
-    await page.waitForURL(`${BASE_URL}/portal/volunteer/dashboard`, { timeout: 10000 })
+    // Should redirect to board dashboard (not volunteer)
+    await page.waitForURL(`${BASE_URL}/portal/board/dashboard`, { timeout: 10000 })
 
     // Check dashboard loaded correctly
-    await expect(page.locator(`text=Welcome back, ${testUser.name}`)).toBeVisible({ timeout: 5000 })
+    await expect(page.locator(`text=Welcome`)).toBeVisible({ timeout: 5000 })
   })
 
-  test('should show volunteer dashboard stats', async ({ page }) => {
+  test('should show board dashboard after login', async ({ page }) => {
     // Register and login
     await page.goto(`${BASE_URL}/register`)
     await page.fill('input[name="name"]', testUser.name)
@@ -77,23 +81,16 @@ test.describe('Authentication Flow', () => {
     const passwordFields = page.locator('input[type="password"]')
     await passwordFields.nth(0).fill(testUser.password)
     await passwordFields.nth(1).fill(testUser.password)
-    await page.click('label[for="volunteer"]')
     await page.click('button[type="submit"]')
     await page.waitForURL(`${BASE_URL}/login`)
     await page.fill('input[type="email"]', testUser.email)
     await page.fill('input[type="password"]', testUser.password)
     await page.click('button[type="submit"]')
-    await page.waitForURL(`${BASE_URL}/portal/volunteer/dashboard`)
+    // Should redirect to board dashboard (volunteer portal disabled)
+    await page.waitForURL(`${BASE_URL}/portal/board/dashboard`)
 
-    // Check stats cards are present
-    await expect(page.locator('text=Hours Contributed')).toBeVisible()
-    await expect(page.locator('text=Upcoming Events')).toBeVisible()
-    await expect(page.locator('text=Member Since')).toBeVisible()
-
-    // Check quick action cards
-    await expect(page.locator('text=Browse Events')).toBeVisible()
-    await expect(page.locator('text=My Profile')).toBeVisible()
-    await expect(page.locator('text=All Announcements')).toBeVisible()
+    // Check board dashboard loaded
+    await expect(page.locator('text=Board')).toBeVisible({ timeout: 5000 })
   })
 
   test('should prevent login with wrong password', async ({ page }) => {
@@ -120,7 +117,7 @@ test.describe('Authentication Flow', () => {
     const passwordFields1 = page.locator('input[type="password"]')
     await passwordFields1.nth(0).fill(testUser.password)
     await passwordFields1.nth(1).fill(testUser.password)
-    await page.click('label[for="volunteer"]')
+    // Board member is the only option
     await page.click('button[type="submit"]')
     await page.waitForURL(`${BASE_URL}/login`)
 
@@ -131,7 +128,6 @@ test.describe('Authentication Flow', () => {
     const passwordFields2 = page.locator('input[type="password"]')
     await passwordFields2.nth(0).fill(testUser.password)
     await passwordFields2.nth(1).fill(testUser.password)
-    await page.click('label[for="volunteer"]')
     await page.click('button[type="submit"]')
 
     // Should show error message

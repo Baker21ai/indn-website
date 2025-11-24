@@ -1,8 +1,6 @@
 import { auth } from '@/auth.config'
 import { NextRequest, NextResponse } from 'next/server'
-import { writeFile } from 'fs/promises'
-import { join } from 'path'
-import { mkdir } from 'fs/promises'
+import { uploadImage } from '@/lib/storage'
 
 export async function POST(request: NextRequest) {
   try {
@@ -15,6 +13,7 @@ export async function POST(request: NextRequest) {
 
     const formData = await request.formData()
     const file = formData.get('file') as File | null
+    const bucket = (formData.get('bucket') as string) || 'event-photos'
 
     if (!file) {
       return NextResponse.json({ error: 'No file provided' }, { status: 400 })
@@ -30,30 +29,11 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'File size must be less than 5MB' }, { status: 400 })
     }
 
-    // Generate unique filename
-    const bytes = await file.arrayBuffer()
-    const buffer = Buffer.from(bytes)
-    const timestamp = Date.now()
-    const filename = `${timestamp}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`
-
-    // Create uploads directory if it doesn't exist
-    const uploadsDir = join(process.cwd(), 'public', 'uploads', 'logos')
-    try {
-      await mkdir(uploadsDir, { recursive: true })
-    } catch (error) {
-      // Directory might already exist
-    }
-
-    // Write file
-    const filepath = join(uploadsDir, filename)
-    await writeFile(filepath, buffer)
-
-    // Return public URL
-    const publicUrl = `/uploads/logos/${filename}`
+    // Upload to Supabase Storage
+    const publicUrl = await uploadImage(file, bucket as 'event-photos' | 'donor-logos')
 
     return NextResponse.json({ url: publicUrl }, { status: 200 })
   } catch (error) {
-    console.error('Upload error:', error)
     return NextResponse.json({ error: 'Failed to upload file' }, { status: 500 })
   }
 }

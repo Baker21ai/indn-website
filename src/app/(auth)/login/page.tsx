@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -80,7 +81,22 @@ export default function LoginPage() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-warm-gray p-4">
-      <Card className="w-full max-w-md">
+      <div className="w-full max-w-md space-y-6">
+        {/* Logo */}
+        <div className="flex justify-center">
+          <div className="bg-white px-8 py-4 rounded-xl shadow-card">
+            <Image
+              src="/images/logo/indn-full-logo.jpg"
+              alt="Indigenous Nations Diversity Network"
+              width={300}
+              height={90}
+              className="w-full max-w-[300px] h-auto"
+              priority
+            />
+          </div>
+        </div>
+
+        <Card className="w-full">
         <CardHeader>
           <CardTitle className="text-2xl font-serif text-terracotta">Welcome to INDN</CardTitle>
           <CardDescription>Sign in to your account to continue</CardDescription>
@@ -196,6 +212,7 @@ export default function LoginPage() {
           </Form>
         </CardContent>
       </Card>
+      </div>
     </div>
   )
 }

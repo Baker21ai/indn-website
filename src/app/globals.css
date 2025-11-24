@@ -13,6 +13,14 @@
   --color-stone-gray: var(--stone-gray);
   --color-warm-gray: var(--warm-gray);
 
+  /* California Sunburst Palette */
+  --color-sunset-orange: var(--sunset-orange);
+  --color-sunset-gold: var(--sunset-gold);
+  --color-sunset-coral: var(--sunset-coral);
+  --color-sunset-honey: var(--sunset-honey);
+  --color-sunset-purple: var(--sunset-purple);
+  --color-sunset-lavender: var(--sunset-lavender);
+
   /* Tier Colors */
   --color-eagle-gold: var(--eagle-gold);
   --color-bear-amber: var(--bear-amber);
@@ -22,7 +30,8 @@
   /* Theme Colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -69,6 +78,14 @@
   --charcoal: #2D2D2D;
   --stone-gray: #6B7280;
   --warm-gray: #F5F5F4;
+
+  /* California Sunburst Palette */
+  --sunset-orange: #FF6B35;
+  --sunset-gold: #F7931E;
+  --sunset-coral: #FF8B94;
+  --sunset-honey: #FFC857;
+  --sunset-purple: #6A4C93;
+  --sunset-lavender: #8B5A91;
 
   /* Tier Colors */
   --eagle-gold: #F59E0B;

@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coastal Soft Sunset - INDN Color Preview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Coastal Soft Sunset Palette - Gentle & Accessible */
+            --sunset-peach: #FFAB91;            /* Soft peachy coral */
+            --sunset-blush: #FFCCBC;            /* Gentle blush */
+            --sunset-lavender: #B39DDB;         /* Soft lavender */
+            --sunset-mauve: #CE93D8;            /* Gentle mauve purple */
+            --sunset-gold: #FFE082;             /* Soft gold */
+            --sunset-honey: #FFD54F;            /* Warm honey */
+            --sunset-teal: #4DB6AC;             /* Cool teal accent */
+            --sunset-aqua: #80CBC4;             /* Soft aqua */
+
+            /* Harmonized with existing Indigenous elements */
+            --sage-green: #8FB996;              /* Natural complement */
+            --warm-earth: #D4A574;              /* Grounding tone */
+            --charcoal: #2D2D2D;               /* Text/depth */
+            --stone-gray: #6B7280;             /* Secondary text */
+            --warm-gray: #FFF9F5;              /* Soft warm background */
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--charcoal);
+            background: var(--warm-gray);
+        }
+
+        /* Color Palette Preview Bar */
+        .color-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: white;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            padding: 0 40px;
+            z-index: 1000;
+            gap: 20px;
+        }
+
+        .color-bar h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-right: 20px;
+        }
+
+        .color-swatch {
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            border: 2px solid white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            position: relative;
+            cursor: help;
+        }
+
+        .color-swatch:hover::after {
+            content: attr(data-color);
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--charcoal);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        main {
+            margin-top: 60px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--charcoal) 0%, var(--sunset-mauve) 40%, var(--sunset-peach) 100%);
+        }
+
+        .hero-circles {
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 171, 145, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-circles-2 {
+            position: absolute;
+            bottom: -40%;
+            left: -30%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(77, 182, 172, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            max-width: 900px;
+            padding: 0 40px;
+        }
+
+        .logo-circle {
+            background: white;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            margin: 0 auto 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 16px 64px rgba(179, 157, 219, 0.4);
+            border: 4px solid rgba(255,255,255,0.2);
+        }
+
+        .logo-placeholder {
+            width: 320px;
+            height: 100px;
+            background: linear-gradient(90deg, var(--sunset-peach), var(--sunset-lavender));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 20px;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 72px;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 30px;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        }
+
+        .hero p {
+            font-size: 24px;
+            font-weight: 300;
+            line-height: 1.6;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Values Section */
+        .values-section {
+            padding: 120px 40px;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-size: 56px;
+            color: var(--charcoal);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .section-header p {
+            font-size: 20px;
+            color: var(--stone-gray);
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .value-circle {
+            background: linear-gradient(135deg, var(--warm-gray) 0%, #fff 100%);
+            padding: 50px;
+            border-radius: 50%;
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 3px solid transparent;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+        }
+
+        .value-circle:nth-child(odd):hover {
+            background: white;
+            border-color: var(--sunset-peach);
+            transform: scale(1.05) translateY(-8px);
+            box-shadow: 0 16px 48px rgba(255, 171, 145, 0.25);
+        }
+
+        .value-circle:nth-child(even):hover {
+            background: white;
+            border-color: var(--sunset-lavender);
+            transform: scale(1.05) translateY(-8px);
+            box-shadow: 0 16px 48px rgba(179, 157, 219, 0.25);
+        }
+
+        .value-circle h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 12px;
+        }
+
+        .value-circle p {
+            font-size: 15px;
+            color: var(--stone-gray);
+            line-height: 1.5;
+        }
+
+        /* Story Section */
+        .story-section {
+            background: linear-gradient(135deg, var(--sunset-lavender) 0%, var(--sunset-mauve) 30%, var(--sunset-peach) 70%, var(--sunset-honey) 100%);
+            color: white;
+            padding: 120px 40px;
+        }
+
+        .story-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .story-content h2 {
+            font-size: 56px;
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 600;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .story-content p {
+            font-size: 20px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .quote-box {
+            background: rgba(255,255,255,0.2);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 50px 0;
+            border-left: 4px solid var(--sunset-teal);
+            backdrop-filter: blur(10px);
+        }
+
+        .quote-box p {
+            font-size: 26px;
+            font-style: italic;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* Programs Section */
+        .programs-section {
+            background: var(--warm-gray);
+            padding: 120px 40px;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 60px auto 0;
+        }
+
+        .program-card {
+            background: white;
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .program-card::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 80px;
+            height: 80px;
+            background: var(--sunset-aqua);
+            border-radius: 50%;
+            opacity: 0.15;
+            transition: all 0.4s;
+        }
+
+        .program-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(179, 157, 219, 0.2);
+        }
+
+        .program-card:hover::before {
+            opacity: 0.25;
+            transform: scale(1.5);
+        }
+
+        .program-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--sunset-peach), var(--sunset-lavender));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 16px rgba(179, 157, 219, 0.3);
+        }
+
+        .program-icon svg {
+            width: 32px;
+            height: 32px;
+            stroke: white;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .program-card h3 {
+            font-size: 26px;
+            color: var(--charcoal);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .program-card p {
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--stone-gray);
+            margin-bottom: 20px;
+        }
+
+        .program-impact {
+            font-size: 16px;
+            color: var(--sunset-teal);
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        /* Tier Badges Section */
+        .tiers-section {
+            background: white;
+            padding: 120px 40px;
+        }
+
+        .tiers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 60px auto 0;
+        }
+
+        .tier-card {
+            text-align: center;
+            padding: 40px 30px;
+            border-radius: 16px;
+            transition: all 0.3s;
+        }
+
+        .tier-card.turtle {
+            background: linear-gradient(135deg, var(--sunset-aqua) 0%, var(--sunset-teal) 100%);
+        }
+
+        .tier-card.wolf {
+            background: linear-gradient(135deg, var(--sunset-honey) 0%, var(--sunset-gold) 100%);
+        }
+
+        .tier-card.bear {
+            background: linear-gradient(135deg, var(--sunset-blush) 0%, var(--sunset-peach) 100%);
+        }
+
+        .tier-card.eagle {
+            background: linear-gradient(135deg, var(--sunset-mauve) 0%, var(--sunset-lavender) 100%);
+        }
+
+        .tier-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        }
+
+        .tier-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .tier-icon svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .tier-card h3 {
+            font-size: 22px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+
+        .tier-card .amount {
+            font-size: 16px;
+            color: white;
+            margin-bottom: 8px;
+            opacity: 0.95;
+        }
+
+        .tier-card .description {
+            font-size: 14px;
+            color: white;
+            opacity: 0.9;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--sunset-teal) 0%, var(--sunset-lavender) 50%, var(--sunset-peach) 100%);
+            color: white;
+            padding: 120px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-circles {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            border: 2px solid rgba(255,255,255,0.15);
+            border-radius: 50%;
+        }
+
+        .cta-circles-inner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: 64px;
+            margin-bottom: 30px;
+            font-weight: 600;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.2);
+        }
+
+        .cta-content p {
+            font-size: 24px;
+            margin-bottom: 60px;
+            opacity: 0.95;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 18px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--sunset-teal);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border-color: white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--sunset-lavender);
+            transform: translateY(-4px);
+        }
+
+        /* Comparison Note */
+        .comparison-note {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--charcoal);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            max-width: 320px;
+            z-index: 999;
+            border-left: 4px solid var(--sunset-teal);
+        }
+
+        .comparison-note h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--sunset-aqua);
+        }
+
+        .comparison-note p {
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .comparison-note a {
+            color: var(--sunset-aqua);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .comparison-note a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 48px; }
+            .hero p { font-size: 18px; }
+            .logo-circle { width: 280px; height: 280px; }
+            .section-header h2 { font-size: 40px; }
+            .values-grid { grid-template-columns: 1fr; }
+            .programs-grid { grid-template-columns: 1fr; }
+            .tiers-grid { grid-template-columns: 1fr; }
+            .cta-content h2 { font-size: 44px; }
+            .color-bar { padding: 0 20px; }
+            .comparison-note { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Color Palette Preview Bar -->
+    <div class="color-bar">
+        <h3>Coastal Soft Sunset</h3>
+        <div class="color-swatch" style="background: #FFAB91;" data-color="Peach"></div>
+        <div class="color-swatch" style="background: #FFCCBC;" data-color="Blush"></div>
+        <div class="color-swatch" style="background: #B39DDB;" data-color="Lavender"></div>
+        <div class="color-swatch" style="background: #CE93D8;" data-color="Mauve"></div>
+        <div class="color-swatch" style="background: #FFE082;" data-color="Gold"></div>
+        <div class="color-swatch" style="background: #FFD54F;" data-color="Honey"></div>
+        <div class="color-swatch" style="background: #4DB6AC;" data-color="Teal"></div>
+        <div class="color-swatch" style="background: #80CBC4;" data-color="Aqua"></div>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-circles"></div>
+            <div class="hero-circles-2"></div>
+            <div class="hero-content">
+                <div class="logo-circle">
+                    <div class="logo-placeholder">INDN LOGO</div>
+                </div>
+                <h1>Welcome to Our Circle</h1>
+                <p>Where ancestral wisdom meets tomorrow's possibilities, and every young person belongs to something greater than themselves</p>
+            </div>
+        </section>
+
+        <!-- Values Section -->
+        <section class="values-section">
+            <div class="section-header">
+                <h2>Rooted in Our Values</h2>
+                <p>Everything we do flows from the principles that have guided Indigenous communities for generations</p>
+            </div>
+            <div class="values-grid">
+                <div class="value-circle">
+                    <h3>Respect</h3>
+                    <p>For elders, traditions, land, and every person in our circle</p>
+                </div>
+                <div class="value-circle">
+                    <h3>Reciprocity</h3>
+                    <p>What we receive, we give back. What we learn, we share.</p>
+                </div>
+                <div class="value-circle">
+                    <h3>Relationality</h3>
+                    <p>We are connected to each other, our ancestors, and future generations</p>
+                </div>
+                <div class="value-circle">
+                    <h3>Responsibility</h3>
+                    <p>To preserve culture and prepare youth for the world they will inherit</p>
+                </div>
+                <div class="value-circle">
+                    <h3>Relevance</h3>
+                    <p>Honoring tradition while embracing what youth need today</p>
+                </div>
+                <div class="value-circle">
+                    <h3>Representation</h3>
+                    <p>Every voice matters, every story deserves to be heard</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Story Section -->
+        <section class="story-section">
+            <div class="story-content">
+                <h2>How This Circle Began</h2>
+                <p>In 2023, when the San Juan Bautista Indian Market closed, something precious was lost. Not just an event, but a gathering place. A home for Indigenous youth in San Benito County to see themselves reflected, to connect with their heritage, to simply belong.</p>
+                <p>We didn't wait for someone else to fill that void. Our community came together. Elders who carried knowledge, families who carried hope, and youth who carried tomorrow's dreams created something new.</p>
+                <div class="quote-box">
+                    <p>"We are the only organization providing year-round Indigenous cultural programming in San Benito County. But we're not here to replace what was lost. We're here to build what's needed."</p>
+                </div>
+                <p>From 500 to 1,000+ participants in three years. From one annual event to monthly gatherings, youth-led programs, gardens growing food for families, and AI workshops preparing our youth for futures we can barely imagine.</p>
+            </div>
+        </section>
+
+        <!-- Programs Section -->
+        <section class="programs-section">
+            <div class="section-header">
+                <h2>How We Walk Together</h2>
+                <p>Our programs are interconnected, just like our community</p>
+            </div>
+            <div class="programs-grid">
+                <div class="program-card">
+                    <div class="program-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    </div>
+                    <h3>Cultural Nights</h3>
+                    <p>Monthly gatherings where 15-25+ families share meals, learn traditional arts, and keep the drum circle beating.</p>
+                    <div class="program-impact">Building belonging, one circle at a time</div>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3>Youth Garden</h3>
+                    <p>Growing 100+ pounds of food annually while elders share plant knowledge passed down through generations.</p>
+                    <div class="program-impact">Connecting hands to earth, youth to elders</div>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                    </div>
+                    <h3>Four Directions Initiative</h3>
+                    <p>Career, education, health, and digital media programs where youth lead, not just attend.</p>
+                    <div class="program-impact">Leading today, transforming tomorrow</div>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">
+                        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3>Annual Pow Wow</h3>
+                    <p>From 500 to 1,000+ participants. Our flagship gathering where the entire year of work blooms into celebration.</p>
+                    <div class="program-impact">1,000+ hearts beating as one</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tier Badges Section -->
+        <section class="tiers-section">
+            <div class="section-header">
+                <h2>Sponsorship Tiers</h2>
+                <p>Join our circle at any level - every contribution strengthens our community</p>
+            </div>
+            <div class="tiers-grid">
+                <div class="tier-card turtle">
+                    <div class="tier-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4DB6AC" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
+                    </div>
+                    <h3>Turtle Tier</h3>
+                    <div class="amount">$100 - $999</div>
+                    <div class="description">Foundation supporter</div>
+                </div>
+                <div class="tier-card wolf">
+                    <div class="tier-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FFD54F" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    </div>
+                    <h3>Wolf Tier</h3>
+                    <div class="amount">$1,000 - $4,999</div>
+                    <div class="description">Community champion</div>
+                </div>
+                <div class="tier-card bear">
+                    <div class="tier-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FFAB91" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    </div>
+                    <h3>Bear Tier</h3>
+                    <div class="amount">$5,000 - $9,999</div>
+                    <div class="description">Culture protector</div>
+                </div>
+                <div class="tier-card eagle">
+                    <div class="tier-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#B39DDB" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </div>
+                    <h3>Eagle Tier</h3>
+                    <div class="amount">$10,000+</div>
+                    <div class="description">Visionary leader</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="cta-circles"></div>
+            <div class="cta-circles-inner"></div>
+            <div class="cta-content">
+                <h2>Join Our Circle</h2>
+                <p>There's a place for you here. Multiple ways to walk with us, support our youth, and strengthen this community.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary">
+                        Become a Sponsor
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="#" class="btn btn-secondary">
+                        Volunteer With Us
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Comparison Note -->
+    <div class="comparison-note">
+        <h4>COASTAL SOFT SUNSET</h4>
+        <p>Gentle peachy corals, soft lavenders, warm golds with cool teal accents. Like Big Sur or Santa Barbara coastline at dusk.</p>
+        <a href="index.html">← View All Palettes</a>
+    </div>
+</body>
+</html>

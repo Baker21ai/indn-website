@@ -57,7 +57,6 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({ announcements })
   } catch (error) {
-    console.error('Announcements fetch error:', error)
     return NextResponse.json(
       { error: 'Failed to fetch announcements' },
       { status: 500 }
@@ -114,7 +113,6 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: true, announcement }, { status: 201 })
   } catch (error) {
-    console.error('Announcement creation error:', error)
     return NextResponse.json(
       { error: 'Failed to create announcement' },
       { status: 500 }

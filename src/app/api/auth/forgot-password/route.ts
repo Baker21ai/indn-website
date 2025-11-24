@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
       message: 'If an account exists with that email, you will receive a password reset link.',
     })
   } catch (error) {
-    console.error('Forgot password error:', error)
+    // Error occurred - return generic message
     return NextResponse.json(
       { error: 'An error occurred. Please try again.' },
       { status: 500 }

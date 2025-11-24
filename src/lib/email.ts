@@ -1,15 +1,16 @@
-import { Resend } from 'resend'
+import sgMail from '@sendgrid/mail'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+// Initialize SendGrid with API key
+sgMail.setApiKey(process.env.SENDGRID_API_KEY || '')
 
-const FROM_EMAIL = process.env.EMAIL_FROM || 'noreply@indn.org'
+const FROM_EMAIL = process.env.EMAIL_FROM || 'noreply@sendgrid.net'
 const BASE_URL = process.env.NEXTAUTH_URL || 'http://localhost:3000'
 
 export async function sendVerificationEmail(email: string, token: string) {
   const verifyUrl = `${BASE_URL}/verify-email?token=${token}`
 
   try {
-    await resend.emails.send({
+    await sgMail.send({
       from: FROM_EMAIL,
       to: email,
       subject: 'Verify your email address',
@@ -34,8 +35,11 @@ export async function sendVerificationEmail(email: string, token: string) {
       `,
     })
     return { success: true }
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Failed to send verification email:', error)
+    if (error && typeof error === 'object' && 'response' in error) {
+      console.error('SendGrid error:', (error as { response: { body: unknown } }).response.body)
+    }
     return { success: false, error }
   }
 }
@@ -44,7 +48,7 @@ export async function sendPasswordResetEmail(email: string, token: string) {
   const resetUrl = `${BASE_URL}/reset-password?token=${token}`
 
   try {
-    await resend.emails.send({
+    await sgMail.send({
       from: FROM_EMAIL,
       to: email,
       subject: 'Reset your password',
@@ -69,8 +73,11 @@ export async function sendPasswordResetEmail(email: string, token: string) {
       `,
     })
     return { success: true }
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Failed to send password reset email:', error)
+    if (error && typeof error === 'object' && 'response' in error) {
+      console.error('SendGrid error:', (error as { response: { body: unknown } }).response.body)
+    }
     return { success: false, error }
   }
 }
@@ -130,7 +137,7 @@ export async function sendWelcomeEmail(
   const content = roleContent[role]
 
   try {
-    await resend.emails.send({
+    await sgMail.send({
       from: FROM_EMAIL,
       to: email,
       subject: content.title,
@@ -167,8 +174,11 @@ export async function sendWelcomeEmail(
       `,
     })
     return { success: true }
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Failed to send welcome email:', error)
+    if (error && typeof error === 'object' && 'response' in error) {
+      console.error('SendGrid error:', (error as { response: { body: unknown } }).response.body)
+    }
     return { success: false, error }
   }
 }
@@ -183,7 +193,7 @@ export async function sendEventSignupConfirmation(
   const portalUrl = `${BASE_URL}/portal/volunteer/events`
 
   try {
-    await resend.emails.send({
+    await sgMail.send({
       from: FROM_EMAIL,
       to: email,
       subject: `Event Signup Confirmed: ${eventName}`,
@@ -234,8 +244,11 @@ export async function sendEventSignupConfirmation(
       `,
     })
     return { success: true }
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Failed to send event signup confirmation:', error)
+    if (error && typeof error === 'object' && 'response' in error) {
+      console.error('SendGrid error:', (error as { response: { body: unknown } }).response.body)
+    }
     return { success: false, error }
   }
 }
@@ -258,7 +271,7 @@ export async function sendShiftAssignment(
     shiftDetails
 
   try {
-    await resend.emails.send({
+    await sgMail.send({
       from: FROM_EMAIL,
       to: email,
       subject: `Shift Assignment: ${role} - ${eventName}`,
@@ -321,8 +334,11 @@ export async function sendShiftAssignment(
       `,
     })
     return { success: true }
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Failed to send shift assignment email:', error)
+    if (error && typeof error === 'object' && 'response' in error) {
+      console.error('SendGrid error:', (error as { response: { body: unknown } }).response.body)
+    }
     return { success: false, error }
   }
 }
@@ -353,7 +369,7 @@ export async function sendAdminNotification(
   const style = notificationStyle[type]
 
   try {
-    await resend.emails.send({
+    await sgMail.send({
       from: FROM_EMAIL,
       to: adminEmail,
       subject: `[INDN Admin] ${title}`,
@@ -405,8 +421,11 @@ export async function sendAdminNotification(
       `,
     })
     return { success: true }
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Failed to send admin notification:', error)
+    if (error && typeof error === 'object' && 'response' in error) {
+      console.error('SendGrid error:', (error as { response: { body: unknown } }).response.body)
+    }
     return { success: false, error }
   }
 }

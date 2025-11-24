@@ -22,7 +22,6 @@ export async function DELETE(
 
     return NextResponse.json({ success: true }, { status: 200 })
   } catch (error) {
-    console.error('Error deleting donor:', error)
     return NextResponse.json({ error: 'Failed to delete donor' }, { status: 500 })
   }
 }
@@ -59,7 +58,6 @@ export async function GET(
 
     return NextResponse.json({ donor }, { status: 200 })
   } catch (error) {
-    console.error('Error fetching donor:', error)
     return NextResponse.json({ error: 'Failed to fetch donor' }, { status: 500 })
   }
 }
@@ -117,7 +115,6 @@ export async function PUT(
 
     return NextResponse.json({ donor: updatedDonor }, { status: 200 })
   } catch (error) {
-    console.error('Error updating donor:', error)
     return NextResponse.json({ error: 'Failed to update donor' }, { status: 500 })
   }
 }

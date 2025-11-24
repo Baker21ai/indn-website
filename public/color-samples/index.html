@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>California Sunset Color Palettes - INDN</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #2D2D2D;
+            background: #FFF9F5;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        h1 {
+            font-size: 56px;
+            font-weight: 700;
+            color: #2D2D2D;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: #6B7280;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        .intro-box {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            max-width: 900px;
+            margin: 0 auto 60px;
+        }
+
+        .intro-box h2 {
+            font-size: 24px;
+            color: #2D2D2D;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .intro-box p {
+            font-size: 18px;
+            color: #6B7280;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .intro-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .intro-box li {
+            font-size: 16px;
+            color: #6B7280;
+            padding: 8px 0;
+            padding-left: 28px;
+            position: relative;
+        }
+
+        .intro-box li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #FF7043;
+            font-weight: 700;
+        }
+
+        .palette-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .palette-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .palette-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+        }
+
+        .palette-hero {
+            height: 240px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+            font-weight: 700;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+        }
+
+        .palette-hero.classic {
+            background: linear-gradient(135deg, #6A4C93 0%, #FF6B35 50%, #FFD23F 100%);
+        }
+
+        .palette-hero.vibrant {
+            background: linear-gradient(135deg, #E91E63 0%, #FF4500 50%, #FF9100 100%);
+        }
+
+        .palette-hero.coastal {
+            background: linear-gradient(135deg, #B39DDB 0%, #FFAB91 50%, #4DB6AC 100%);
+        }
+
+        .palette-hero.urban {
+            background: linear-gradient(135deg, #3F51B5 0%, #7E57C2 30%, #FF7043 70%, #FFA726 100%);
+        }
+
+        .palette-content {
+            padding: 32px;
+        }
+
+        .palette-content h3 {
+            font-size: 28px;
+            color: #2D2D2D;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .palette-description {
+            font-size: 16px;
+            color: #6B7280;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .color-swatches {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .swatch {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transition: transform 0.2s;
+        }
+
+        .swatch:hover {
+            transform: scale(1.15);
+        }
+
+        .palette-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding: 20px;
+            background: #FFF9F5;
+            border-radius: 12px;
+        }
+
+        .meta-item h4 {
+            font-size: 12px;
+            font-weight: 700;
+            color: #6B7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .meta-item p {
+            font-size: 15px;
+            color: #2D2D2D;
+            font-weight: 500;
+        }
+
+        .view-button {
+            display: block;
+            width: 100%;
+            padding: 16px 32px;
+            background: #2D2D2D;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .view-button:hover {
+            background: #1a1a1a;
+            transform: scale(1.02);
+        }
+
+        .comparison-table {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            margin-bottom: 60px;
+        }
+
+        .comparison-table h2 {
+            font-size: 32px;
+            color: #2D2D2D;
+            margin-bottom: 32px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #FFF9F5;
+            padding: 16px;
+            text-align: left;
+            font-size: 14px;
+            font-weight: 700;
+            color: #2D2D2D;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid #f3f4f6;
+            font-size: 15px;
+            color: #6B7280;
+        }
+
+        tr:hover {
+            background: #FFF9F5;
+        }
+
+        .pro {
+            color: #10B981;
+            font-weight: 600;
+        }
+
+        .con {
+            color: #EF4444;
+            font-weight: 600;
+        }
+
+        .instructions {
+            background: linear-gradient(135deg, #2D2D2D 0%, #4a4a4a 100%);
+            color: white;
+            padding: 48px;
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+
+        .instructions h2 {
+            font-size: 32px;
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+
+        .instructions p {
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 16px;
+            opacity: 0.95;
+        }
+
+        .instructions ol {
+            font-size: 17px;
+            line-height: 1.8;
+            margin-left: 20px;
+            margin-top: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 12px;
+        }
+
+        .instructions strong {
+            color: #FFA726;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #6B7280;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 36px; }
+            .subtitle { font-size: 18px; }
+            .palette-grid { grid-template-columns: 1fr; }
+            .comparison-table { overflow-x: auto; }
+            table { min-width: 600px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>California Sunset Color Palettes</h1>
+            <p class="subtitle">Four beautiful sunset-inspired color schemes harmonized with your Indigenous cultural elements</p>
+        </header>
+
+        <div class="intro-box">
+            <h2>How to Choose Your Palette</h2>
+            <p>Each palette captures a different California sunset mood while respecting and harmonizing with your existing Indigenous design elements (circular patterns, sage green, warm earth tones, tier badges).</p>
+            <ul>
+                <li>Click any palette below to see a full demo of your homepage with that color scheme</li>
+                <li>Hover over color swatches to see them enlarged</li>
+                <li>Use the comparison table to understand the mood and use cases for each</li>
+                <li>Open multiple tabs to compare palettes side-by-side</li>
+            </ul>
+        </div>
+
+        <div class="palette-grid">
+            <!-- Classic Warm Sunset -->
+            <div class="palette-card">
+                <div class="palette-hero classic">Classic Warm</div>
+                <div class="palette-content">
+                    <h3>Classic Warm Sunset</h3>
+                    <p class="palette-description">Traditional sunset with warm oranges, coral pinks, golden yellows, and twilight purples. Like a summer evening in Malibu - timeless and inviting.</p>
+
+                    <div class="color-swatches">
+                        <div class="swatch" style="background: #FF6B35;" title="Sunset Orange"></div>
+                        <div class="swatch" style="background: #F7931E;" title="Golden Orange"></div>
+                        <div class="swatch" style="background: #FF8B94;" title="Coral Pink"></div>
+                        <div class="swatch" style="background: #FFA69E;" title="Soft Blush"></div>
+                        <div class="swatch" style="background: #FFD23F;" title="Bright Gold"></div>
+                        <div class="swatch" style="background: #FFC857;" title="Honey Gold"></div>
+                        <div class="swatch" style="background: #6A4C93;" title="Twilight Purple"></div>
+                        <div class="swatch" style="background: #8B5A91;" title="Soft Lavender"></div>
+                    </div>
+
+                    <div class="palette-meta">
+                        <div class="meta-item">
+                            <h4>Mood</h4>
+                            <p>Warm, Traditional, Inviting</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4>Best For</h4>
+                            <p>Community feel, heritage</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4>Accessibility</h4>
+                            <p>High contrast, WCAG AA+</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4>Energy Level</h4>
+                            <p>Medium - balanced warmth</p>
+                        </div>
+                    </div>
+
+                    <a href="sunset-classic-warm.html" class="view-button">View Full Demo →</a>
+                </div>
+            </div>
+
+            <!-- Vibrant Desert Sunset -->
+            <div class="palette-card">
+                <div class="palette-hero vibrant">Vibrant Desert</div>
+                <div class="palette-content">
+                    <h3>Vibrant Desert Sunset</h3>
+                    <p class="palette-description">Bold, saturated colors with hot magentas, fiery oranges, and electric corals. Like Palm Springs or Joshua Tree at golden hour - energetic and bold.</p>
+
+                    <div class="color-swatches">
+                        <div class="swatch" style="background: #E91E63;" title="Hot Magenta"></div>
+                        <div class="swatch" style="background: #FF006E;" title="Electric Pink"></div>
+                        <div class="swatch" style="background: #FF4500;" title="Fiery Orange"></div>
+                        <div class="swatch" style="background: #FF6F00;" title="Blazing Orange"></div>
+                        <div class="swatch" style="background: #FF5A5F;" title="Electric Coral"></div>
+                        <div class="swatch" style="background: #FF7F50;" title="Vivid Tangerine"></div>
+                        <div class="swatch" style="background: #FF1744;" title="Bright Fuchsia"></div>
+                        <div class="swatch" style="background: #FF9100;" title="Vibrant Amber"></div>
+                    </div>
+
+                    <div class="palette-meta">
+                        <div class="meta-item">
+                            <h4>Mood</h4>
+                            <p>Bold, Energetic, Modern</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4>Best For</h4>
+                            <p>Youth programs, events</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4>Accessibility</h4>
+                            <p>High energy, strong contrast</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4>Energy Level</h4>
+                            <p>High - attention-grabbing</p>
+                        </div>
+                    </div>
+
+                    <a href="sunset-vibrant-desert.html" class="view-button">View Full Demo →</a>
+                </div>
+            </div>
+
+            <!-- Coastal Soft Sunset -->
+            <div class="palette-card">
+                <div class="palette-hero coastal">Coastal Soft</div>
+                <div class="palette-content">
+                    <h3>Coastal Soft Sunset</h3>
+                    <p class="palette-description">Gentle peachy corals, soft lavenders, warm golds with cool teal accents. Like Big Sur or Santa Barbara coastline - serene and accessible.</p>
+
+                    <div class="color-swatches">
+                        <div class="swatch" style="background: #FFAB91;" title="Soft Peach"></div>
+                        <div class="swatch" style="background: #FFCCBC;" title="Gentle Blush"></div>
+                        <div class="swatch" style="background: #B39DDB;" title="Soft Lavender"></div>
+                        <div class="swatch" style="background: #CE93D8;" title="Gentle Mauve"></div>
+                        <div class="swatch" style="background: #FFE082;" title="Soft Gold"></div>
+                        <div class="swatch" style="background: #FFD54F;" title="Warm Honey"></div>
+                        <div class="swatch" style="background: #4DB6AC;" title="Cool Teal"></div>
+                        <div class="swatch" style="background: #80CBC4;" title="Soft Aqua"></div>
+                    </div>
+
+                    <div class="palette-meta">
+                        <div class="meta-item">
+                            <h4>Mood</h4>
+                            <p>Gentle, Calm, Approachable</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4>Best For</h4>
+                            <p>Education, wellness</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4>Accessibility</h4>
+                            <p>Excellent - easy on eyes</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4>Energy Level</h4>
+                            <p>Low-Medium - soothing</p>
+                        </div>
+                    </div>
+
+                    <a href="sunset-coastal-soft.html" class="view-button">View Full Demo →</a>
+                </div>
+            </div>
+
+            <!-- Urban Glow Sunset -->
+            <div class="palette-card">
+                <div class="palette-hero urban">Urban Glow</div>
+                <div class="palette-content">
+                    <h3>Urban Glow Sunset</h3>
+                    <p class="palette-description">Warm sunset tones balanced with cool blue-purple shadows. Like LA skyline or SF Bay at dusk - sophisticated and contemporary.</p>
+
+                    <div class="color-swatches">
+                        <div class="swatch" style="background: #FF7043;" title="Warm Coral"></div>
+                        <div class="swatch" style="background: #FFA726;" title="Bright Tangerine"></div>
+                        <div class="swatch" style="background: #5C6BC0;" title="Cool Indigo"></div>
+                        <div class="swatch" style="background: #7E57C2;" title="Rich Purple"></div>
+                        <div class="swatch" style="background: #3F51B5;" title="Royal Blue"></div>
+                        <div class="swatch" style="background: #FFB74D;" title="Golden Amber"></div>
+                        <div class="swatch" style="background: #EC407A;" title="Rose Accent"></div>
+                        <div class="swatch" style="background: #6A7BA3;" title="Cool Slate"></div>
+                    </div>
+
+                    <div class="palette-meta">
+                        <div class="meta-item">
+                            <h4>Mood</h4>
+                            <p>Modern, Balanced, Professional</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4>Best For</h4>
+                            <p>Tech programs, partnerships</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4>Accessibility</h4>
+                            <p>Great - balanced warmth/cool</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4>Energy Level</h4>
+                            <p>Medium - sophisticated</p>
+                        </div>
+                    </div>
+
+                    <a href="sunset-urban-glow.html" class="view-button">View Full Demo →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="comparison-table">
+            <h2>Quick Comparison Guide</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Palette</th>
+                        <th>Personality</th>
+                        <th>Ideal For</th>
+                        <th>Considerations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Classic Warm</strong></td>
+                        <td>Traditional California sunset with universal appeal</td>
+                        <td>All-purpose, community gatherings, heritage storytelling</td>
+                        <td><span class="pro">✓</span> Safe choice, <span class="pro">✓</span> Timeless</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Vibrant Desert</strong></td>
+                        <td>High-energy, youthful, attention-grabbing</td>
+                        <td>Youth programs, events, social media, calls-to-action</td>
+                        <td><span class="pro">✓</span> Memorable, <span class="con">!</span> May be intense for some</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Coastal Soft</strong></td>
+                        <td>Gentle, welcoming, accessible to all ages</td>
+                        <td>Education, wellness programs, family content</td>
+                        <td><span class="pro">✓</span> Very accessible, <span class="pro">✓</span> Calming</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Urban Glow</strong></td>
+                        <td>Contemporary, sophisticated, balanced</td>
+                        <td>Technology initiatives, corporate partnerships, modern programs</td>
+                        <td><span class="pro">✓</span> Professional, <span class="pro">✓</span> Unique balance</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="instructions">
+            <h2>Next Steps</h2>
+            <p>Once you've chosen your favorite palette:</p>
+            <ol>
+                <li><strong>Take screenshots</strong> of sections you love from the demo pages</li>
+                <li><strong>Share with stakeholders</strong> - send them this page to gather feedback</li>
+                <li><strong>Consider mixing</strong> - You could use one palette for public pages and another for specific program sections</li>
+                <li><strong>Test with your logo</strong> - Make sure the colors work with your actual INDN logo and photos</li>
+                <li><strong>Think about seasons</strong> - Some palettes might work better for different times of year or events</li>
+            </ol>
+            <p style="margin-top: 24px;">All palettes are designed to harmonize with your existing Indigenous design elements (circular patterns, sage green accents, tier system) while bringing fresh California sunset energy to your brand.</p>
+        </div>
+
+        <footer>
+            <p>Created with care for the Indigenous Nations Diversity Network</p>
+            <p>All palettes designed to harmonize with existing cultural elements and maintain WCAG accessibility standards</p>
+        </footer>
+    </div>
+</body>
+</html>

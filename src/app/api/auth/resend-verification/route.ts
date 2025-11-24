@@ -52,7 +52,6 @@ export async function POST(req: NextRequest) {
       message: 'Verification token generated successfully.',
     })
   } catch (error) {
-    console.error('Resend verification error:', error)
     return NextResponse.json(
       { error: 'An error occurred. Please try again.' },
       { status: 500 }

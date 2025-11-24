@@ -46,7 +46,6 @@ export async function POST(req: NextRequest) {
       message: 'Email verified successfully! You can now login.',
     })
   } catch (error) {
-    console.error('Email verification error:', error)
     return NextResponse.json(
       { error: 'An error occurred. Please try again.' },
       { status: 500 }

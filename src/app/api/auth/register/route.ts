@@ -15,7 +15,7 @@ const registerSchema = z.object({
   email: z.string().email('Invalid email address'),
   password: z.string().min(8, 'Password must be at least 8 characters'),
   phone: z.string().optional(),
-  role: z.enum(['volunteer', 'board_member']).default('volunteer'),
+  role: z.enum(['board_member']).default('board_member'),
 })
 
 export async function POST(request: NextRequest) {
@@ -78,51 +78,34 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    // Create volunteer profile if role is volunteer
-    if (validatedData.role === 'volunteer') {
-      await prisma.volunteer_profiles.create({
-        data: {
-          id: crypto.randomUUID(),
-          userId: user.id,
-          applicationStatus: 'approved', // Auto-approve for MVP
-          updatedAt: new Date(),
-        },
-      })
-    }
+    // Volunteer registration is disabled - only board members can register
 
     // Send verification email
     try {
       await sendVerificationEmail(user.email, verificationToken)
     } catch (emailError) {
-      console.warn('Failed to send verification email:', emailError)
+      // Email send failed - log safely without exposing details
     }
 
     // Send welcome email
     try {
       await sendWelcomeEmail(user.email, user.name, validatedData.role)
     } catch (emailError) {
-      console.warn('Failed to send welcome email:', emailError)
+      // Email send failed - log safely without exposing details
     }
 
     // Send admin notification
     try {
-      const notificationType =
-        validatedData.role === 'volunteer'
-          ? 'new_volunteer'
-          : validatedData.role === 'board_member'
-            ? 'new_board_member'
-            : 'new_user'
-
-      await sendAdminNotification(notificationType, {
-        title: `New ${validatedData.role === 'volunteer' ? 'Volunteer' : 'Board Member'} Registration`,
-        message: `A new user has registered on the INDN website.`,
+      await sendAdminNotification('new_board_member', {
+        title: 'New Board Member Registration',
+        message: `A new board member has registered on the INDN website.`,
         userName: user.name,
         userEmail: user.email,
         userRole: validatedData.role,
         actionUrl: `${process.env.NEXTAUTH_URL}/portal/admin/users`,
       })
     } catch (emailError) {
-      console.warn('Failed to send admin notification:', emailError)
+      // Email send failed - log safely without exposing details
     }
 
     return NextResponse.json(
@@ -146,7 +129,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    console.error('Registration error:', error)
+    // Error occurred - return generic message
     return NextResponse.json(
       { error: 'An error occurred during registration' },
       { status: 500 }

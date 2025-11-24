@@ -58,50 +58,43 @@ model documents {
   @@index([uploadedById])
 }
 
-model donations {
-  id                   String   @id
-  donorId              String
-  amount               Decimal  @db.Decimal(10, 2)
-  currency             String   @default("usd")
-  stripePaymentId      String   @unique
-  stripeCustomerId     String?
-  isRecurring          Boolean  @default(false)
-  stripeSubscriptionId String?
-  designation          String?
-  notes                String?
-  createdAt            DateTime @default(now())
-  donors               donors   @relation(fields: [donorId], references: [id], onDelete: Cascade)
+model sponsorships {
+  id          String   @id
+  sponsorId   String
+  amount      Decimal  @db.Decimal(10, 2)
+  currency    String   @default("usd")
+  isRecurring Boolean  @default(false)
+  designation String?
+  notes       String?
+  createdAt   DateTime @default(now())
+  sponsors    sponsors @relation(fields: [sponsorId], references: [id], onDelete: Cascade)
 
   @@index([createdAt])
-  @@index([donorId])
-  @@index([stripePaymentId])
+  @@index([sponsorId])
 }
 
-model donors {
-  id             String      @id
-  userId         String      @unique
-  donorType      DonorType   @default(individual)
-  displayName    String
-  tier           DonorTier?
-  totalDonated   Decimal     @default(0) @db.Decimal(10, 2)
-  isRecurring    Boolean     @default(false)
-  isAnonymous    Boolean     @default(false)
-  location       String?
-  logoUrl        String?
-  website        String?
-  notes          String?
-  memberSince    DateTime    @default(now())
-  credlyBadgeId  String?
-  credlyBadgeUrl String?
-  badgeIssuedAt  DateTime?
-  createdAt      DateTime    @default(now())
-  updatedAt      DateTime
-  donations      donations[]
-  users          users       @relation(fields: [userId], references: [id], onDelete: Cascade)
+model sponsors {
+  id            String         @id
+  userId        String         @unique
+  sponsorType   SponsorType    @default(individual)
+  displayName   String
+  tier          SponsorTier?
+  totalAmount   Decimal        @default(0) @db.Decimal(10, 2)
+  isRecurring   Boolean        @default(false)
+  isAnonymous   Boolean        @default(false)
+  location      String?
+  logoUrl       String?
+  website       String?
+  notes         String?
+  memberSince   DateTime       @default(now())
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime
+  sponsorships  sponsorships[]
+  users         users          @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@index([donorType])
+  @@index([sponsorType])
   @@index([tier])
-  @@index([totalDonated])
+  @@index([totalAmount])
 }
 
 model events {
@@ -109,6 +102,7 @@ model events {
   title             String
   slug              String              @unique
   description       String
+  imageUrls         String[]
   category          EventCategory       @default(cultural)
   startDate         DateTime
   endDate           DateTime?
@@ -193,7 +187,7 @@ model users {
   lastLoginAt        DateTime?
   announcements      announcements[]
   documents          documents[]
-  donors             donors?
+  sponsors           sponsors?
   shift_assignments  shift_assignments[]
   volunteer_profiles volunteer_profiles?
   volunteer_signups  volunteer_signups[]
@@ -258,14 +252,14 @@ enum DocumentCategory {
   other
 }
 
-enum DonorTier {
+enum SponsorTier {
   turtle
   wolf
   bear
   eagle
 }
 
-enum DonorType {
+enum SponsorType {
   individual
   company
 }

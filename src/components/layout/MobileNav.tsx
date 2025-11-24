@@ -1,25 +1,71 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, X, Heart, Users, Calendar, Info, UserCheck } from 'lucide-react'
+import { Menu, X, Heart, Users, Calendar, Home, UserCheck } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Logo } from './Logo'
 
 const navigation = [
-  { name: 'About', href: '/about', icon: Info },
-  { name: 'Board', href: '/about/board', icon: UserCheck },
-  { name: 'Programs', href: '/programs', icon: Users },
-  { name: 'Events', href: '/events', icon: Calendar },
-  { name: 'Donate', href: '/donate', icon: Heart },
+  { name: 'Home', href: '#home', icon: Home },
+  { name: 'Board', href: '#board', icon: UserCheck },
+  { name: 'Events', href: '#events', icon: Calendar },
+  { name: 'Sponsors', href: '#sponsors', icon: Users },
+  { name: 'Become a Sponsor', href: '#become-sponsor', icon: Heart },
 ]
 
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('')
   const pathname = usePathname()
 
+  useEffect(() => {
+    const handleScroll = () => {
+      // Determine active section based on scroll position
+      const sections = ['home', 'board', 'events', 'sponsors', 'become-sponsor']
+      const scrollPosition = window.scrollY + 100
+
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId)
+        if (element) {
+          const top = element.offsetTop
+          const bottom = top + element.offsetHeight
+          if (scrollPosition >= top && scrollPosition < bottom) {
+            setActiveSection(sectionId)
+            break
+          }
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   const toggleMenu = () => setIsOpen(!isOpen)
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (pathname === '/' && href.startsWith('#')) {
+      e.preventDefault()
+      const targetId = href.substring(1)
+      const element = document.getElementById(targetId)
+      if (element) {
+        const headerOffset = 100
+        const elementPosition = element.getBoundingClientRect().top
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        })
+        toggleMenu() // Close menu after navigation
+      }
+    } else {
+      toggleMenu()
+    }
+  }
 
   return (
     <div className="lg:hidden">
@@ -75,12 +121,13 @@ export function MobileNav() {
           <nav className="flex-1 px-4 py-8 space-y-2 overflow-y-auto">
             {navigation.map((item) => {
               const Icon = item.icon
-              const isActive = pathname === item.href
+              const targetSection = item.href.replace('#', '')
+              const isActive = activeSection === targetSection
               return (
                 <Link
                   key={item.name}
                   href={item.href}
-                  onClick={toggleMenu}
+                  onClick={(e) => handleNavClick(e, item.href)}
                   className={`
                     flex items-center gap-4 px-4 py-3 rounded-xl
                     transition-all duration-200 group
@@ -110,7 +157,9 @@ export function MobileNav() {
             })}
           </nav>
 
-          {/* CTA Section */}
+          {/* TEMPORARILY HIDDEN - CTA Section (Sign In/Sign Up buttons) */}
+          {/* Uncomment this section to re-enable authentication buttons */}
+          {/*
           <div className="p-6 border-t border-warm-gray/20 space-y-3">
             <Button
               asChild
@@ -126,6 +175,7 @@ export function MobileNav() {
               <Link href="/login">Sign In</Link>
             </Button>
           </div>
+          */}
         </div>
       </div>
     </div>

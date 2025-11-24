@@ -105,7 +105,7 @@ export default function PrototypesPage() {
 
           <p className="text-xl text-stone-gray mb-8 max-w-3xl mx-auto leading-relaxed font-normal">
             Four different design approaches for the INDN About page. Each version
-            emphasizes different strengths—storytelling, data, community, or a
+            emphasizes different strengths: storytelling, data, community, or a
             synthesis of all three.
           </p>
 

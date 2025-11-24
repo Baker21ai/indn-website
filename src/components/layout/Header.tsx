@@ -8,26 +8,62 @@ import { Logo } from './Logo'
 import { MobileNav } from './MobileNav'
 
 const navigation = [
-  { name: 'About', href: '/about' },
-  { name: 'Board', href: '/about/board' },
-  { name: 'Programs', href: '/programs' },
-  { name: 'Events', href: '/events' },
-  { name: 'Prototypes', href: '/prototypes' },
-  { name: 'Donate', href: '/donate' },
+  { name: 'Home', href: '#home' },
+  { name: 'Board', href: '#board' },
+  { name: 'Events', href: '#events' },
+  { name: 'Sponsors', href: '#sponsors' },
+  { name: 'Become a Sponsor', href: '#become-sponsor' },
 ]
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [activeSection, setActiveSection] = useState('')
   const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20)
+
+      // Determine active section based on scroll position
+      const sections = ['home', 'board', 'events', 'sponsors', 'become-sponsor']
+      const scrollPosition = window.scrollY + 100 // Offset for header
+
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId)
+        if (element) {
+          const top = element.offsetTop
+          const bottom = top + element.offsetHeight
+          if (scrollPosition >= top && scrollPosition < bottom) {
+            setActiveSection(sectionId)
+            break
+          }
+        }
+      }
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll() // Initialize on mount
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    // Only handle smooth scrolling on the homepage
+    if (pathname === '/' && href.startsWith('#')) {
+      e.preventDefault()
+      const targetId = href.substring(1)
+      const element = document.getElementById(targetId)
+      if (element) {
+        const headerOffset = 100 // Account for fixed header
+        const elementPosition = element.getBoundingClientRect().top
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        })
+      }
+    }
+  }
 
   return (
     <header
@@ -60,11 +96,13 @@ export function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1">
             {navigation.map((item) => {
-              const isActive = pathname === item.href
+              const targetSection = item.href.replace('#', '')
+              const isActive = activeSection === targetSection
               return (
                 <Link
                   key={item.name}
                   href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
                   className={`
                     px-4 py-2 rounded-lg font-medium text-sm
                     transition-all duration-200
@@ -81,7 +119,9 @@ export function Header() {
             })}
           </nav>
 
-          {/* Desktop CTA Buttons */}
+          {/* TEMPORARILY HIDDEN - Desktop CTA Buttons (Sign In/Sign Up) */}
+          {/* Uncomment this section to re-enable authentication buttons */}
+          {/*
           <div className="hidden lg:flex items-center gap-3">
             <Button
               asChild
@@ -97,6 +137,7 @@ export function Header() {
               <Link href="/register">Sign Up</Link>
             </Button>
           </div>
+          */}
 
           {/* Mobile Navigation */}
           <MobileNav />

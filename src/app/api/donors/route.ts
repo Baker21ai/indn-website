@@ -30,7 +30,6 @@ export async function GET() {
 
     return NextResponse.json({ donors })
   } catch (error) {
-    console.error('Error fetching donors:', error)
     return NextResponse.json(
       { error: 'Failed to fetch donors' },
       { status: 500 }

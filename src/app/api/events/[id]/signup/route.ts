@@ -80,7 +80,6 @@ export async function POST(
 
     return NextResponse.json({ success: true, signup })
   } catch (error) {
-    console.error('Signup error:', error)
     return NextResponse.json(
       { error: 'Failed to sign up for event' },
       { status: 500 }

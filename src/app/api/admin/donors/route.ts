@@ -81,7 +81,7 @@ export async function POST(request: NextRequest) {
       { status: 201 }
     )
   } catch (error) {
-    console.error('Error creating donor:', error)
+    // Error occurred - return generic message
     return NextResponse.json({ error: 'Failed to create donor' }, { status: 500 })
   }
 }
