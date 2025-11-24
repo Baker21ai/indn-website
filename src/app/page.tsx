@@ -301,8 +301,6 @@ export default function HomePage() {
                 key={index}
                 className="bg-gradient-to-br from-sunset-orange to-terracotta p-12 rounded-[30px] shadow-[0_4px_20px_rgba(255,107,53,0.3)] transition-all hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(255,107,53,0.5)] relative border-2 border-sunset-orange hover:border-white"
               >
-                <div className="absolute top-[-10px] right-[-10px] w-16 h-16 bg-white rounded-full opacity-30 group-hover:opacity-60 transition-opacity" />
-
                 <div className="w-[70px] h-[70px] bg-white rounded-full flex items-center justify-center mb-6 shadow-lg">
                   <program.Icon className="w-8 h-8 text-sunset-orange" />
                 </div>
