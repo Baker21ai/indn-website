@@ -21,51 +21,38 @@ export function BoardCard({ member, onClick }: BoardCardProps) {
         </p>
       </div>
 
-      {/* Card with Photo + Bio Preview */}
+      {/* Card with Photo + Slim Bio Bar */}
       <button
         onClick={onClick}
-        className="group relative w-full h-[280px] sm:h-[320px] lg:h-[360px] rounded-2xl overflow-hidden cursor-pointer focus:outline-none focus:ring-2 focus:ring-sunset-orange focus:ring-offset-2 focus:ring-offset-charcoal transition-all duration-500"
+        className="group relative w-full h-[320px] sm:h-[380px] lg:h-[420px] rounded-2xl overflow-hidden cursor-pointer focus:outline-none focus:ring-2 focus:ring-sunset-orange focus:ring-offset-2 focus:ring-offset-charcoal transition-all duration-500"
         aria-label={`View ${member.name}'s full bio`}
       >
-        {/* Photo - No overlays on face area */}
+        {/* Photo - Positioned to show faces clearly, well above the bottom bar */}
         <div className="absolute inset-0">
           <Image
             src={member.imageUrl}
             alt={member.name}
             fill
-            className="object-cover object-[50%_25%] transition-transform duration-700 group-hover:scale-105"
+            className="object-cover object-[50%_20%] transition-transform duration-700 group-hover:scale-105"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
-          {/* Minimal gradient only at bottom for blur panel readability */}
-          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/70 to-transparent" />
+          {/* Tiny gradient only at very bottom for bar readability */}
+          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/50 to-transparent" />
         </div>
 
-        {/* Compact Bio Preview Panel - Bottom positioned */}
+        {/* Ultra-compact bottom bar - just enough for "Read bio" */}
         <div className="absolute bottom-0 left-0 right-0">
-          {/* Glass background */}
-          <div className="relative backdrop-blur-md bg-white/10 border-t border-white/20 px-4 py-3 sm:px-5 sm:py-4">
-            {/* Subtle gradient shine */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent pointer-events-none" />
-            
-            {/* Content */}
-            <div className="relative z-10">
-              {/* Bio Preview */}
-              <p className="text-sm text-white/90 font-normal line-clamp-2 leading-relaxed">
-                {member.bio}
-              </p>
-
-              {/* Click indicator */}
-              <div className="mt-2 flex items-center justify-end gap-1.5 text-sunset-gold text-xs font-semibold group-hover:text-sunset-honey transition-colors">
-                <span>Read full bio</span>
-                <svg 
-                  className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
+          <div className="relative backdrop-blur-sm bg-black/40 border-t border-white/10 px-4 py-2">
+            <div className="relative z-10 flex items-center justify-center gap-2">
+              <span className="text-white/90 text-sm font-medium">Click to read full bio</span>
+              <svg 
+                className="w-4 h-4 text-sunset-gold transform group-hover:translate-x-1 transition-transform" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+              </svg>
             </div>
           </div>
         </div>
