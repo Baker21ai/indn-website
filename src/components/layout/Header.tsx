@@ -53,7 +53,7 @@ export function Header() {
       const targetId = href.substring(1)
       const element = document.getElementById(targetId)
       if (element) {
-        const headerOffset = 100 // Account for fixed header
+        const headerOffset = 80 // Account for fixed header (reduced for mobile)
         const elementPosition = element.getBoundingClientRect().top
         const offsetPosition = elementPosition + window.pageYOffset - headerOffset
 
@@ -69,11 +69,11 @@ export function Header() {
     <header
       className={`
         fixed top-0 left-0 right-0 z-40
-        transition-all duration-300 ease-out
+        transition-all duration-300 ease-out safe-padding
         ${
           isScrolled
-            ? 'h-16 lg:h-20 bg-white/90 backdrop-blur-xl shadow-elevated'
-            : 'h-20 lg:h-24 bg-white/70 backdrop-blur-md'
+            ? 'h-14 sm:h-16 lg:h-20 bg-white/90 backdrop-blur-xl shadow-elevated'
+            : 'h-16 sm:h-20 lg:h-24 bg-white/70 backdrop-blur-md'
         }
       `}
     >
@@ -88,13 +88,13 @@ export function Header() {
         />
       </div>
 
-      <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative h-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         <div className="h-full flex items-center justify-between">
           {/* Logo */}
           <Logo />
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1">
+          {/* Desktop Navigation - Shows at xl breakpoint for better tablet experience */}
+          <nav className="hidden xl:flex items-center gap-0.5 xl:gap-1">
             {navigation.map((item) => {
               const targetSection = item.href.replace('#', '')
               const isActive = activeSection === targetSection
@@ -104,8 +104,8 @@ export function Header() {
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.href)}
                   className={`
-                    px-4 py-2 rounded-lg font-medium text-sm
-                    transition-all duration-200
+                    px-3 xl:px-4 py-2 rounded-lg font-medium text-sm
+                    transition-all duration-200 whitespace-nowrap touch-target
                     ${
                       isActive
                         ? 'text-terracotta bg-terracotta/10 shadow-soft'

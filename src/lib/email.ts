@@ -429,3 +429,115 @@ export async function sendAdminNotification(
     return { success: false, error }
   }
 }
+
+export async function sendSponsorApplicationNotification(
+  sponsorDetails: {
+    companyName: string
+    website?: string
+    contactName: string
+    contactEmail: string
+    contactPhone: string
+    mailingAddress: string
+    tier: string
+    notes?: string
+  }
+) {
+  const adminEmail = process.env.ADMIN_EMAIL || 'marketing@indnsbc.org'
+  const adminUrl = `${BASE_URL}/portal/admin/sponsors`
+  const {
+    companyName,
+    website,
+    contactName,
+    contactEmail,
+    contactPhone,
+    mailingAddress,
+    tier,
+    notes,
+  } = sponsorDetails
+
+  const tierColors = {
+    bronze: '#CD7F32',
+    silver: '#C0C0C0',
+    gold: '#FFD700',
+  }
+
+  const tierColor = tierColors[tier as keyof typeof tierColors] || '#B85C38'
+  const tierDisplay = tier.charAt(0).toUpperCase() + tier.slice(1)
+
+  try {
+    await sgMail.send({
+      from: FROM_EMAIL,
+      to: adminEmail,
+      subject: `New Sponsor Application: ${companyName} - ${tierDisplay} Tier`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+          <div style="background-color: ${tierColor}; color: ${tier === 'gold' ? '#333' : 'white'}; padding: 20px; border-radius: 8px 8px 0 0;">
+            <h2 style="margin: 0; font-size: 24px;">
+              🎉 New Sponsor Application!
+            </h2>
+            <p style="margin: 10px 0 0 0; font-size: 16px;">
+              ${tierDisplay} Tier Sponsorship
+            </p>
+          </div>
+          
+          <div style="background-color: #f5f5f5; padding: 20px; border-radius: 0 0 8px 8px;">
+            <div style="background-color: white; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+              <h3 style="color: #B85C38; margin-top: 0;">Company Information</h3>
+              <p style="margin: 8px 0;"><strong>Company:</strong> ${companyName}</p>
+              ${website ? `<p style="margin: 8px 0;"><strong>Website:</strong> <a href="${website}" style="color: #B85C38;">${website}</a></p>` : ''}
+            </div>
+            
+            <div style="background-color: white; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+              <h3 style="color: #B85C38; margin-top: 0;">Contact Person</h3>
+              <p style="margin: 8px 0;"><strong>Name:</strong> ${contactName}</p>
+              <p style="margin: 8px 0;"><strong>Email:</strong> <a href="mailto:${contactEmail}" style="color: #B85C38;">${contactEmail}</a></p>
+              <p style="margin: 8px 0;"><strong>Phone:</strong> ${contactPhone}</p>
+            </div>
+            
+            <div style="background-color: white; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+              <h3 style="color: #B85C38; margin-top: 0;">Mailing Address</h3>
+              <p style="margin: 8px 0;">${mailingAddress}</p>
+            </div>
+            
+            ${notes ? `
+            <div style="background-color: white; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+              <h3 style="color: #B85C38; margin-top: 0;">Additional Notes</h3>
+              <p style="margin: 8px 0;">${notes}</p>
+            </div>
+            ` : ''}
+            
+            <div style="background-color: #fff3e0; padding: 15px; border-left: 4px solid #B85C38; margin: 20px 0;">
+              <h4 style="color: #B85C38; margin-top: 0;">Next Steps:</h4>
+              <ol style="color: #333; margin: 0; padding-left: 20px;">
+                <li>Review the sponsor application in the admin portal</li>
+                <li>Wait for their check payment to arrive</li>
+                <li>Update the sponsor status once payment is received</li>
+              </ol>
+            </div>
+            
+            <div style="margin: 25px 0; text-align: center;">
+              <a href="${adminUrl}"
+                 style="background-color: #B85C38; color: white; padding: 14px 28px; text-decoration: none; border-radius: 4px; display: inline-block; font-weight: bold;">
+                View in Admin Portal
+              </a>
+            </div>
+            
+            <p style="color: #666; font-size: 13px; margin-bottom: 0; text-align: center;">
+              This is an automated notification from the INDN website.<br>
+              Received: ${new Date().toLocaleString('en-US', {
+                timeZone: 'America/Los_Angeles',
+              })} PST
+            </p>
+          </div>
+        </div>
+      `,
+    })
+    return { success: true }
+  } catch (error: unknown) {
+    console.error('Failed to send sponsor application notification:', error)
+    if (error && typeof error === 'object' && 'response' in error) {
+      console.error('SendGrid error:', (error as { response: { body: unknown } }).response.body)
+    }
+    return { success: false, error }
+  }
+}

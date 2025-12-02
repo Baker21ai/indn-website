@@ -9,7 +9,7 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import { Upload, X, Shield, PawPrint, Mountain, Bird } from 'lucide-react'
+import { Upload, X, Award, Medal, Crown } from 'lucide-react'
 import Image from 'next/image'
 
 interface Sponsor {
@@ -210,28 +210,22 @@ export function EditSponsorForm({ sponsor }: EditSponsorFormProps) {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="none">None</SelectItem>
-                  <SelectItem value="turtle">
+                  <SelectItem value="bronze">
                     <div className="flex items-center gap-2">
-                      <Shield size={16} />
-                      Turtle ($100-$999)
+                      <Award size={16} className="text-amber-600" />
+                      Bronze ($10,000 - 5 VIP tickets)
                     </div>
                   </SelectItem>
-                  <SelectItem value="wolf">
+                  <SelectItem value="silver">
                     <div className="flex items-center gap-2">
-                      <PawPrint size={16} />
-                      Wolf ($1,000-$4,999)
+                      <Medal size={16} className="text-gray-500" />
+                      Silver ($20,000 - 10 VIP tickets)
                     </div>
                   </SelectItem>
-                  <SelectItem value="bear">
+                  <SelectItem value="gold">
                     <div className="flex items-center gap-2">
-                      <Mountain size={16} />
-                      Bear ($5,000-$9,999)
-                    </div>
-                  </SelectItem>
-                  <SelectItem value="eagle">
-                    <div className="flex items-center gap-2">
-                      <Bird size={16} />
-                      Eagle ($10,000+)
+                      <Crown size={16} className="text-yellow-500" />
+                      Gold ($50,000 - 25 VIP tickets)
                     </div>
                   </SelectItem>
                 </SelectContent>

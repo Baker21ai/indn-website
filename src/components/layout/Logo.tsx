@@ -39,16 +39,12 @@ export function Logo() {
         </div>
       </div>
 
-      {/* Text logo - responsive */}
-      <div className="flex flex-col gap-0.5">
-        {/* Show abbreviated on very small screens, full on larger */}
-        <span className="hidden sm:inline font-serif text-sm font-bold text-charcoal tracking-wide leading-none whitespace-nowrap">
+      {/* Text logo */}
+      <div className="flex flex-col">
+        <span className="font-serif text-base font-bold text-charcoal tracking-wide leading-tight">
           Indigenous Nations
         </span>
-        <span className="sm:hidden font-serif text-sm font-bold text-charcoal tracking-wide leading-none">
-          INDN
-        </span>
-        <span className="text-[11px] font-semibold text-stone-gray tracking-wide leading-none whitespace-nowrap">
+        <span className="text-xs font-semibold text-terracotta tracking-wide leading-tight">
           Diversity Network
         </span>
       </div>

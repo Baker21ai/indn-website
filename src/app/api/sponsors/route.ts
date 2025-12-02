@@ -14,13 +14,16 @@ export async function GET() {
         sponsorType: true,
         displayName: true,
         tier: true,
+        status: true,
         location: true,
         logoUrl: true,
+        website: true,
         memberSince: true,
       },
       orderBy: [
         {
-          tier: 'desc', // Eagle → Turtle
+          // Order by tier priority (gold first, then silver, then bronze)
+          tier: 'desc',
         },
         {
           displayName: 'asc', // Alphabetical within tier
@@ -30,6 +33,7 @@ export async function GET() {
 
     return NextResponse.json({ sponsors })
   } catch (error) {
+    console.error('Failed to fetch sponsors:', error)
     return NextResponse.json(
       { error: 'Failed to fetch sponsors' },
       { status: 500 }
