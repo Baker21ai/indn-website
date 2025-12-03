@@ -99,7 +99,7 @@ test.describe('Homepage Smooth Scroll Navigation', () => {
     // Check for board member names as headings within board section
     await expect(boardSection.getByRole('heading', { name: 'Elvira Zaragoza Robinson' })).toBeVisible()
     await expect(boardSection.getByRole('heading', { name: 'Charles Wall' })).toBeVisible()
-    await expect(boardSection.getByRole('heading', { name: /James White Bear Connor/ })).toBeVisible()
+    await expect(boardSection.getByRole('heading', { name: /James Whitebear Connor/ })).toBeVisible()
   })
 
   test('should display powwow information in Events section', async ({ page }) => {

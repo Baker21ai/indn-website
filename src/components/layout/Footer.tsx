@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { FiscalSponsorNotice } from '@/components/fiscal-sponsor-notice'
 
 export function Footer() {
   return (
@@ -25,23 +26,23 @@ export function Footer() {
           {/* Quick Links */}
           <div>
             <h3 className="font-semibold text-base sm:text-lg mb-3 sm:mb-4">Quick Links</h3>
-            <nav className="space-y-1 sm:space-y-2">
-              <Link href="/about" className="block text-white/80 hover:text-white transition-colors py-1 touch-target">
+            <nav className="flex flex-col gap-1 sm:gap-2">
+              <Link href="/about" className="text-white/80 hover:text-white transition-colors py-1 touch-target">
                 About Us
               </Link>
-              <Link href="/about/board" className="block text-white/80 hover:text-white transition-colors py-1 touch-target">
+              <Link href="/about/board" className="text-white/80 hover:text-white transition-colors py-1 touch-target">
                 Our Board
               </Link>
-              <Link href="/programs" className="block text-white/80 hover:text-white transition-colors py-1 touch-target">
+              <Link href="/programs" className="text-white/80 hover:text-white transition-colors py-1 touch-target">
                 Programs
               </Link>
-              <Link href="/events" className="block text-white/80 hover:text-white transition-colors py-1 touch-target">
+              <Link href="/events" className="text-white/80 hover:text-white transition-colors py-1 touch-target">
                 Events
               </Link>
-              <Link href="/donate" className="block text-white/80 hover:text-white transition-colors py-1 touch-target">
+              <Link href="/donate" className="text-white/80 hover:text-white transition-colors py-1 touch-target">
                 Donate
               </Link>
-              <Link href="/volunteer" className="block text-white/80 hover:text-white transition-colors py-1 touch-target">
+              <Link href="/volunteer" className="text-white/80 hover:text-white transition-colors py-1 touch-target">
                 Volunteer
               </Link>
             </nav>
@@ -74,8 +75,9 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-8 sm:mt-10 lg:mt-12 pt-6 sm:pt-8 border-t border-white/20 text-center text-white/60 text-xs sm:text-sm">
-          <p>
+        <div className="mt-8 sm:mt-10 lg:mt-12 pt-6 sm:pt-8 border-t border-white/20 text-center space-y-3">
+          <FiscalSponsorNotice variant="footer" />
+          <p className="text-white/60 text-xs sm:text-sm">
             &copy; {new Date().getFullYear()} Indigenous Nations Diversity Network. All rights reserved.
           </p>
         </div>

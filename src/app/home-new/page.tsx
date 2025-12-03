@@ -161,7 +161,7 @@ export default function HomePageVariantB() {
                         <div className="absolute -top-10 -left-10 w-64 h-64 bg-terracotta/10 rounded-full blur-3xl"></div>
                         <div className="relative z-10 bg-white p-2 rounded-[2rem] shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500">
                             <Image
-                                src="/images/powwow-flyer.png"
+                                src="/images/powwow-flyer.jpg"
                                 alt="Community Gathering"
                                 width={600}
                                 height={800}
@@ -295,7 +295,7 @@ export default function HomePageVariantB() {
                 <div className="max-w-6xl mx-auto">
                     <div className="bg-white rounded-[3rem] shadow-2xl overflow-hidden grid md:grid-cols-2">
                         <div className="relative h-[500px] md:h-auto bg-charcoal">
-                            <Image src="/images/powwow-flyer.png" alt="Powwow Flyer" fill className="object-contain p-8" />
+                            <Image src="/images/powwow-flyer.jpg" alt="Powwow Flyer" fill className="object-contain p-8" />
                         </div>
                         <div className="p-12 md:p-20 flex flex-col justify-center">
                             <div className="inline-flex items-center gap-2 text-terracotta font-bold tracking-widest uppercase text-sm mb-6">

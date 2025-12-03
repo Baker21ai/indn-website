@@ -39,7 +39,7 @@ test.describe('Homepage V3 - Community Design', () => {
 
     // Check for key story elements
     await expect(page.locator('text=San Juan Bautista Indian Market')).toBeVisible()
-    await expect(page.locator('text=From 500 to 1,000+ participants in three years')).toBeVisible()
+    await expect(page.locator('text=1,000+ participants in three years')).toBeVisible()
   })
 
   test('should display community testimonials', async ({ page }) => {

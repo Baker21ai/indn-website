@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Board Members - Glassmorphism Design | INDN</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ============================================
+       CSS Custom Properties - INDN Brand Colors
+       ============================================ */
+    :root {
+      /* Brand Colors */
+      --terracotta: #EA6B3E;
+      --sage-green: #8FB996;
+      --sky-blue: #5EC3EB;
+      --warm-earth: #D4A574;
+      --charcoal: #2D2D2D;
+      --stone-gray: #6B7280;
+      --warm-gray: #F5F5F4;
+      
+      /* California Sunburst Palette */
+      --sunset-orange: #FF6B35;
+      --sunset-gold: #F7931E;
+      --sunset-coral: #FF8B94;
+      --sunset-honey: #FFC857;
+      
+      /* Typography */
+      --font-serif: 'Fraunces', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      
+      /* Glassmorphism */
+      --glass-bg: rgba(0, 0, 0, 0.45);
+      --glass-border: rgba(255, 255, 255, 0.12);
+      --glass-blur: 20px;
+      
+      /* Frame */
+      --frame-border: rgba(255, 255, 255, 0.08);
+      --frame-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+      --frame-radius: 1.5rem;
+    }
+
+    /* ============================================
+       Base Styles
+       ============================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--charcoal);
+      color: white;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ============================================
+       Section Styles
+       ============================================ */
+    .board-section {
+      padding: 4rem 1rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 640px) {
+      .board-section {
+        padding: 5rem 1.5rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .board-section {
+        padding: 6rem 2.5rem;
+      }
+    }
+
+    /* Section Header */
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    @media (min-width: 768px) {
+      .section-header {
+        margin-bottom: 4rem;
+      }
+    }
+
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--sunset-orange);
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 14px rgba(255, 107, 53, 0.4);
+    }
+
+    .section-badge svg {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .section-title {
+        font-size: 3rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .section-title {
+        font-size: 3.75rem;
+      }
+    }
+
+    .section-title .highlight {
+      background: linear-gradient(135deg, var(--sunset-orange), var(--sunset-coral));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-description {
+      font-size: 1.125rem;
+      color: rgba(255, 255, 255, 0.75);
+      max-width: 48rem;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ============================================
+       Board Grid
+       ============================================ */
+    .board-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 640px) {
+      .board-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .board-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+      }
+    }
+
+    /* ============================================
+       Board Card Container (Name + Card)
+       ============================================ */
+    .board-card-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Name & Tribe - ABOVE the card */
+    .member-header {
+      text-align: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .member-name {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.25rem;
+      color: white;
+    }
+
+    @media (min-width: 640px) {
+      .member-name {
+        font-size: 1.5rem;
+      }
+    }
+
+    .member-tribe {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--sunset-gold);
+    }
+
+    /* ============================================
+       Board Card - The Photo Frame
+       ============================================ */
+    .board-card {
+      position: relative;
+      border-radius: var(--frame-radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: var(--frame-shadow);
+      
+      /* Frame border */
+      border: 1px solid var(--frame-border);
+      
+      /* Taller aspect ratio to show more of the person */
+      aspect-ratio: 3 / 4;
+    }
+
+    .board-card:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.5),
+                  0 0 0 1px rgba(255, 107, 53, 0.3);
+    }
+
+    .board-card:focus {
+      outline: none;
+      box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.5),
+                  0 0 0 3px var(--sunset-orange);
+    }
+
+    /* Photo Container */
+    .card-photo {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .card-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* Center the image to show more of the full face including top of head */
+      object-position: 50% 35%;
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .board-card:hover .card-photo img {
+      transform: scale(1.05);
+    }
+
+    /* Gradient overlay - subtle, just for bottom readability */
+    .card-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.7) 0%,
+        rgba(0, 0, 0, 0.3) 25%,
+        transparent 50%
+      );
+      pointer-events: none;
+    }
+
+    /* ============================================
+       Glassmorphism Bio Panel - Compact
+       ============================================ */
+    .glass-panel {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1rem 1.25rem;
+      
+      /* Glassmorphism */
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      
+      /* Glass edge */
+      border-top: 1px solid var(--glass-border);
+      
+      /* Subtle inner glow */
+      box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+    }
+
+    /* Bio Preview - More compact */
+    .bio-preview {
+      font-size: 0.875rem;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 0.75rem;
+      
+      /* Limit to 2 lines */
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Read More CTA */
+    .read-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--sunset-orange);
+      transition: color 0.3s ease, gap 0.3s ease;
+    }
+
+    .read-more svg {
+      width: 0.875rem;
+      height: 0.875rem;
+      transition: transform 0.3s ease;
+    }
+
+    .board-card:hover .read-more {
+      color: var(--sunset-coral);
+      gap: 0.75rem;
+    }
+
+    .board-card:hover .read-more svg {
+      transform: translateX(4px);
+    }
+
+    /* ============================================
+       Frame Accents
+       ============================================ */
+    /* Top gradient accent bar */
+    .frame-accent {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--sunset-orange), var(--terracotta), var(--sunset-coral));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .board-card:hover .frame-accent {
+      opacity: 1;
+    }
+
+    /* Corner accents for frame feel */
+    .corner-accent {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      pointer-events: none;
+      transition: border-color 0.4s ease;
+    }
+
+    .corner-accent.top-left {
+      top: 12px;
+      left: 12px;
+      border-right: none;
+      border-bottom: none;
+      border-radius: 4px 0 0 0;
+    }
+
+    .corner-accent.top-right {
+      top: 12px;
+      right: 12px;
+      border-left: none;
+      border-bottom: none;
+      border-radius: 0 4px 0 0;
+    }
+
+    .board-card:hover .corner-accent {
+      border-color: rgba(255, 107, 53, 0.5);
+    }
+
+    /* ============================================
+       Modal Styles
+       ============================================ */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background: var(--charcoal);
+      border-radius: 1.5rem;
+      max-width: 600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: scale(0.95) translateY(20px);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-header {
+      position: relative;
+      padding: 2rem 2rem 1.5rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .modal-photo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 3px solid var(--sunset-orange);
+    }
+
+    .modal-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 25%;
+    }
+
+    .modal-info h2 {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .modal-info .tribe {
+      color: var(--sunset-gold);
+      font-weight: 500;
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .modal-info .title {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s ease;
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 107, 53, 0.3);
+    }
+
+    .modal-body {
+      padding: 1.5rem 2rem 2rem;
+    }
+
+    .modal-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .modal-section h3 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--sunset-orange);
+      margin-bottom: 0.75rem;
+    }
+
+    .modal-section p {
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    /* ============================================
+       Utilities
+       ============================================ */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="board-section">
+    <!-- Section Header -->
+    <div class="section-header">
+      <div class="section-badge">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+        <span>Leadership & Guidance</span>
+      </div>
+
+      <h1 class="section-title">
+        Meet Our <span class="highlight">Board</span>
+      </h1>
+
+      <p class="section-description">
+        Our board members bring decades of experience in Indigenous advocacy, 
+        cultural preservation, and community leadership. Together, they guide 
+        INDN's mission to honor heritage and empower future generations.
+      </p>
+    </div>
+
+    <!-- Board Grid -->
+    <div class="board-grid">
+      
+      <!-- James White Bear Connor -->
+      <div class="board-card-container">
+        <div class="member-header">
+          <h2 class="member-name">James White Bear Connor</h2>
+          <p class="member-tribe">Assiniboine Tribe - Fort Peck Montana</p>
+        </div>
+        <article class="board-card" tabindex="0" role="button" 
+                 aria-label="View James White Bear Connor's full bio"
+                 data-member="james-connor">
+          <div class="card-photo">
+            <img src="/images/board/james-connor.jpg" 
+                 alt="James White Bear Connor" 
+                 loading="lazy">
+          </div>
+          <div class="card-gradient"></div>
+          
+          <!-- Frame accents -->
+          <div class="frame-accent"></div>
+          <div class="corner-accent top-left"></div>
+          <div class="corner-accent top-right"></div>
+          
+          <!-- Glassmorphism Bio Panel - Compact -->
+          <div class="glass-panel">
+            <p class="bio-preview">
+              A pioneering security and AI executive with decades of leading innovation in risk management and intelligent threat detection.
+            </p>
+            <span class="read-more">
+              Read full bio
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+              </svg>
+            </span>
+          </div>
+        </article>
+      </div>
+
+      <!-- Elvira Zaragoza Robinson -->
+      <div class="board-card-container">
+        <div class="member-header">
+          <h2 class="member-name">Elvira Zaragoza Robinson</h2>
+          <p class="member-tribe">Akimel O'Odham (Pima)</p>
+        </div>
+        <article class="board-card" tabindex="0" role="button" 
+                 aria-label="View Elvira Zaragoza Robinson's full bio"
+                 data-member="elvira-robinson">
+          <div class="card-photo">
+            <img src="/images/board/elvira-robinson.jpg" 
+                 alt="Elvira Zaragoza Robinson" 
+                 loading="lazy">
+          </div>
+          <div class="card-gradient"></div>
+          
+          <div class="frame-accent"></div>
+          <div class="corner-accent top-left"></div>
+          <div class="corner-accent top-right"></div>
+          
+          <div class="glass-panel">
+            <p class="bio-preview">
+              An attorney, author, and cultural organizer with a lifelong commitment to justice and Indigenous empowerment.
+            </p>
+            <span class="read-more">
+              Read full bio
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+              </svg>
+            </span>
+          </div>
+        </article>
+      </div>
+
+      <!-- Charles Wall -->
+      <div class="board-card-container">
+        <div class="member-header">
+          <h2 class="member-name">Charles Wall</h2>
+          <p class="member-tribe">Muscogee, Kiowa, Azorean & Irish</p>
+        </div>
+        <article class="board-card" tabindex="0" role="button" 
+                 aria-label="View Charles Wall's full bio"
+                 data-member="charles-wall">
+          <div class="card-photo">
+            <img src="/images/board/charles-wall.jpg" 
+                 alt="Charles Wall" 
+                 loading="lazy">
+          </div>
+          <div class="card-gradient"></div>
+          
+          <div class="frame-accent"></div>
+          <div class="corner-accent top-left"></div>
+          <div class="corner-accent top-right"></div>
+          
+          <div class="glass-panel">
+            <p class="bio-preview">
+              A seasoned director and educator in American Indian programs, Parks & Recreation, and Social Services with JEDI training.
+            </p>
+            <span class="read-more">
+              Read full bio
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+              </svg>
+            </span>
+          </div>
+        </article>
+      </div>
+
+      <!-- Fr. Jerry Drino -->
+      <div class="board-card-container">
+        <div class="member-header">
+          <h2 class="member-name">Fr. Jerry Drino</h2>
+          <p class="member-tribe">Episcopal Priest & Theologian</p>
+        </div>
+        <article class="board-card" tabindex="0" role="button" 
+                 aria-label="View Fr. Jerry Drino's full bio"
+                 data-member="jerry-drino">
+          <div class="card-photo">
+            <img src="/images/board/jerry-drino.jpg" 
+                 alt="Fr. Jerry Drino" 
+                 loading="lazy">
+          </div>
+          <div class="card-gradient"></div>
+          
+          <div class="frame-accent"></div>
+          <div class="corner-accent top-left"></div>
+          <div class="corner-accent top-right"></div>
+          
+          <div class="glass-panel">
+            <p class="bio-preview">
+              An Episcopal priest with over six decades of ministry alongside Indigenous peoples, including the G'wichin, Lakota, and Diné.
+            </p>
+            <span class="read-more">
+              Read full bio
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+              </svg>
+            </span>
+          </div>
+        </article>
+      </div>
+
+      <!-- Kanyon "Coyote" Sayers-Roods -->
+      <div class="board-card-container">
+        <div class="member-header">
+          <h2 class="member-name">Kanyon Sayers-Roods</h2>
+          <p class="member-tribe">Mutsun-Ohlone | Two-Spirit</p>
+        </div>
+        <article class="board-card" tabindex="0" role="button" 
+                 aria-label="View Kanyon Sayers-Roods' full bio"
+                 data-member="kanyon-sayers-roods">
+          <div class="card-photo">
+            <img src="/images/board/kanyon-sayers-roods.jpg" 
+                 alt="Kanyon Coyote Sayers-Roods" 
+                 loading="lazy">
+          </div>
+          <div class="card-gradient"></div>
+          
+          <div class="frame-accent"></div>
+          <div class="corner-accent top-left"></div>
+          <div class="corner-accent top-right"></div>
+          
+          <div class="glass-panel">
+            <p class="bio-preview">
+              A multimedia artist, educator, and truth-teller whose work catalyzes decolonizing dialogue and Indigenous visibility.
+            </p>
+            <span class="read-more">
+              Read full bio
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+              </svg>
+            </span>
+          </div>
+        </article>
+      </div>
+
+      <!-- Bernice Cuauhxihuitl Aguilera Toney -->
+      <div class="board-card-container">
+        <div class="member-header">
+          <h2 class="member-name">Bernice Aguilera Toney</h2>
+          <p class="member-tribe">Calpulli Tonalehqueh</p>
+        </div>
+        <article class="board-card" tabindex="0" role="button" 
+                 aria-label="View Bernice Aguilera Toney's full bio"
+                 data-member="bernice-toney">
+          <div class="card-photo">
+            <img src="/images/board/bernice-toney.jpg" 
+                 alt="Bernice Cuauhxihuitl Aguilera Toney" 
+                 loading="lazy">
+          </div>
+          <div class="card-gradient"></div>
+          
+          <div class="frame-accent"></div>
+          <div class="corner-accent top-left"></div>
+          <div class="corner-accent top-right"></div>
+          
+          <div class="glass-panel">
+            <p class="bio-preview">
+              A cultural steward and community bridge builder dedicated to equity, healing, and Indigenous knowledge.
+            </p>
+            <span class="read-more">
+              Read full bio
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+              </svg>
+            </span>
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Modal for Full Bio -->
+  <div class="modal-overlay" id="bioModal">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <div class="modal-photo">
+          <img src="" alt="" id="modalPhoto">
+        </div>
+        <div class="modal-info">
+          <h2 id="modalTitle"></h2>
+          <p class="tribe" id="modalTribe"></p>
+          <p class="title" id="modalJobTitle"></p>
+        </div>
+        <button class="modal-close" aria-label="Close modal" onclick="closeModal()">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-section">
+          <h3>Biography</h3>
+          <p id="modalBio"></p>
+        </div>
+        <div class="modal-section">
+          <h3>Work Experience</h3>
+          <p id="modalWork"></p>
+        </div>
+        <div class="modal-section">
+          <h3>Volunteer & Community</h3>
+          <p id="modalVolunteer"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Board member data
+    const boardMembers = {
+      'james-connor': {
+        name: 'James White Bear Connor',
+        title: 'Security and AI Executive',
+        tribe: 'Assiniboine Tribe - Fort Peck Montana',
+        bio: 'James White Bear Connor is a pioneering security and AI executive with decades of leading innovation in risk management and intelligent threat detection. He has held leadership roles at Oracle, Symantec, and now leads Corporate Engagements at Ambient.ai. His security strategies have protected companies like Yahoo, Facebook, and Wells Fargo.',
+        workExperience: 'Ambient.ai, Head of Corporate Engagements; N2N Secure Inc., Chief Executive Officer; Symantec, Sr. Manager Global Security Systems; PeopleSoft (Oracle), Sr. Manager Global Technical Security Systems; U.S. Coast Guard, Law Enforcement – Search and Rescue.',
+        volunteer: 'RSA Security, Head of Physical Security Technology Track Development; Security Industry Association (SIA), AI Advisory Board Member; Youth Alliance, Board of Directors; Indigenous Nations Diversity Network, Co-Founder; Los Puentecitos / Little Bridges Bilingual Preschool, Co-Founder – Senior Warden.',
+        imageUrl: '/images/board/james-connor.jpg'
+      },
+      'elvira-robinson': {
+        name: 'Elvira Zaragoza Robinson',
+        title: 'Attorney, Author, and Cultural Organizer',
+        tribe: "Akimel O'Odham (Pima)",
+        bio: "Elvira Zaragoza Robinson is an attorney, author, and cultural organizer with a lifelong commitment to justice and Indigenous empowerment. She holds a Juris Doctor from Santa Clara University and a Bachelor of Arts from San Jose State University. Elvira's work spans criminal law, estate planning, and publishing children's books that celebrate Native culture.",
+        workExperience: "Self-Employed, Attorney (Criminal & Estate Planning); County District Attorney's Office, Former Prosecutor.",
+        volunteer: "Various Tribal Organizations, Organizer of Leadership Conferences & Cultural Events.",
+        imageUrl: '/images/board/elvira-robinson.jpg'
+      },
+      'charles-wall': {
+        name: 'Charles Wall',
+        title: 'Director and Educator',
+        tribe: 'Muscogee, Kiowa, Azorean, and Irish Descent',
+        bio: 'Charles Wall is a seasoned director and educator in American Indian programs, Parks & Recreation, and Social Services. With formal training in JEDI (Justice, Equity, Diversity, Inclusion), he brings decades of experience building inclusive, community-centered initiatives. Charles is a graduate of Concordia University and the UC Davis Graduate School of Management.',
+        workExperience: 'Tribal and Municipal Organizations, Parks & Recreation Director; Community-Based Agencies, Social Services Director; American Indian Education Programs, Educator.',
+        volunteer: 'Indigenous Youth Outreach Programs, Speaker & Advocate.',
+        imageUrl: '/images/board/charles-wall.jpg'
+      },
+      'jerry-drino': {
+        name: 'Fr. Jerry Drino',
+        title: 'Episcopal Priest & Theologian',
+        tribe: 'Episcopal Priest & Theologian (M.Div., D.D.)',
+        bio: "Fr. Jerry Drino is an Episcopal priest and theologian with over six decades of ministry alongside Indigenous peoples, including the G'wichin, Lakota, Kanaka Maoli, and Diné. He holds an M.Div. (Master of Divinity) and has been recognized with a D.D. (Doctor of Divinity) for his contributions to Native ministry. He currently serves as Canon Theologian for the Episcopal Church in Navajoland and as a Native Ministry tutor at the Vancouver School of Theology.",
+        workExperience: 'Episcopal Church in Navajoland, Canon Theologian; Vancouver School of Theology, Tutor – Native Ministry Program.',
+        volunteer: "St. Philip's Church (San Jose), Co-founder – Native Ministry & Sweat Lodge (with Indian Health Center, Santa Clara County).",
+        imageUrl: '/images/board/jerry-drino.jpg'
+      },
+      'kanyon-sayers-roods': {
+        name: 'Kanyon "Coyote" Sayers-Roods',
+        title: 'Multimedia Artist, Educator, and Tribal Chairwoman',
+        tribe: 'Mutsun-Ohlone | Two-Spirit Woman',
+        bio: 'Kanyon is a multimedia artist, educator, and truth-teller whose work catalyzes decolonizing dialogue and Indigenous visibility. As Tribal Chairwoman of the Indian Canyon Nation and CEO of Kanyon Konsulting, she leads with a dynamic blend of tradition and innovation, inspiring both cultural revival and systemic change.',
+        workExperience: 'Kanyon Konsulting, CEO; Indian Canyon Nation, Tribal Chairwoman.',
+        volunteer: 'Indian Canyon Two-Spirit Society, Founder; Costanoan Indian Research, President & Co-Chair; Indian Canyon Mutsun Band of Costanoan Ohlone People, Cultural Representative & Native Monitor.',
+        imageUrl: '/images/board/kanyon-sayers-roods.jpg'
+      },
+      'bernice-toney': {
+        name: 'Bernice Cuauhxihuitl Aguilera Toney',
+        title: 'Cultural Steward and Program Manager',
+        tribe: 'Calpulli Tonalehqueh',
+        bio: "Bernice is a cultural steward, mother of three, and community bridge builder dedicated to equity, healing, and Indigenous knowledge. A member of Calpulli Tonalehqueh, she walks the path of Chicomecoatl (7 Serpent), traveling across the continent to learn from Native teachers and uphold the prayers of the Eagle and Condor. Her life's work uplifts youth, families, and cultural traditions through justice-centered systems change.",
+        workExperience: "Santa Clara County District Attorney's Office, Program Manager – South County Youth Task Force (SCYTF); City of Gilroy, SCYTF Coordinator; South County HEALs! Initiative (CA ACH Statewide Initiative), Program Lead; Various Nonprofits (Justice, Housing, Empowerment), Director / Program Manager.",
+        volunteer: 'Calpulli Tonalehqueh (San Jose, CA), Cultural Steward & Spiritual Healer; Continental Indigenous Gatherings, Cultural Ambassador & Learner.',
+        imageUrl: '/images/board/bernice-toney.jpg'
+      }
+    };
+
+    // Modal functions
+    const modal = document.getElementById('bioModal');
+    
+    function openModal(memberId) {
+      const member = boardMembers[memberId];
+      if (!member) return;
+
+      document.getElementById('modalPhoto').src = member.imageUrl;
+      document.getElementById('modalPhoto').alt = member.name;
+      document.getElementById('modalTitle').textContent = member.name;
+      document.getElementById('modalTribe').textContent = member.tribe;
+      document.getElementById('modalJobTitle').textContent = member.title;
+      document.getElementById('modalBio').textContent = member.bio;
+      document.getElementById('modalWork').textContent = member.workExperience;
+      document.getElementById('modalVolunteer').textContent = member.volunteer;
+
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Event listeners
+    document.querySelectorAll('.board-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const memberId = card.dataset.member;
+        openModal(memberId);
+      });
+
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const memberId = card.dataset.member;
+          openModal(memberId);
+        }
+      });
+    });
+
+    // Close modal on overlay click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  </script>
+
+</body>
+</html>
+

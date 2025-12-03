@@ -81,8 +81,8 @@ public/images/sponsors/
 - [ ] `bronze/gavilan-college.png` - Gavilan College
 
 ### Individual Sponsors (No Logo Needed)
-- James White Bear Connor (Gold) - displays icon
-- Tara Dianne Stein (Silver) - displays icon
+- James Whitebear Connor (Gold) - text only
+- Tara Dianne Stein (Silver) - text only
 
 ---
 

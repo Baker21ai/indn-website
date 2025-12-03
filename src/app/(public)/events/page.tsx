@@ -10,10 +10,10 @@ export default function EventsPage() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-6 sm:mb-8">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-terracotta mb-3 sm:mb-4 tracking-tight text-balanced">
+          <h1 className="text-hero text-terracotta mb-3 sm:mb-4 text-balanced">
             Past Events
           </h1>
-          <p className="text-base sm:text-lg text-stone-gray max-w-2xl mx-auto font-normal leading-relaxed px-2 sm:px-0">
+          <p className="text-body text-stone-gray max-w-2xl mx-auto px-2 sm:px-0">
             Celebrating indigenous culture, community, and tradition
           </p>
         </div>
@@ -27,7 +27,7 @@ export default function EventsPage() {
             <div className="max-w-2xl mx-auto p-2 sm:p-4">
               <div className="relative aspect-[850/1100] rounded-lg overflow-hidden">
                 <Image
-                  src="/images/powwow-flyer.png"
+                  src="/images/powwow-flyer.jpg"
                   alt="3rd Annual Hollister Powwow & Native Gathering"
                   fill
                   className="object-contain"

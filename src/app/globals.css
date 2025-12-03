@@ -30,8 +30,9 @@
   /* Theme Colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-fraunces), Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-sans: var(--font-sans), "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-serif), "Playfair Display", Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-display: var(--font-display), "Cinzel", Georgia, serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -171,35 +172,39 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    font-size: 1.125rem; /* 18px base */
+    line-height: 1.75;
   }
 
-  /* Professional Typography Hierarchy */
+  /* Typography Hierarchy - Playfair Display for headings */
   h1 {
-    @apply text-5xl font-bold tracking-tight leading-tight;
+    @apply font-serif text-5xl font-bold tracking-tight leading-tight;
   }
 
   h2 {
-    @apply text-4xl font-bold tracking-tight leading-tight;
+    @apply font-serif text-4xl font-semibold tracking-tight leading-tight;
   }
 
   h3 {
-    @apply text-3xl font-semibold leading-snug;
+    @apply font-serif text-3xl font-semibold leading-snug;
   }
 
   h4 {
-    @apply text-2xl font-semibold leading-snug;
+    @apply font-serif text-2xl font-semibold leading-snug;
   }
 
   h5 {
-    @apply text-xl font-medium leading-normal;
+    @apply font-sans text-xl font-medium leading-normal;
   }
 
   h6 {
-    @apply text-lg font-medium leading-normal;
+    @apply font-sans text-lg font-medium leading-normal;
   }
 
   p {
-    @apply leading-relaxed;
+    @apply font-sans leading-relaxed;
+    font-size: 1.125rem;
+    line-height: 1.75;
   }
 }
 
@@ -269,9 +274,120 @@
     box-shadow: 0 8px 16px rgba(143, 185, 150, 0.25);
   }
 
+  /* ==========================================
+     WARM MULTI-LAYERED SHADOW SYSTEM
+     Adds depth with terracotta-tinted shadows
+     ========================================== */
+
+  /* Warm shadow - subtle terracotta tint for brand cohesion */
+  .shadow-warm {
+    box-shadow:
+      0 1px 2px rgba(234, 107, 62, 0.04),
+      0 4px 8px rgba(0, 0, 0, 0.06),
+      0 8px 16px rgba(234, 107, 62, 0.08);
+  }
+
+  .shadow-warm-md {
+    box-shadow:
+      0 2px 4px rgba(234, 107, 62, 0.05),
+      0 8px 16px rgba(0, 0, 0, 0.08),
+      0 16px 32px rgba(234, 107, 62, 0.1);
+  }
+
+  .shadow-warm-lg {
+    box-shadow:
+      0 4px 8px rgba(234, 107, 62, 0.06),
+      0 12px 24px rgba(0, 0, 0, 0.1),
+      0 24px 48px rgba(234, 107, 62, 0.12);
+  }
+
+  /* Warm shadow with lift - for hover states */
+  .shadow-warm-hover {
+    box-shadow:
+      0 4px 8px rgba(234, 107, 62, 0.08),
+      0 16px 32px rgba(0, 0, 0, 0.12),
+      0 32px 64px rgba(234, 107, 62, 0.15);
+  }
+
+  /* Editorial card shadow - subtle and sophisticated */
+  .shadow-editorial {
+    box-shadow:
+      0 0 0 1px rgba(0, 0, 0, 0.03),
+      0 2px 4px rgba(0, 0, 0, 0.04),
+      0 8px 16px rgba(0, 0, 0, 0.06);
+  }
+
+  .shadow-editorial-hover {
+    box-shadow:
+      0 0 0 1px rgba(234, 107, 62, 0.08),
+      0 4px 8px rgba(0, 0, 0, 0.06),
+      0 16px 32px rgba(0, 0, 0, 0.1),
+      0 32px 64px rgba(234, 107, 62, 0.08);
+  }
+
+  /* Depth layers for dark backgrounds */
+  .shadow-on-dark {
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.3),
+      0 8px 16px rgba(0, 0, 0, 0.25),
+      0 0 0 1px rgba(255, 255, 255, 0.05);
+  }
+
+  .shadow-on-dark-hover {
+    box-shadow:
+      0 4px 8px rgba(0, 0, 0, 0.35),
+      0 16px 32px rgba(0, 0, 0, 0.3),
+      0 0 0 1px rgba(255, 255, 255, 0.08),
+      0 0 40px rgba(255, 107, 53, 0.1);
+  }
+
   /* Smooth transitions for hover effects */
   .transition-depth {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Enhanced transition for shadows that "breathe" */
+  .transition-shadow {
+    transition: box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Subtle micro-lift on hover */
+  .hover-micro-lift {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hover-micro-lift:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Gentle scale on hover (1.01-1.02x) */
+  .hover-gentle-scale {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hover-gentle-scale:hover {
+    transform: scale(1.015);
+  }
+
+  /* Combined lift + shadow grow effect */
+  .hover-elevate {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hover-elevate:hover {
+    transform: translateY(-4px);
+  }
+
+  /* Warm glow on hover - for accent elements */
+  .hover-warm-glow:hover {
+    box-shadow:
+      0 4px 8px rgba(234, 107, 62, 0.1),
+      0 16px 32px rgba(234, 107, 62, 0.15),
+      0 0 60px rgba(255, 107, 53, 0.2);
   }
 
   /* Layered sections */
@@ -299,10 +415,69 @@
     background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
   }
 
-  /* Professional Typography Utilities */
+  /* ==========================================
+     TYPOGRAPHY SYSTEM - Playfair Display + DM Sans
+     ========================================== */
   
-  /* Display text for heroes and major headings */
+  /* Hero headline - 4.5rem (72px) desktop */
+  .text-hero {
+    font-family: var(--font-serif), "Playfair Display", Georgia, serif;
+    font-size: 4.5rem;
+    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  @media (max-width: 1024px) {
+    .text-hero {
+      font-size: 3.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .text-hero {
+      font-size: 2.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .text-hero {
+      font-size: 2rem;
+    }
+  }
+
+  /* Section headline - 3rem (48px) desktop */
+  .text-section {
+    font-family: var(--font-serif), "Playfair Display", Georgia, serif;
+    font-size: 3rem;
+    line-height: 1.2;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+
+  @media (max-width: 768px) {
+    .text-section {
+      font-size: 2rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .text-section {
+      font-size: 1.75rem;
+    }
+  }
+
+  /* Card title - 1.5rem (24px) */
+  .text-card-title {
+    font-family: var(--font-serif), "Playfair Display", Georgia, serif;
+    font-size: 1.5rem;
+    line-height: 1.3;
+    font-weight: 600;
+  }
+
+  /* Display text for heroes (alias for backwards compatibility) */
   .text-display {
+    font-family: var(--font-serif), "Playfair Display", Georgia, serif;
     font-size: 4.5rem;
     line-height: 1.1;
     font-weight: 700;
@@ -315,6 +490,12 @@
     }
   }
 
+  /* Italic accent for highlighted words */
+  .text-italic-accent {
+    font-style: italic;
+    font-weight: 500;
+  }
+
   /* Refined text rendering */
   .text-refined {
     font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
@@ -322,27 +503,41 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Optimized body text */
+  /* Body text - 1.125rem (18px) with 1.75 line-height */
   .text-body {
-    font-size: 1rem;
-    line-height: 1.625;
-    font-weight: 400;
-  }
-
-  .text-body-lg {
+    font-family: var(--font-sans), "DM Sans", sans-serif;
     font-size: 1.125rem;
     line-height: 1.75;
     font-weight: 400;
   }
 
-  .text-body-sm {
-    font-size: 0.875rem;
-    line-height: 1.5;
+  .text-body-lg {
+    font-family: var(--font-sans), "DM Sans", sans-serif;
+    font-size: 1.25rem;
+    line-height: 1.75;
     font-weight: 400;
+  }
+
+  .text-body-sm {
+    font-family: var(--font-sans), "DM Sans", sans-serif;
+    font-size: 1rem;
+    line-height: 1.625;
+    font-weight: 400;
+  }
+
+  /* Label/badge text - 0.75rem with wide letter-spacing */
+  .text-label-badge {
+    font-family: var(--font-sans), "DM Sans", sans-serif;
+    font-size: 0.75rem;
+    line-height: 1.25;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
 
   /* Caption and label text */
   .text-caption {
+    font-family: var(--font-sans), "DM Sans", sans-serif;
     font-size: 0.75rem;
     line-height: 1.25;
     font-weight: 500;
@@ -474,6 +669,100 @@
   /* Subtle texture overlay */
   .texture-woven {
     background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h20v20H0V0zm10 17a7 7 0 1 0 0-14 7 7 0 0 0 0 14zm20 0a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM10 37a7 7 0 1 0 0-14 7 7 0 0 0 0 14zm10-17h20v20H20V20zm10 17a7 7 0 1 0 0-14 7 7 0 0 0 0 14z' fill='%23ffffff' fill-opacity='0.03'/%3E%3C/svg%3E");
+  }
+
+  /* Grain texture for tactile depth */
+  .texture-grain {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+  }
+
+  /* Section background gradients - subtle depth */
+  .bg-section-warm {
+    background: linear-gradient(180deg, #F5F5F4 0%, #FAFAF8 50%, #F5F5F4 100%);
+  }
+
+  .bg-section-charcoal {
+    background: linear-gradient(180deg, #2D2D2D 0%, #252525 50%, #2D2D2D 100%);
+  }
+
+  /* Vignette effect for sections */
+  .bg-vignette::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.03) 100%);
+    pointer-events: none;
+  }
+
+  .bg-vignette-dark::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.15) 100%);
+    pointer-events: none;
+  }
+
+  /* ==========================================
+     TYPOGRAPHY NUANCE UTILITIES
+     Refined spacing and styling
+     ========================================== */
+
+  /* Section label styling - editorial feel */
+  .text-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .text-label-lg {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Accent text styling - for highlighted words */
+  .text-accent-italic {
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  /* Headline with decorative underline */
+  .text-underline-accent {
+    position: relative;
+    display: inline-block;
+  }
+
+  .text-underline-accent::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0.1em;
+    width: 100%;
+    height: 0.12em;
+    background: var(--terracotta);
+    border-radius: 0.1em;
+  }
+
+  /* Refined line height for story/body text */
+  .leading-story {
+    line-height: 1.8;
+  }
+
+  /* Letter spacing variants */
+  .tracking-editorial {
+    letter-spacing: -0.015em;
+  }
+
+  .tracking-loose {
+    letter-spacing: 0.05em;
+  }
+
+  .tracking-caps {
+    letter-spacing: 0.12em;
   }
 
   /* Scroll indicator bounce */

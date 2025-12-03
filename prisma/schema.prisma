@@ -74,28 +74,28 @@ model sponsorships {
 }
 
 model sponsors {
-  id            String         @id
-  userId        String         @unique
-  sponsorType   SponsorType    @default(individual)
-  displayName   String
-  tier          SponsorTier?
-  status        SponsorStatus  @default(active)
-  totalAmount   Decimal        @default(0) @db.Decimal(10, 2)
-  isRecurring   Boolean        @default(false)
-  isAnonymous   Boolean        @default(false)
-  location      String?
-  logoUrl       String?
-  website       String?
-  contactName   String?
-  contactEmail  String?
-  contactPhone  String?
+  id             String         @id
+  userId         String         @unique
+  sponsorType    SponsorType    @default(individual)
+  displayName    String
+  tier           SponsorTier?
+  status         SponsorStatus  @default(active)
+  totalAmount    Decimal        @default(0) @db.Decimal(10, 2)
+  isRecurring    Boolean        @default(false)
+  isAnonymous    Boolean        @default(false)
+  location       String?
+  logoUrl        String?
+  website        String?
+  contactName    String?
+  contactEmail   String?
+  contactPhone   String?
   mailingAddress String?
-  notes         String?
-  memberSince   DateTime       @default(now())
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime
-  sponsorships  sponsorships[]
-  users         users          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  notes          String?
+  memberSince    DateTime       @default(now())
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime
+  users          users          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sponsorships   sponsorships[]
 
   @@index([sponsorType])
   @@index([tier])
@@ -108,7 +108,6 @@ model events {
   title             String
   slug              String              @unique
   description       String
-  imageUrls         String[]
   category          EventCategory       @default(cultural)
   startDate         DateTime
   endDate           DateTime?
@@ -119,6 +118,7 @@ model events {
   price             Decimal?            @db.Decimal(10, 2)
   createdAt         DateTime            @default(now())
   updatedAt         DateTime
+  imageUrls         String[]
   shifts            shifts[]
   volunteer_signups volunteer_signups[]
 
@@ -184,17 +184,17 @@ model users {
   isActive           Boolean             @default(true)
   phone              String?
   avatarUrl          String?
-  emailVerified      DateTime?
-  verificationToken  String?             @unique
-  resetToken         String?             @unique
-  resetTokenExpiry   DateTime?
   createdAt          DateTime            @default(now())
   updatedAt          DateTime
   lastLoginAt        DateTime?
+  emailVerified      DateTime?
+  resetToken         String?             @unique
+  resetTokenExpiry   DateTime?
+  verificationToken  String?             @unique
   announcements      announcements[]
   documents          documents[]
-  sponsors           sponsors?
   shift_assignments  shift_assignments[]
+  sponsors           sponsors?
   volunteer_profiles volunteer_profiles?
   volunteer_signups  volunteer_signups[]
 

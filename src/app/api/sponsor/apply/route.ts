@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 import { v4 as uuidv4 } from 'uuid'
 import { SponsorTier } from '@prisma/client'
-import { sendSponsorApplicationNotification } from '@/lib/email'
+import { sendSponsorApplicationNotification, sendSponsorConfirmationEmail } from '@/lib/email'
 
 interface SponsorApplicationData {
   // Company Info
@@ -109,7 +109,23 @@ export async function POST(request: NextRequest) {
       })
     })
 
-    // Send email notification to admin
+    // Payment instructions for the response and email
+    const paymentInstructions = {
+      check: {
+        payableTo: 'Youth Alliance',
+        mailingAddress: '[Address]', // Placeholder as requested
+        memo: `INDN Sponsorship - ${data.tier.charAt(0).toUpperCase() + data.tier.slice(1)} Tier - ${data.companyName}`,
+        taxId: '[TAX ID]', // Replace with actual Youth Alliance EIN
+      },
+      online: {
+        description: 'You can also donate online via our Youth Alliance donation page.',
+        qrCodePath: '/images/barcode.png',
+        link: 'https://youthall.networkforgood.com/projects/174191-everyday-giving',
+      },
+      fiscalSponsorNote: 'INDN is a fiscally sponsored project of Youth Alliance, a 501(c)(3) nonprofit organization. All contributions are tax-deductible.',
+    }
+
+    // Send email notification to admin (marketing@indnsbc.org)
     await sendSponsorApplicationNotification({
       companyName: data.companyName,
       website: data.website,
@@ -121,15 +137,22 @@ export async function POST(request: NextRequest) {
       notes: data.notes,
     })
 
+    // Send confirmation email to the sponsor
+    await sendSponsorConfirmationEmail(
+      {
+        companyName: data.companyName,
+        contactName: data.contactName,
+        contactEmail: data.contactEmail,
+        tier: data.tier,
+      },
+      paymentInstructions
+    )
+
     return NextResponse.json({
       success: true,
       message: 'Sponsorship application submitted successfully',
       sponsorId,
-      checkInstructions: {
-        payableTo: 'Indigenous Nations Diversity Network',
-        mailingAddress: '123 Main Street, Hollister, CA 95023', // Placeholder - update with real address
-        memo: `Sponsorship - ${data.tier.charAt(0).toUpperCase() + data.tier.slice(1)} Tier - ${data.companyName}`,
-      },
+      paymentInstructions,
     })
   } catch (error) {
     console.error('Sponsor application error:', error)

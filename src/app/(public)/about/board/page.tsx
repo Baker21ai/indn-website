@@ -30,19 +30,19 @@ export default function BoardPage() {
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sunset-orange shadow-soft mb-8">
             <Users className="w-4 h-4 text-white" />
-            <span className="text-sm font-semibold text-white tracking-wide">
+            <span className="text-label-badge text-white">
               Leadership & Guidance
             </span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-white mb-6 tracking-tight">
+          <h1 className="text-hero text-white mb-6">
             Meet Our{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-sunset-orange to-sunset-coral">
               Board
             </span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-white/80 mb-12 max-w-3xl mx-auto leading-relaxed font-normal">
+          <p className="text-body text-white/80 mb-12 max-w-3xl mx-auto">
             Our board members bring decades of experience in Indigenous
             advocacy, cultural preservation, and community leadership. Together,
             they guide INDN&apos;s mission to honor heritage and empower future

@@ -19,7 +19,9 @@ import {
   ChevronUp,
   ExternalLink,
   Sparkles,
+  Handshake,
 } from 'lucide-react'
+import { FiscalSponsorNotice } from '@/components/fiscal-sponsor-notice'
 
 type SponsorTier = 'gold' | 'silver' | 'bronze'
 
@@ -83,77 +85,58 @@ function SponsorCard({
   }
 
   const logoSizes = {
-    large: { width: 200, height: 120, className: 'max-h-[100px]' },
-    medium: { width: 160, height: 100, className: 'max-h-[80px]' },
-    small: { width: 120, height: 80, className: 'max-h-[60px]' },
-  }
-
-  const iconSizes = {
-    large: 'w-16 h-16',
-    medium: 'w-14 h-14',
-    small: 'w-10 h-10',
+    large: { width: 280, height: 180, className: 'max-h-[160px]' },
+    medium: { width: 240, height: 150, className: 'max-h-[130px]' },
+    small: { width: 200, height: 120, className: 'max-h-[100px]' },
   }
 
   return (
     <Card
-      className={`group relative overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
-        styles ? `border-2 ${styles.border}` : 'border border-gray-200'
-      }`}
+      className={`group relative overflow-hidden transition-all duration-500 bg-white ${
+        tier === 'gold'
+          ? 'border-yellow-100/60 hover:border-yellow-400/40'
+          : tier === 'silver'
+          ? 'border-stone-100 hover:border-stone-300/50'
+          : 'border-stone-100 hover:border-amber-200/50'
+      } border hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] shadow-[0_2px_10px_rgb(0,0,0,0.02)] h-full`}
     >
-      {/* Tier indicator bar */}
-      {tier && (
-        <div className={`h-1.5 bg-gradient-to-r ${styles!.gradient}`} />
-      )}
-
-      <CardContent className={sizeClasses[size]}>
-        {/* Logo or Icon */}
-        <div className={`flex justify-center items-center mb-4 ${size === 'large' ? 'h-32' : size === 'medium' ? 'h-28' : 'h-20'}`}>
-          {sponsor.sponsorType === 'company' && sponsor.logoUrl ? (
-            <div className="relative flex items-center justify-center">
+        <CardContent className={`${sizeClasses[size]} flex flex-col items-center justify-center h-full`}>
+        {/* Logo */}
+        {sponsor.logoUrl && (
+          <div className={`flex justify-center items-center mb-4 opacity-90 group-hover:opacity-100 transition-opacity duration-500 ${size === 'large' ? 'h-44' : size === 'medium' ? 'h-36' : 'h-28'}`}>
+            <div className="relative flex items-center justify-center w-full h-full">
               <Image
                 src={sponsor.logoUrl}
                 alt={`${sponsor.displayName} logo`}
                 width={logoSizes[size].width}
                 height={logoSizes[size].height}
-                className={`object-contain grayscale-[30%] group-hover:grayscale-0 transition-all duration-300 ${logoSizes[size].className}`}
-                style={{ width: 'auto' }}
+                className={`object-contain grayscale-[30%] group-hover:grayscale-0 transition-all duration-500 ${logoSizes[size].className} group-hover:scale-[1.02]`}
+                style={{ width: 'auto', height: 'auto' }}
               />
             </div>
-          ) : (
-            <div
-              className={`${iconSizes[size]} rounded-full flex items-center justify-center ${
-                styles ? styles.iconBg : 'bg-gradient-to-br from-terracotta/20 to-sage-green/20'
-              }`}
-            >
-              {sponsor.sponsorType === 'company' ? (
-                <Building className={`${size === 'small' ? 'w-5 h-5' : 'w-7 h-7'} text-white`} />
-              ) : (
-                <User className={`${size === 'small' ? 'w-5 h-5' : 'w-7 h-7'} text-white`} />
-              )}
-            </div>
-          )}
-        </div>
+          </div>
+        )}
 
         {/* Sponsor Info */}
-        <div className="text-center space-y-2">
-          <h3 className={`font-bold text-charcoal leading-tight ${size === 'large' ? 'text-xl' : size === 'medium' ? 'text-lg' : 'text-base'}`}>
+        <div className={`text-center w-full ${(!sponsor.logoUrl) ? 'py-4' : ''}`}>
+          <h3 className={`font-serif font-bold text-charcoal leading-tight ${size === 'large' ? 'text-2xl' : size === 'medium' ? 'text-xl' : 'text-lg'}`}>
             {sponsor.displayName}
           </h3>
 
           {sponsor.location && (
-            <p className="text-sm text-stone-gray">{sponsor.location}</p>
+            <p className="text-sm text-stone-gray mt-2 uppercase tracking-[0.2em] font-medium opacity-60">{sponsor.location}</p>
           )}
 
           {/* Tier Badge */}
           {tier && Icon && (
-            <div className="flex justify-center pt-2">
+            <div className="flex justify-center pt-3 opacity-70 group-hover:opacity-100 transition-opacity duration-500">
               <Badge
-                className={`flex items-center gap-1.5 px-3 py-1 ${
+                className={`flex items-center gap-1.5 px-3 py-1 font-medium border-0 ${
                   tier === 'gold'
-                    ? 'bg-gradient-to-r from-yellow-400 to-amber-500 text-white'
+                    ? 'bg-yellow-50 text-yellow-800/80'
                     : tier === 'silver'
-                    ? 'bg-gradient-to-r from-gray-300 to-gray-500 text-white'
-                    : 'bg-gradient-to-r from-amber-500 to-amber-700 text-white'
+                    ? 'bg-stone-50 text-stone-600/80'
+                    : 'bg-amber-50 text-amber-800/80'
                 }`}
               >
                 <Icon className="w-3.5 h-3.5" />
@@ -164,12 +147,12 @@ function SponsorCard({
 
           {/* Website Link */}
           {sponsor.website && size !== 'small' && (
-            <div className="pt-2">
+            <div className="pt-3 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
               <a
                 href={sponsor.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-sm text-terracotta hover:text-terracotta/80 transition-colors"
+                className="inline-flex items-center gap-1 text-sm text-terracotta hover:text-terracotta/80 transition-colors font-medium"
               >
                 Visit Website
                 <ExternalLink className="w-3 h-3" />
@@ -178,10 +161,9 @@ function SponsorCard({
           )}
 
           {/* Member Since */}
-          <p className="text-xs text-muted-foreground pt-1">
+          <p className="text-xs text-stone-300 pt-2">
             Partner since{' '}
             {new Date(sponsor.memberSince).toLocaleDateString('en-US', {
-              month: 'long',
               year: 'numeric',
             })}
           </p>
@@ -205,10 +187,10 @@ function TierSection({
 
   if (sponsors.length === 0) return null
 
-  const gridCols = {
-    large: 'grid-cols-1 md:grid-cols-2',
-    medium: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
-    small: 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4',
+  const widthClasses = {
+    large: 'w-full sm:max-w-[400px]',
+    medium: 'w-full sm:max-w-[320px]',
+    small: 'w-full sm:max-w-[260px]',
   }
 
   return (
@@ -227,9 +209,11 @@ function TierSection({
       </div>
 
       {/* Sponsor Grid */}
-      <div className={`grid ${gridCols[size]} gap-6`}>
+      <div className="flex flex-wrap justify-center gap-6">
         {sponsors.map((sponsor) => (
-          <SponsorCard key={sponsor.id} sponsor={sponsor} size={size} />
+          <div key={sponsor.id} className={widthClasses[size]}>
+            <SponsorCard sponsor={sponsor} size={size} />
+          </div>
         ))}
       </div>
     </div>
@@ -256,17 +240,17 @@ export default function SponsorsPage() {
         <div className="text-center mb-12 md:mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-terracotta/10 border border-terracotta/20 mb-6">
             <Sparkles className="w-4 h-4 text-terracotta" />
-            <span className="text-sm font-semibold text-terracotta tracking-wide">
+            <span className="text-label-badge text-terracotta">
               Our Community Partners
             </span>
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-charcoal mb-4 tracking-tight">
+          <h1 className="text-hero text-charcoal mb-4">
             Thank You to Our{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 via-gray-400 to-amber-600">
               Sponsors
             </span>
           </h1>
-          <p className="text-lg md:text-xl text-stone-gray max-w-2xl mx-auto leading-relaxed">
+          <p className="text-body text-stone-gray max-w-2xl mx-auto">
             These generous organizations and individuals make our mission possible
           </p>
         </div>
@@ -387,6 +371,17 @@ export default function SponsorsPage() {
               </div>
             </CardContent>
           </Card>
+        </div>
+
+        {/* Fiscal Sponsor Section */}
+        <div className="mt-16 pt-8 border-t border-gray-200">
+          <div className="flex items-center justify-center gap-2 mb-6">
+            <Handshake className="w-5 h-5 text-stone-gray" />
+            <h3 className="text-lg font-semibold text-stone-gray">Fiscal Sponsor</h3>
+          </div>
+          <div className="max-w-xl mx-auto">
+            <FiscalSponsorNotice variant="full" showTaxId />
+          </div>
         </div>
       </div>
     </div>

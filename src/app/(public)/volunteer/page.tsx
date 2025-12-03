@@ -21,19 +21,19 @@ export default function VolunteerPage() {
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/90 shadow-soft mb-5 sm:mb-6 md:mb-8 backdrop-blur-sm">
             <Heart className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-terracotta" />
-            <span className="text-xs sm:text-sm font-medium text-charcoal">
+            <span className="text-label-badge text-charcoal">
               Join Our Community
             </span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-charcoal mb-4 sm:mb-5 md:mb-6 text-balanced">
+          <h1 className="text-hero text-charcoal mb-4 sm:mb-5 md:mb-6 text-balanced">
             Volunteer with{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-terracotta to-warm-earth">
               INDN
             </span>
           </h1>
 
-          <p className="text-base sm:text-lg md:text-xl text-stone-gray mb-8 sm:mb-10 md:mb-12 max-w-2xl mx-auto px-2 sm:px-0 text-pretty">
+          <p className="text-body text-stone-gray mb-8 sm:mb-10 md:mb-12 max-w-2xl mx-auto px-2 sm:px-0 text-pretty">
             Help us celebrate and preserve Indigenous culture by volunteering at
             community events. Your time makes a real difference.
           </p>

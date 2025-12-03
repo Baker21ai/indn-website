@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation'
 import { prisma } from '@/lib/db'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import Link from 'next/link'
+import { getTierName } from '@/lib/sponsorships'
 
 export default async function AdminDashboardPage() {
   const session = await auth()
@@ -12,16 +13,20 @@ export default async function AdminDashboardPage() {
   }
 
   // Fetch metrics
-  const [donationsData, donorsData, volunteersData] = await Promise.all([
-    // Total donations
-    prisma.donations.aggregate({
+  const [sponsorshipsData, sponsorsData, volunteersData] = await Promise.all([
+    // Total sponsorship amounts
+    prisma.sponsorships.aggregate({
       _sum: {
         amount: true,
       },
       _count: true,
     }),
-    // Total donors
-    prisma.donors.count(),
+    // Total sponsors
+    prisma.sponsors.count({
+      where: {
+        status: 'active',
+      },
+    }),
     // Total volunteers
     prisma.users.count({
       where: {
@@ -30,26 +35,22 @@ export default async function AdminDashboardPage() {
     }),
   ])
 
-  const totalDonations = donationsData._sum.amount?.toNumber() || 0
-  const donationCount = donationsData._count
-  const donorCount = donorsData
+  const totalSponsorships = sponsorshipsData._sum.amount?.toNumber() || 0
+  const sponsorshipCount = sponsorshipsData._count
+  const sponsorCount = sponsorsData
   const volunteerCount = volunteersData
 
-  // Recent donations
-  const recentDonations = await prisma.donations.findMany({
+  // Recent sponsors
+  const recentSponsors = await prisma.sponsors.findMany({
     take: 5,
     orderBy: {
       createdAt: 'desc',
     },
     include: {
-      donors: {
-        include: {
-          users: {
-            select: {
-              name: true,
-              email: true,
-            },
-          },
+      users: {
+        select: {
+          name: true,
+          email: true,
         },
       },
     },
@@ -70,15 +71,15 @@ export default async function AdminDashboardPage() {
           <Card>
             <CardHeader className="pb-3">
               <CardTitle className="text-sm font-medium text-stone-gray">
-                Total Donations (YTD)
+                Total Sponsorships (YTD)
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold text-terracotta">
-                ${totalDonations.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                ${totalSponsorships.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
               </div>
               <p className="text-sm text-muted-foreground mt-1">
-                {donationCount} donations
+                {sponsorshipCount} sponsorships
               </p>
             </CardContent>
           </Card>
@@ -86,12 +87,12 @@ export default async function AdminDashboardPage() {
           <Card>
             <CardHeader className="pb-3">
               <CardTitle className="text-sm font-medium text-stone-gray">
-                Total Donors
+                Active Sponsors
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold text-sage-green">
-                {donorCount}
+                {sponsorCount}
               </div>
               <p className="text-sm text-muted-foreground mt-1">
                 Active supporters
@@ -118,12 +119,12 @@ export default async function AdminDashboardPage() {
           <Card>
             <CardHeader className="pb-3">
               <CardTitle className="text-sm font-medium text-stone-gray">
-                Avg. Donation
+                Avg. Sponsorship
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold text-warm-earth">
-                ${donationCount > 0 ? (totalDonations / donationCount).toFixed(2) : '0.00'}
+                ${sponsorshipCount > 0 ? (totalSponsorships / sponsorshipCount).toFixed(2) : '0.00'}
               </div>
               <p className="text-sm text-muted-foreground mt-1">
                 Per transaction
@@ -132,43 +133,43 @@ export default async function AdminDashboardPage() {
           </Card>
         </div>
 
-        {/* Recent Donations */}
+        {/* Recent Sponsors */}
         <Card>
           <CardHeader>
-            <CardTitle>Recent Donations</CardTitle>
+            <CardTitle>Recent Sponsors</CardTitle>
           </CardHeader>
           <CardContent>
-            {recentDonations.length === 0 ? (
-              <p className="text-stone-gray text-center py-4">No donations yet</p>
+            {recentSponsors.length === 0 ? (
+              <p className="text-stone-gray text-center py-4">No sponsors yet</p>
             ) : (
               <div className="space-y-4">
-                {recentDonations.map((donation) => (
+                {recentSponsors.map((sponsor) => (
                   <div
-                    key={donation.id}
+                    key={sponsor.id}
                     className="flex items-center justify-between border-b pb-4 last:border-0"
                   >
                     <div>
-                      <p className="font-medium">{donation.donors.users.name}</p>
+                      <p className="font-medium">{sponsor.displayName}</p>
                       <p className="text-sm text-stone-gray">
-                        {donation.donors.users.email}
+                        {sponsor.contactEmail || sponsor.users.email}
                       </p>
                       <p className="text-xs text-muted-foreground mt-1">
-                        {new Date(donation.createdAt).toLocaleDateString('en-US', {
+                        {new Date(sponsor.createdAt).toLocaleDateString('en-US', {
                           month: 'short',
                           day: 'numeric',
                           year: 'numeric',
-                          hour: '2-digit',
-                          minute: '2-digit',
                         })}
                       </p>
                     </div>
                     <div className="text-right">
-                      <p className="text-lg font-bold text-terracotta">
-                        ${donation.amount.toNumber().toFixed(2)}
-                      </p>
-                      {donation.isRecurring && (
-                        <p className="text-xs text-sage-green">Recurring</p>
+                      {sponsor.tier && (
+                        <p className="text-lg font-bold text-terracotta">
+                          {getTierName(sponsor.tier)}
+                        </p>
                       )}
+                      <p className={`text-xs ${sponsor.status === 'active' ? 'text-sage-green' : 'text-stone-gray'}`}>
+                        {sponsor.status === 'active' ? 'Active' : 'Former'}
+                      </p>
                     </div>
                   </div>
                 ))}
@@ -179,14 +180,14 @@ export default async function AdminDashboardPage() {
 
         {/* Quick Actions */}
         <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Link href="/portal/admin/donors">
+          <Link href="/portal/admin/sponsors">
             <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
               <CardHeader>
-                <CardTitle className="text-base">Manage Donors</CardTitle>
+                <CardTitle className="text-base">Manage Sponsors</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Add, edit, and manage donor profiles
+                  Add, edit, and manage sponsor profiles
                 </p>
               </CardContent>
             </Card>
@@ -205,14 +206,14 @@ export default async function AdminDashboardPage() {
             </Card>
           </Link>
 
-          <Link href="/donor-wall">
+          <Link href="/sponsors">
             <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
               <CardHeader>
-                <CardTitle className="text-base">Donor Wall</CardTitle>
+                <CardTitle className="text-base">Sponsors Page</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  View public donor recognition
+                  View public sponsor recognition
                 </p>
               </CardContent>
             </Card>

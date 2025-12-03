@@ -37,7 +37,7 @@ const realSponsors: RealSponsor[] = [
   {
     sponsorType: 'individual',
     email: 'james.whitebear.connor@indn-sponsor.local',
-    displayName: 'James White Bear Connor',
+    displayName: 'James Whitebear Connor',
     tier: 'gold',
     totalAmount: 50000,
     location: null,
@@ -74,8 +74,7 @@ const realSponsors: RealSponsor[] = [
     totalAmount: 10000,
     location: 'Hollister, CA',
     website: 'https://hollister.ca.gov',
-    // Logo path - add logo file to: public/images/sponsors/bronze/city-of-hollister.png
-    logoUrl: '/images/sponsors/bronze/city-of-hollister.png',
+    logoUrl: '/images/sponsors/bronze/hollister.svg',
     memberSince: new Date('2024-01-01'),
     notes: 'Bronze tier organizational sponsor',
   },
@@ -87,8 +86,7 @@ const realSponsors: RealSponsor[] = [
     totalAmount: 10000,
     location: 'Gilroy, CA',
     website: 'https://www.gavilan.edu',
-    // Logo path - add logo file to: public/images/sponsors/bronze/gavilan-college.png
-    logoUrl: '/images/sponsors/bronze/gavilan-college.png',
+    logoUrl: '/images/sponsors/bronze/gavilan.svg',
     memberSince: new Date('2024-01-01'),
     notes: 'Bronze tier educational institution sponsor',
   },
@@ -198,10 +196,9 @@ async function main() {
     console.log(`   ${tierEmoji} ${typeIcon} ${s.displayName}`)
   })
 
-  console.log('\n⚠️  LOGO REMINDER:')
-  console.log('   Add logo files for company sponsors to:')
-  console.log('   • public/images/sponsors/bronze/city-of-hollister.png')
-  console.log('   • public/images/sponsors/bronze/gavilan-college.png')
+  console.log('\n✅ Logo files should exist at:')
+  console.log('   • public/images/sponsors/bronze/hollister.svg')
+  console.log('   • public/images/sponsors/bronze/gavilan.svg')
 }
 
 main()

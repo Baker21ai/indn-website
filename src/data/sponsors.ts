@@ -23,7 +23,7 @@ export const STATIC_SPONSORS: StaticSponsor[] = [
   {
     id: 'sponsor-james-connor',
     sponsorType: 'individual',
-    displayName: 'James White Bear Connor',
+    displayName: 'James Whitebear Connor',
     tier: 'gold',
     location: null,
     logoUrl: null, // Individual sponsor - uses icon
@@ -56,7 +56,7 @@ export const STATIC_SPONSORS: StaticSponsor[] = [
     displayName: 'City of Hollister',
     tier: 'bronze',
     location: 'Hollister, CA',
-    logoUrl: '/images/sponsors/bronze/city-of-hollister.png',
+    logoUrl: '/images/sponsors/bronze/hollister.svg',
     website: 'https://hollister.ca.gov',
     memberSince: '2024-01-01',
     status: 'active',
@@ -67,7 +67,7 @@ export const STATIC_SPONSORS: StaticSponsor[] = [
     displayName: 'Gavilan College',
     tier: 'bronze',
     location: 'Gilroy, CA',
-    logoUrl: '/images/sponsors/bronze/gavilan-college.png',
+    logoUrl: '/images/sponsors/bronze/gavilan.svg',
     website: 'https://www.gavilan.edu',
     memberSince: '2024-01-01',
     status: 'active',

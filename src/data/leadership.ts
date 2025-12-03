@@ -13,10 +13,10 @@ export interface BoardMember {
 export const boardMembers: BoardMember[] = [
   {
     id: 'james-connor',
-    name: 'James White Bear Connor',
+    name: 'James Whitebear Connor',
     title: 'Security and AI Executive',
     tribe: 'Assiniboine Tribe - Fort Peck Montana',
-    bio: 'James White Bear Connor is a pioneering security and AI executive with decades of leading innovation in risk management and intelligent threat detection. He has held leadership roles at Oracle, Symantec, and now leads Corporate Engagements at Ambient.ai. His security strategies have protected companies like Yahoo, Facebook, and Wells Fargo.',
+    bio: 'James Whitebear Connor is a pioneering security and AI executive with decades of leading innovation in risk management and intelligent threat detection. He has held leadership roles at Oracle, Symantec, and now leads Corporate Engagements at Ambient.ai. His security strategies have protected companies like Yahoo, Facebook, and Wells Fargo.',
     workExperience: 'Ambient.ai, Head of Corporate Engagements; N2N Secure Inc., Chief Executive Officer; Symantec, Sr. Manager Global Security Systems; PeopleSoft (Oracle), Sr. Manager Global Technical Security Systems; U.S. Coast Guard, Law Enforcement – Search and Rescue.',
     volunteer: 'RSA Security, Head of Physical Security Technology Track Development; Security Industry Association (SIA), AI Advisory Board Member; Youth Alliance, Board of Directors; Indigenous Nations Diversity Network, Co-Founder; Los Puentecitos / Little Bridges Bilingual Preschool, Co-Founder – Senior Warden.',
     imageUrl: '/images/board/james-connor.jpg',

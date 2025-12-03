@@ -1,4 +1,5 @@
 import sgMail from '@sendgrid/mail'
+import { TIER_INFO } from '@/lib/sponsorships'
 
 // Initialize SendGrid with API key
 sgMail.setApiKey(process.env.SENDGRID_API_KEY || '')
@@ -127,7 +128,7 @@ export async function sendWelcomeEmail(
         <ul style="color: #333; line-height: 1.8;">
           <li><strong>User Management:</strong> Create, edit, and manage all user accounts</li>
           <li><strong>Content Management:</strong> Upload documents and manage announcements</li>
-          <li><strong>Donor Management:</strong> View donations and manage donor tiers</li>
+          <li><strong>Sponsor Management:</strong> View sponsorships and manage sponsor tiers</li>
           <li><strong>System Monitoring:</strong> Access logs and receive important notifications</li>
         </ul>
       `,
@@ -535,6 +536,156 @@ export async function sendSponsorApplicationNotification(
     return { success: true }
   } catch (error: unknown) {
     console.error('Failed to send sponsor application notification:', error)
+    if (error && typeof error === 'object' && 'response' in error) {
+      console.error('SendGrid error:', (error as { response: { body: unknown } }).response.body)
+    }
+    return { success: false, error }
+  }
+}
+
+export async function sendSponsorConfirmationEmail(
+  sponsorDetails: {
+    companyName: string
+    contactName: string
+    contactEmail: string
+    tier: string
+  },
+  paymentInstructions: {
+    check: {
+      payableTo: string
+      mailingAddress: string
+      memo: string
+      taxId?: string
+    }
+    online: {
+      description: string
+      qrCodePath: string
+      link: string
+    }
+    fiscalSponsorNote?: string
+  }
+) {
+  const { companyName, contactName, contactEmail, tier } = sponsorDetails
+  const { check, online, fiscalSponsorNote } = paymentInstructions
+
+  const tierColors = {
+    bronze: '#CD7F32',
+    silver: '#C0C0C0',
+    gold: '#FFD700',
+  }
+
+  const tierInfo = TIER_INFO[tier as keyof typeof TIER_INFO]
+  const tierColor = tierColors[tier as keyof typeof tierColors] || '#B85C38'
+  const tierDisplay = tier.charAt(0).toUpperCase() + tier.slice(1)
+  
+  // Construct benefits list
+  let benefitsHtml = ''
+  if (tierInfo) {
+    benefitsHtml = `
+      <ul style="color: #333; line-height: 1.8; padding-left: 20px; margin: 0;">
+        <li><strong>${tierInfo.vipTickets} VIP Tickets</strong> to the Annual Hollister Powwow</li>
+        ${tier === 'gold' && tierInfo.culturalTour ? '<li>Indian Canyon Cultural Experience (up to 50 guests)</li>' : ''}
+        <li>Logo placement on our website and event materials</li>
+        <li>Social media recognition</li>
+        <li>Tax-deductible contribution receipt</li>
+      </ul>
+    `
+  }
+
+  try {
+    await sgMail.send({
+      from: FROM_EMAIL,
+      to: contactEmail,
+      subject: `Thank You for Your Sponsorship Application - ${tierDisplay} Tier`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+          <div style="text-align: center; margin-bottom: 30px;">
+            <h1 style="color: #B85C38; margin: 0;">INDN</h1>
+            <p style="color: #666; font-size: 14px; margin: 5px 0;">Indigenous Nations Diversity Network</p>
+          </div>
+          
+          <div style="background-color: ${tierColor}; color: ${tier === 'gold' ? '#333' : 'white'}; padding: 20px; border-radius: 8px 8px 0 0; text-align: center;">
+            <h2 style="margin: 0; font-size: 24px;">
+              🎉 Application Received!
+            </h2>
+            <p style="margin: 10px 0 0 0; font-size: 18px;">
+              ${tierDisplay} Tier Sponsorship
+            </p>
+          </div>
+          
+          <div style="background-color: #f5f5f5; padding: 25px; border-radius: 0 0 8px 8px;">
+            <p style="color: #333; font-size: 16px; margin-top: 0;">Dear ${contactName},</p>
+            
+            <p style="color: #333; line-height: 1.6;">
+              Thank you for your commitment to supporting Indigenous communities through your sponsorship of the 
+              <strong>Indigenous Nations Diversity Network</strong>. We are honored to welcome <strong>${companyName}</strong> 
+              as a ${tierDisplay} Tier sponsor!
+            </p>
+            
+            <div style="background-color: white; padding: 20px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #B85C38;">
+              <h3 style="color: #B85C38; margin-top: 0;">Payment Options</h3>
+              
+              <div style="margin-bottom: 20px;">
+                <h4 style="color: #333; margin-bottom: 10px;">Option 1: Pay by Check</h4>
+                <p style="margin: 8px 0;"><strong>Payable To:</strong> ${check.payableTo}</p>
+                <p style="margin: 8px 0;"><strong>Mail To:</strong><br>${check.mailingAddress.replace(/\n/g, '<br>')}</p>
+                <p style="margin: 8px 0;"><strong>Memo:</strong> ${check.memo}</p>
+                ${check.taxId ? `<p style="margin: 8px 0;"><strong>Tax ID:</strong> ${check.taxId}</p>` : ''}
+              </div>
+
+              <div style="border-top: 1px solid #eee; padding-top: 15px;">
+                <h4 style="color: #333; margin-bottom: 10px;">Option 2: Pay Online</h4>
+                <p style="margin: 8px 0;">${online.description}</p>
+                <p style="margin: 8px 0;">
+                  <a href="${online.link}" style="background-color: #2e7d32; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; display: inline-block; font-weight: bold;">
+                    Pay Sponsorship via Youth Alliance
+                  </a>
+                </p>
+                <p style="margin: 8px 0; font-size: 14px; color: #666;">
+                  Please scan the QR code provided on the confirmation page or use the button above to visit our Youth Alliance donation page directly.
+                  Be sure to mention <strong>${companyName}</strong> in the donation notes.
+                </p>
+              </div>
+            </div>
+            
+            ${fiscalSponsorNote ? `
+            <div style="background-color: #e8f5e9; padding: 15px; border-radius: 8px; margin: 20px 0;">
+              <p style="color: #2e7d32; margin: 0; font-size: 14px;">
+                <strong>Note:</strong> ${fiscalSponsorNote}
+              </p>
+            </div>
+            ` : ''}
+            
+            <div style="background-color: white; padding: 20px; border-radius: 8px; margin: 25px 0;">
+              <h3 style="color: #B85C38; margin-top: 0;">Your Sponsorship Benefits</h3>
+              ${benefitsHtml}
+              
+              <div style="margin-top: 20px; padding: 15px; background-color: #fff3e0; border-radius: 6px;">
+                <p style="color: #e65100; margin: 0; font-size: 14px; font-weight: bold;">
+                  ✨ Coming Soon!
+                </p>
+                <p style="color: #e65100; margin: 5px 0 0 0; font-size: 14px;">
+                  Please note: We are actively expanding our sponsorship program, and additional benefits for your tier will be announced soon!
+                </p>
+              </div>
+            </div>
+            
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
+              <p style="color: #666; font-size: 14px;">
+                <strong>Questions?</strong><br>
+                Contact us at <a href="mailto:marketing@indnsbc.org" style="color: #B85C38;">marketing@indnsbc.org</a>
+              </p>
+              <p style="color: #999; font-size: 12px; margin-top: 20px;">
+                This email was sent to ${contactEmail} because you submitted a sponsorship application on the INDN website.
+              </p>
+            </div>
+          </div>
+        </div>
+      `,
+    })
+    return { success: true }
+  } catch (error: unknown) {
+    console.error('Failed to send sponsor confirmation email:', error)
     if (error && typeof error === 'object' && 'response' in error) {
       console.error('SendGrid error:', (error as { response: { body: unknown } }).response.body)
     }

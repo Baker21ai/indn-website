@@ -12,12 +12,12 @@ export default function DonatePage() {
         <div className="text-center mb-8 sm:mb-10 md:mb-12">
           <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white shadow-soft mb-4 sm:mb-6">
             <Heart className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-terracotta" />
-            <span className="text-xs sm:text-sm font-semibold text-charcoal tracking-wide">Make an Impact Today</span>
+            <span className="text-label-badge text-charcoal">Make an Impact Today</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-charcoal mb-3 sm:mb-4 tracking-tight text-balanced">
-            Support Our <span className="text-terracotta">Mission</span>
+          <h1 className="text-hero text-charcoal mb-3 sm:mb-4 text-balanced">
+            Support Our <span className="text-italic-accent text-terracotta">Mission</span>
           </h1>
-          <p className="text-base sm:text-lg text-stone-gray max-w-2xl mx-auto leading-relaxed font-normal px-2 sm:px-0 text-pretty">
+          <p className="text-body text-stone-gray max-w-2xl mx-auto px-2 sm:px-0 text-pretty">
             Your generous contribution helps preserve indigenous culture, empower communities, and build a brighter future for indigenous nations.
           </p>
         </div>
@@ -123,15 +123,15 @@ export default function DonatePage() {
 
         {/* Footer CTA */}
         <div className="text-center mt-8 sm:mt-10 md:mt-12">
-          <p className="text-stone-gray mb-3 sm:mb-4 text-sm sm:text-base">See the impact of our donors</p>
+          <p className="text-stone-gray mb-3 sm:mb-4 text-sm sm:text-base">See our generous sponsors</p>
           <Button
             asChild
             size="lg"
             variant="outline"
             className="border-2 border-terracotta text-terracotta hover:bg-terracotta hover:text-white shadow-card hover:shadow-card-hover transition-depth touch-target"
           >
-            <Link href="/donor-wall" className="flex items-center gap-2">
-              <span className="text-sm sm:text-base">View Donor Wall</span>
+            <Link href="/sponsors" className="flex items-center gap-2">
+              <span className="text-sm sm:text-base">View Our Sponsors</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </Button>

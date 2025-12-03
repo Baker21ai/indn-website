@@ -221,7 +221,7 @@ export default function HomePageV2() {
 
           <Reveal delay={400}>
             <p className="text-xl md:text-2xl leading-relaxed mb-8 font-light">
-              From 500 to 1,000+ participants in three years. From one annual event to monthly gatherings, youth-led programs, gardens growing food for families, and AI workshops preparing our youth for futures we can barely imagine.
+              1,000+ participants in three years. From one annual event to monthly gatherings, youth-led programs, gardens, and AI workshops preparing our youth for futures we can barely imagine.
             </p>
           </Reveal>
 
@@ -355,21 +355,21 @@ export default function HomePageV2() {
               {
                 Icon: Sprout,
                 title: 'Youth Garden',
-                description: 'Growing 100+ pounds of food annually while elders share plant knowledge passed down through generations. Youth feed families while feeding their souls.',
+                description: 'In our first year, elders share plant knowledge passed down through generations to children ages 5-16.',
                 impact: 'Connecting hands to earth, youth to elders',
                 color: 'from-sage-green to-emerald-600'
               },
               {
                 Icon: Sparkles,
                 title: 'Four Directions Initiative',
-                description: 'Career, education, health, and digital media programs where youth lead, not just attend. Older youth teach AI literacy to younger peers.',
+                description: 'Our vision: career, education, health, and digital media programs where youth lead, not just attend. We're building toward older youth teaching AI literacy to younger peers.',
                 impact: 'Leading today, transforming tomorrow',
                 color: 'from-sky-blue to-blue-600'
               },
               {
                 Icon: Users2,
                 title: 'Annual Pow Wow',
-                description: 'From 500 to 1,000+ participants. Our flagship gathering where the entire year of work blooms into celebration, connection, and collective joy.',
+                description: '1,000+ participants. Our flagship gathering where the entire year of work blooms into celebration, connection, and collective joy.',
                 impact: '1,000+ hearts beating as one',
                 color: 'from-sunset-orange to-terracotta'
               }
@@ -479,7 +479,7 @@ export default function HomePageV2() {
                 <div className="max-w-2xl mx-auto">
                   <div className="relative aspect-[850/1100] rounded-2xl overflow-hidden shadow-2xl">
                     <Image
-                      src="/images/powwow-flyer.png"
+                      src="/images/powwow-flyer.jpg"
                       alt="3rd Annual Hollister Powwow & Native Gathering"
                       fill
                       className="object-contain"
@@ -841,9 +841,9 @@ export default function HomePageV2() {
             {/* Quick Links */}
             <div>
               <h3 className="font-semibold text-lg mb-6">Quick Links</h3>
-              <nav className="space-y-3">
+              <nav className="flex flex-col gap-3">
                 {['About Us', 'Our Board', 'Programs', 'Events', 'Donate', 'Volunteer'].map((link) => (
-                  <Link key={link} href={`/${link.toLowerCase().replace(' ', '-')}`} className="block text-white/70 hover:text-sunset-orange transition-colors">
+                  <Link key={link} href={`/${link.toLowerCase().replace(' ', '-')}`} className="text-white/70 hover:text-sunset-orange transition-colors">
                     {link}
                   </Link>
                 ))}
