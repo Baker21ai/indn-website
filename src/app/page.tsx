@@ -291,7 +291,7 @@ export default function HomePage() {
         <div className="max-w-[1200px] mx-auto">
           <div className="text-center mb-8 sm:mb-12 md:mb-16">
             <h2 className="text-section text-white mb-3 sm:mb-4 md:mb-5 text-balanced">
-              How We Walk <span className="text-italic-accent text-sunset-orange">Together</span>
+              How We Walk <span className="text-italic-accent text-charcoal">Together</span>
             </h2>
             <p className="text-body text-white/80 max-w-[700px] mx-auto px-2 sm:px-0 text-pretty">
               Our programs are interconnected, just like our community
