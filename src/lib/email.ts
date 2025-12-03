@@ -1,8 +1,15 @@
 import sgMail from '@sendgrid/mail'
 import { TIER_INFO } from '@/lib/sponsorships'
 
+// Debug: Log environment variable status
+const SENDGRID_KEY = process.env.SENDGRID_API_KEY || ''
+const hasValidKey = SENDGRID_KEY.startsWith('SG.')
+console.log('[Email Config] SENDGRID_API_KEY present:', !!SENDGRID_KEY)
+console.log('[Email Config] SENDGRID_API_KEY valid (starts with SG.):', hasValidKey)
+console.log('[Email Config] EMAIL_FROM:', process.env.EMAIL_FROM || 'NOT SET - using default')
+
 // Initialize SendGrid with API key
-sgMail.setApiKey(process.env.SENDGRID_API_KEY || '')
+sgMail.setApiKey(SENDGRID_KEY)
 
 const FROM_EMAIL = process.env.EMAIL_FROM || 'noreply@sendgrid.net'
 const BASE_URL = process.env.NEXTAUTH_URL || 'http://localhost:3000'
@@ -465,6 +472,10 @@ export async function sendSponsorApplicationNotification(
   const tierColor = tierColors[tier as keyof typeof tierColors] || '#B85C38'
   const tierDisplay = tier.charAt(0).toUpperCase() + tier.slice(1)
 
+  console.log('[Admin Notification] Attempting to send to:', adminEmail)
+  console.log('[Admin Notification] From:', FROM_EMAIL)
+  console.log('[Admin Notification] New sponsor:', companyName, 'Tier:', tierDisplay)
+
   try {
     await sgMail.send({
       from: FROM_EMAIL,
@@ -533,11 +544,15 @@ export async function sendSponsorApplicationNotification(
         </div>
       `,
     })
+    console.log('[Admin Notification] SUCCESS - Email sent to:', adminEmail)
     return { success: true }
   } catch (error: unknown) {
-    console.error('Failed to send sponsor application notification:', error)
+    console.error('[Admin Notification] FAILED to send to:', adminEmail)
+    console.error('[Admin Notification] Error:', error)
     if (error && typeof error === 'object' && 'response' in error) {
-      console.error('SendGrid error:', (error as { response: { body: unknown } }).response.body)
+      const sgError = error as { response: { body: unknown, statusCode?: number } }
+      console.error('[Admin Notification] SendGrid Status:', sgError.response.statusCode)
+      console.error('[Admin Notification] SendGrid Body:', JSON.stringify(sgError.response.body))
     }
     return { success: false, error }
   }
@@ -592,8 +607,12 @@ export async function sendSponsorConfirmationEmail(
     `
   }
 
+  console.log('[Sponsor Confirmation Email] Attempting to send to:', contactEmail)
+  console.log('[Sponsor Confirmation Email] From:', FROM_EMAIL)
+  console.log('[Sponsor Confirmation Email] Company:', companyName, 'Tier:', tierDisplay)
+
   try {
-    await sgMail.send({
+    const result = await sgMail.send({
       from: FROM_EMAIL,
       to: contactEmail,
       subject: `Thank You for Your Sponsorship Application - ${tierDisplay} Tier`,
@@ -683,11 +702,16 @@ export async function sendSponsorConfirmationEmail(
         </div>
       `,
     })
+    console.log('[Sponsor Confirmation Email] SUCCESS - Email sent to:', contactEmail)
+    console.log('[Sponsor Confirmation Email] SendGrid response:', JSON.stringify(result))
     return { success: true }
   } catch (error: unknown) {
-    console.error('Failed to send sponsor confirmation email:', error)
+    console.error('[Sponsor Confirmation Email] FAILED to send to:', contactEmail)
+    console.error('[Sponsor Confirmation Email] Error:', error)
     if (error && typeof error === 'object' && 'response' in error) {
-      console.error('SendGrid error:', (error as { response: { body: unknown } }).response.body)
+      const sgError = error as { response: { body: unknown, statusCode?: number } }
+      console.error('[Sponsor Confirmation Email] SendGrid Status:', sgError.response.statusCode)
+      console.error('[Sponsor Confirmation Email] SendGrid Body:', JSON.stringify(sgError.response.body))
     }
     return { success: false, error }
   }
