@@ -362,7 +362,7 @@ export default function HomePageV2() {
               {
                 Icon: Sparkles,
                 title: 'Four Directions Initiative',
-                description: 'Our vision: career, education, health, and digital media programs where youth lead, not just attend. We're building toward older youth teaching AI literacy to younger peers.',
+                description: 'Our vision: career, education, health, and digital media programs where youth lead, not just attend. We are building toward older youth teaching AI literacy to younger peers.',
                 impact: 'Leading today, transforming tomorrow',
                 color: 'from-sky-blue to-blue-600'
               },
