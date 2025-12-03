@@ -21,12 +21,10 @@ import {
   ArrowLeft,
   ArrowRight,
   Sparkles,
-  FileText,
   Send,
   Crown,
   Medal,
   Award,
-  CreditCard,
   Star,
   Heart,
   Users,
@@ -238,103 +236,59 @@ function SponsorApplyContent() {
               <h1 className="text-3xl font-bold text-charcoal mb-4">
                 Application Submitted!
               </h1>
-              <p className="text-lg text-stone-gray mb-12 max-w-2xl mx-auto">
+              <p className="text-lg text-stone-gray mb-8 max-w-2xl mx-auto">
                 Thank you for your commitment to supporting Indigenous communities.
-                Please choose your preferred payment method below.
+                Please complete your payment via our fiscal sponsor&apos;s secure donation page.
               </p>
 
-              <div className="grid md:grid-cols-2 gap-8 mb-12 text-left">
-                {/* Option 1: Check Payment */}
-                <div className="bg-gradient-to-br from-terracotta/5 to-sunset-orange/10 rounded-2xl p-6 md:p-8 border border-terracotta/10">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 rounded-full bg-terracotta/10 flex items-center justify-center">
-                      <FileText className="w-5 h-5 text-terracotta" />
-                    </div>
-                    <h2 className="text-xl font-bold text-charcoal">
-                      Pay by Check
-                    </h2>
-                  </div>
-
-                  <div className="space-y-4">
-                    <div>
-                      <p className="text-sm font-semibold text-terracotta mb-1">Make Payable To:</p>
-                      <p className="text-charcoal font-medium">{paymentInstructions.check.payableTo}</p>
-                    </div>
-
-                    <div>
-                      <p className="text-sm font-semibold text-terracotta mb-1">Mail To:</p>
-                      <p className="text-charcoal font-medium whitespace-pre-line">{paymentInstructions.check.mailingAddress}</p>
-                    </div>
-
-                    <div>
-                      <p className="text-sm font-semibold text-terracotta mb-1">Memo Line:</p>
-                      <p className="text-charcoal font-medium">{paymentInstructions.check.memo}</p>
-                    </div>
-
-                    {paymentInstructions.check.taxId && (
-                      <div>
-                        <p className="text-sm font-semibold text-terracotta mb-1">Tax ID (EIN):</p>
-                        <p className="text-charcoal font-medium">{paymentInstructions.check.taxId}</p>
-                      </div>
-                    )}
-                  </div>
+              {/* Fiscal Sponsor Redirect Notice */}
+              <div className="max-w-xl mx-auto mb-8">
+                <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+                  <p className="text-sm text-amber-800 text-center">
+                    <strong>Note:</strong> You will be redirected to our fiscal sponsor <strong>Youth Alliance&apos;s</strong> secure donation page to complete your sponsorship payment.
+                  </p>
                 </div>
+              </div>
 
-                {/* Option 2: Online Payment */}
-                <div className="bg-white rounded-2xl p-6 md:p-8 border border-gray-200 shadow-sm">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center">
-                      <CreditCard className="w-5 h-5 text-emerald-600" />
-                    </div>
-                    <h2 className="text-xl font-bold text-charcoal">
-                      Pay Online
-                    </h2>
-                  </div>
-
-                  {/* Fiscal Sponsor Redirect Notice */}
-                  <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
-                    <p className="text-sm text-amber-800 text-center">
-                      <strong>Note:</strong> You will be redirected to our fiscal sponsor <strong>Youth Alliance&apos;s</strong> secure donation page to complete your sponsorship payment.
-                    </p>
-                  </div>
-
-                  <div className="text-center">
-                    <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 inline-block mb-6 transition-transform hover:scale-105">
-                      <a
-                        href={paymentInstructions.online.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block"
-                      >
-                         <Image
-                          src={paymentInstructions.online.qrCodePath}
-                          alt="Scan to Donate via Youth Alliance"
-                          width={180}
-                          height={180}
-                          className="rounded-lg"
-                        />
-                      </a>
-                    </div>
-                    <p className="text-charcoal font-medium mb-2">Scan or Click to Pay via Youth Alliance</p>
-                    <p className="text-sm text-stone-gray mb-4">
-                      {paymentInstructions.online.description}
-                    </p>
-                    <Button
-                      asChild
-                      className="mb-4 bg-emerald-600 hover:bg-emerald-700 text-white w-full sm:w-auto"
+              {/* Payment via Youth Alliance */}
+              <div className="max-w-md mx-auto bg-white rounded-2xl p-8 border border-gray-200 shadow-sm mb-12">
+                <div className="text-center">
+                  <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 inline-block mb-6 transition-transform hover:scale-105">
+                    <a
+                      href={paymentInstructions.online.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block"
                     >
-                      <a
-                        href={paymentInstructions.online.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Pay Sponsorship via Youth Alliance
-                      </a>
-                    </Button>
-                    <p className="text-xs text-stone-gray bg-gray-50 p-3 rounded-lg">
-                      Please mention <strong>&quot;INDN Sponsorship - {formData.companyName}&quot;</strong> in the donation comments/notes
-                    </p>
+                       <Image
+                        src={paymentInstructions.online.qrCodePath}
+                        alt="Scan to Donate via Youth Alliance"
+                        width={180}
+                        height={180}
+                        className="rounded-lg"
+                      />
+                    </a>
                   </div>
+                  <p className="text-charcoal font-medium mb-2">Scan or Click to Complete Payment</p>
+                  <p className="text-sm text-stone-gray mb-6">
+                    You&apos;ll be taken to Youth Alliance&apos;s secure donation page
+                  </p>
+                  <Button
+                    asChild
+                    size="lg"
+                    className="mb-4 bg-emerald-600 hover:bg-emerald-700 text-white w-full"
+                  >
+                    <a
+                      href={paymentInstructions.online.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Complete Payment via Youth Alliance
+                    </a>
+                  </Button>
+                  <p className="text-xs text-stone-gray bg-gray-50 p-3 rounded-lg">
+                    Please mention <strong>&quot;INDN Sponsorship - {formData.companyName}&quot;</strong> in the donation comments/notes
+                  </p>
                 </div>
               </div>
 
