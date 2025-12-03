@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -82,7 +82,7 @@ const ErrorMessage = ({ message }: { message?: string }) => {
   )
 }
 
-export default function SponsorApplyPage() {
+function SponsorApplyContent() {
   const searchParams = useSearchParams()
   const [step, setStep] = useState(1)
   const [formData, setFormData] = useState<FormData>(initialFormData)
@@ -892,5 +892,13 @@ export default function SponsorApplyPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function SponsorApplyPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <SponsorApplyContent />
+    </Suspense>
   )
 }
