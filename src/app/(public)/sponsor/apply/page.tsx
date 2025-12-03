@@ -291,6 +291,13 @@ function SponsorApplyContent() {
                     </h2>
                   </div>
 
+                  {/* Fiscal Sponsor Redirect Notice */}
+                  <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+                    <p className="text-sm text-amber-800 text-center">
+                      <strong>Note:</strong> You will be redirected to our fiscal sponsor <strong>Youth Alliance&apos;s</strong> secure donation page to complete your sponsorship payment.
+                    </p>
+                  </div>
+
                   <div className="text-center">
                     <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 inline-block mb-6 transition-transform hover:scale-105">
                       <a
@@ -301,21 +308,20 @@ function SponsorApplyContent() {
                       >
                          <Image
                           src={paymentInstructions.online.qrCodePath}
-                          alt="Scan to Donate"
+                          alt="Scan to Donate via Youth Alliance"
                           width={180}
                           height={180}
                           className="rounded-lg"
                         />
                       </a>
                     </div>
-                    <p className="text-charcoal font-medium mb-2">Scan or Click to Donate Securely</p>
+                    <p className="text-charcoal font-medium mb-2">Scan or Click to Pay via Youth Alliance</p>
                     <p className="text-sm text-stone-gray mb-4">
                       {paymentInstructions.online.description}
                     </p>
                     <Button
                       asChild
-                      variant="outline"
-                      className="mb-4 border-emerald-600 text-emerald-700 hover:bg-emerald-50 w-full sm:w-auto"
+                      className="mb-4 bg-emerald-600 hover:bg-emerald-700 text-white w-full sm:w-auto"
                     >
                       <a
                         href={paymentInstructions.online.link}
@@ -326,7 +332,7 @@ function SponsorApplyContent() {
                       </a>
                     </Button>
                     <p className="text-xs text-stone-gray bg-gray-50 p-3 rounded-lg">
-                      Please mention <strong>{formData.companyName}</strong> in the donation comments/notes
+                      Please mention <strong>&quot;INDN Sponsorship - {formData.companyName}&quot;</strong> in the donation comments/notes
                     </p>
                   </div>
                 </div>

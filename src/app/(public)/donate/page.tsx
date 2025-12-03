@@ -62,6 +62,13 @@ export default function DonatePage() {
                   </div>
                 </div>
 
+                {/* Fiscal Sponsor Notice */}
+                <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 sm:p-4 mb-4">
+                  <p className="text-xs sm:text-sm text-amber-800 text-center">
+                    <strong>Note:</strong> You will be redirected to our fiscal sponsor <strong>Youth Alliance&apos;s</strong> secure donation page.
+                  </p>
+                </div>
+
                 {/* Donate Button */}
                 <Button
                   asChild
@@ -69,17 +76,17 @@ export default function DonatePage() {
                   className="w-full group bg-terracotta hover:bg-terracotta/90 text-white shadow-elevated hover:shadow-elevated-lg transition-depth touch-target"
                 >
                   <a
-                    href="https://example.com/donate"
+                    href="https://youthall.networkforgood.com/projects/174191-everyday-giving"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2 sm:gap-3"
                   >
                     <Heart className="w-4 h-4 sm:w-5 sm:h-5" />
-                    <span className="text-sm sm:text-base">Donate Now</span>
+                    <span className="text-sm sm:text-base">Donate via Youth Alliance</span>
                     <ExternalLink className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </a>
                 </Button>
-                <p className="text-xs text-stone-gray/70 text-center mt-2 sm:mt-3">Secure donation processing via external platform</p>
+                <p className="text-xs text-stone-gray/70 text-center mt-2 sm:mt-3">Secure donation processing via Youth Alliance (our 501(c)(3) fiscal sponsor)</p>
               </div>
             </div>
           </CardContent>
