@@ -326,7 +326,7 @@ export default function SponsorPage() {
                   </p>
                   <div className="bg-white/10 rounded-lg p-4">
                     <p className="text-sm text-white/70 mb-1">Tax ID (EIN)</p>
-                    <p className="text-xl font-mono font-bold text-white">XX-XXXXXXX</p>
+                    <p className="text-xl font-mono font-bold text-white">77-0377245</p>
                   </div>
                   <p className="text-sm text-white/60">
                     You will receive an official tax receipt after your sponsorship is processed.

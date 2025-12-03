@@ -15,7 +15,7 @@ import {
   Heart, Users, Calendar, MapPin, Mail,
   Phone, ExternalLink,
   Moon, Sprout, Sparkles, Users2, Shield, Zap, Mountain,
-  Handshake, Building, User, ArrowRight
+  Handshake, Building, User, ArrowRight, Crown
 } from 'lucide-react'
 import { STATIC_SPONSORS } from '@/data/sponsors'
 
@@ -90,6 +90,16 @@ export default function HomePage() {
             >
               Preservation and Celebration
             </p>
+
+            {/* Secondary Welcome Message */}
+            <div className="mt-8 sm:mt-10 md:mt-12 animate-fade-in-up delay-300">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-charcoal mb-3 sm:mb-4">
+                Welcome to Our <span className="text-terracotta italic">Circle</span>
+              </h2>
+              <p className="text-sm sm:text-base md:text-lg text-stone-gray max-w-2xl mx-auto leading-relaxed">
+                Where ancestral wisdom meets tomorrow&apos;s possibilities, and every young person belongs to something greater than themselves
+              </p>
+            </div>
           </div>
         </div>
 
@@ -385,8 +395,6 @@ export default function HomePage() {
                 key={index}
                 className="bg-gradient-to-br from-sunset-orange to-sunset-coral p-6 sm:p-8 md:p-10 lg:p-12 xl:p-16 rounded-2xl sm:rounded-[24px] md:rounded-[30px] transition-shadow hover:border-white/80 border-2 border-sunset-orange/50 hover-micro-lift shadow-warm-md hover:shadow-warm-hover"
               >
-                <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-[50px] md:h-[50px] border-2 border-white/80 rounded-full mx-auto mb-4 sm:mb-5 md:mb-6" />
-
                 <h4 className="font-serif text-lg sm:text-xl md:text-2xl text-white mb-1.5 sm:mb-2 font-semibold tracking-tight">
                   {leader.name}
                 </h4>
@@ -437,9 +445,9 @@ export default function HomePage() {
             {/* Right Column - Event Info */}
             <div className="order-2 lg:order-2 text-left">
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sunset-orange/20 border border-sunset-orange/30 mb-6">
-                <Sparkles className="w-4 h-4 text-sunset-orange" />
-                <span className="text-sm font-semibold text-sunset-orange tracking-wide">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 border border-white/30 mb-6">
+                <Sparkles className="w-4 h-4 text-white" />
+                <span className="text-sm font-semibold text-white tracking-wide">
                   Past Event
                 </span>
               </div>
@@ -447,7 +455,7 @@ export default function HomePage() {
               {/* Heading */}
               <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-white mb-6 leading-tight">
                 3rd Annual Hollister Powwow & Native{' '}
-                <span className="text-sunset-orange underline decoration-sunset-orange/30 decoration-4 underline-offset-4">Gathering</span>.
+                <span className="text-charcoal underline decoration-charcoal/30 decoration-4 underline-offset-4">Gathering</span>.
               </h2>
 
               {/* Description */}
@@ -462,15 +470,15 @@ export default function HomePage() {
               {/* Event Details - Inline */}
               <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm sm:text-base text-white/70 mb-8">
                 <span className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-sunset-orange" />
+                  <Calendar className="w-4 h-4 text-white" />
                   November 7-9, 2025
                 </span>
                 <span className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-sunset-orange" />
+                  <MapPin className="w-4 h-4 text-white" />
                   Bolado Park, Tres Pinos, CA
                 </span>
                 <span className="flex items-center gap-2">
-                  <Users className="w-4 h-4 text-sunset-orange" />
+                  <Users className="w-4 h-4 text-white" />
                   1,000+ Attendees
                 </span>
               </div>
@@ -478,7 +486,7 @@ export default function HomePage() {
               {/* CTA Link */}
               <Link 
                 href="/events"
-                className="inline-flex items-center gap-2 text-sunset-orange font-semibold text-lg hover:gap-3 transition-all group"
+                className="inline-flex items-center gap-2 text-white font-semibold text-lg hover:gap-3 transition-all group border-b-2 border-white/50 pb-1"
               >
                 View all events
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -638,7 +646,7 @@ export default function HomePage() {
               <span className="text-label-badge text-white">Make an Impact Today</span>
             </div>
             <h2 className="text-section text-white mb-3 sm:mb-4 text-balanced">
-              Become a <span className="text-italic-accent text-sunset-orange">Sponsor</span>
+              Become a <span className="text-italic-accent text-charcoal">Sponsor</span>
             </h2>
             <p className="text-body text-white/80 max-w-2xl mx-auto px-2 sm:px-0 text-pretty">
               Your generous sponsorship helps preserve indigenous culture, empower communities, and build a brighter future for indigenous nations.
@@ -683,30 +691,33 @@ export default function HomePage() {
               <h3 className="text-xl sm:text-2xl font-serif font-bold text-charcoal mb-4 sm:mb-5 md:mb-6 text-center">
                 Sponsorship Tiers
               </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
-                <div className="text-center p-3 sm:p-4 rounded-lg bg-gradient-to-br from-amber-100 to-amber-200/50 border-2 border-amber-400/30">
-                  <div className="flex justify-center mb-1.5 sm:mb-2">
-                    <Shield className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 text-amber-700" />
+              <div className="grid grid-cols-3 gap-2 sm:gap-4">
+                {/* Bronze */}
+                <div className="text-center p-3 sm:p-5 rounded-xl bg-white border border-stone-gray/20 hover:border-amber-600/40 hover:shadow-md transition-all">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 sm:mb-3 rounded-full bg-amber-600/10 flex items-center justify-center">
+                    <Shield className="w-5 h-5 sm:w-6 sm:h-6 text-amber-600" />
                   </div>
-                  <h4 className="font-semibold text-charcoal mb-0.5 sm:mb-1 text-sm sm:text-base">Bronze</h4>
-                  <p className="text-xs sm:text-sm text-stone-gray mb-1 sm:mb-2">$10,000</p>
-                  <p className="text-xs text-terracotta font-medium hidden sm:block">5 VIP Powwow Tickets</p>
+                  <h4 className="font-semibold text-charcoal text-sm sm:text-base">Bronze</h4>
+                  <p className="text-lg sm:text-xl font-bold text-charcoal">$10,000</p>
+                  <p className="text-[10px] sm:text-xs text-amber-600 font-medium mt-1">5 VIP Tickets</p>
                 </div>
-                <div className="text-center p-3 sm:p-4 rounded-lg bg-gradient-to-br from-gray-100 to-gray-200/50 border-2 border-gray-300/50">
-                  <div className="flex justify-center mb-1.5 sm:mb-2">
-                    <Zap className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 text-gray-500" />
+                {/* Silver */}
+                <div className="text-center p-3 sm:p-5 rounded-xl bg-white border border-stone-gray/20 hover:border-gray-400/60 hover:shadow-md transition-all">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 sm:mb-3 rounded-full bg-gray-400/15 flex items-center justify-center">
+                    <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-gray-500" />
                   </div>
-                  <h4 className="font-semibold text-charcoal mb-0.5 sm:mb-1 text-sm sm:text-base">Silver</h4>
-                  <p className="text-xs sm:text-sm text-stone-gray mb-1 sm:mb-2">$20,000</p>
-                  <p className="text-xs text-terracotta font-medium hidden sm:block">10 VIP Powwow Tickets</p>
+                  <h4 className="font-semibold text-charcoal text-sm sm:text-base">Silver</h4>
+                  <p className="text-lg sm:text-xl font-bold text-charcoal">$20,000</p>
+                  <p className="text-[10px] sm:text-xs text-gray-500 font-medium mt-1">10 VIP Tickets</p>
                 </div>
-                <div className="text-center p-3 sm:p-4 rounded-lg bg-gradient-to-br from-yellow-100 to-amber-100/50 border-2 border-yellow-400/50">
-                  <div className="flex justify-center mb-1.5 sm:mb-2">
-                    <Mountain className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 text-yellow-600" />
+                {/* Gold */}
+                <div className="text-center p-3 sm:p-5 rounded-xl bg-white border border-stone-gray/20 hover:border-yellow-500/50 hover:shadow-md transition-all">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 sm:mb-3 rounded-full bg-yellow-400/15 flex items-center justify-center">
+                    <Crown className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-600" />
                   </div>
-                  <h4 className="font-semibold text-charcoal mb-0.5 sm:mb-1 text-sm sm:text-base">Gold</h4>
-                  <p className="text-xs sm:text-sm text-stone-gray mb-1 sm:mb-2">$50,000</p>
-                  <p className="text-xs text-terracotta font-medium hidden sm:block">25 VIP Powwow Tickets</p>
+                  <h4 className="font-semibold text-charcoal text-sm sm:text-base">Gold</h4>
+                  <p className="text-lg sm:text-xl font-bold text-charcoal">$50,000</p>
+                  <p className="text-[10px] sm:text-xs text-yellow-600 font-medium mt-1">25 VIP Tickets</p>
                 </div>
               </div>
             </CardContent>

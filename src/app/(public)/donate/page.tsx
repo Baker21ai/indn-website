@@ -116,7 +116,7 @@ export default function DonatePage() {
           <CardContent className="p-4 sm:p-6">
             <p className="text-xs sm:text-sm text-stone-gray text-center leading-relaxed">
               <strong className="text-charcoal">Tax Deductible:</strong> The Indigenous Nations Diversity Network is a 501(c)(3) tax-exempt organization.
-              Your donation is tax-deductible to the extent allowed by law. <span className="text-charcoal font-medium">Tax ID: XX-XXXXXXX</span>
+              Your donation is tax-deductible to the extent allowed by law. <span className="text-charcoal font-medium">Tax ID: 77-0377245</span>
             </p>
           </CardContent>
         </Card>

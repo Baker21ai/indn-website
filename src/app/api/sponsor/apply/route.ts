@@ -115,7 +115,7 @@ export async function POST(request: NextRequest) {
         payableTo: 'Youth Alliance',
         mailingAddress: '[Address]', // Placeholder as requested
         memo: `INDN Sponsorship - ${data.tier.charAt(0).toUpperCase() + data.tier.slice(1)} Tier - ${data.companyName}`,
-        taxId: '[TAX ID]', // Replace with actual Youth Alliance EIN
+        taxId: '77-0377245', // Youth Alliance Federal Tax ID
       },
       online: {
         description: 'You can also donate online via our Youth Alliance donation page.',

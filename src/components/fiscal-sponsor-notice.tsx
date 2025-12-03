@@ -9,8 +9,8 @@ interface FiscalSponsorNoticeProps {
   className?: string
 }
 
-// Replace with actual Tax ID when provided
-const TAX_ID = '[TAX ID]'
+// Youth Alliance Federal Tax ID
+const TAX_ID = '77-0377245'
 
 export function FiscalSponsorNotice({
   variant = 'compact',
