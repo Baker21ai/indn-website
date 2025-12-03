@@ -176,8 +176,11 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Return error details for debugging
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error'
+    
     return NextResponse.json(
-      { error: 'Failed to submit sponsorship application' },
+      { error: 'Failed to submit sponsorship application', details: errorMessage },
       { status: 500 }
     )
   }
