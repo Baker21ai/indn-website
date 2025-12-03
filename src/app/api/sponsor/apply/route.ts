@@ -126,27 +126,38 @@ export async function POST(request: NextRequest) {
     }
 
     // Send email notification to admin (marketing@indnsbc.org)
-    await sendSponsorApplicationNotification({
-      companyName: data.companyName,
-      website: data.website,
-      contactName: data.contactName,
-      contactEmail: data.contactEmail,
-      contactPhone: data.contactPhone,
-      mailingAddress,
-      tier: data.tier,
-      notes: data.notes,
-    })
-
-    // Send confirmation email to the sponsor
-    await sendSponsorConfirmationEmail(
-      {
+    // Note: Email sending is non-blocking - if it fails, the submission still succeeds
+    try {
+      await sendSponsorApplicationNotification({
         companyName: data.companyName,
+        website: data.website,
         contactName: data.contactName,
         contactEmail: data.contactEmail,
+        contactPhone: data.contactPhone,
+        mailingAddress,
         tier: data.tier,
-      },
-      paymentInstructions
-    )
+        notes: data.notes,
+      })
+    } catch (emailError) {
+      console.error('Failed to send admin notification email:', emailError)
+      // Continue anyway - don't block the submission
+    }
+
+    // Send confirmation email to the sponsor
+    try {
+      await sendSponsorConfirmationEmail(
+        {
+          companyName: data.companyName,
+          contactName: data.contactName,
+          contactEmail: data.contactEmail,
+          tier: data.tier,
+        },
+        paymentInstructions
+      )
+    } catch (emailError) {
+      console.error('Failed to send sponsor confirmation email:', emailError)
+      // Continue anyway - don't block the submission
+    }
 
     return NextResponse.json({
       success: true,
