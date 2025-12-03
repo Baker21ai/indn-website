@@ -91,46 +91,39 @@ export default function HomePage() {
               Preservation and Celebration
             </p>
 
-            {/* Secondary Welcome Message */}
-            <div className="mt-8 sm:mt-10 md:mt-12 animate-fade-in-up delay-300">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-charcoal mb-3 sm:mb-4">
-                Welcome to Our <span className="text-terracotta italic">Circle</span>
-              </h2>
-              <p className="text-sm sm:text-base md:text-lg text-stone-gray max-w-2xl mx-auto leading-relaxed">
-                Where ancestral wisdom meets tomorrow&apos;s possibilities, and every young person belongs to something greater than themselves
-              </p>
-            </div>
           </div>
         </div>
+      </section>
 
-        {/* Fiscal Sponsor Section - Restyled for light background */}
-        <div className="relative z-10 animate-fade-in-up delay-300 pb-6 sm:pb-8 md:pb-10">
-          <div className="flex flex-col items-center justify-center gap-3 sm:gap-4">
-            {/* Decorative line */}
-            <div className="flex items-center gap-4 mb-1 sm:mb-2">
-              <div className="h-px w-12 sm:w-20 bg-gradient-to-r from-transparent to-stone-gray/30" />
-              <span className="text-[10px] sm:text-xs uppercase tracking-[0.25em] text-stone-gray/70 font-medium">
+      {/* Fiscal Sponsor Section - Separate section with proper spacing */}
+      <section className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 bg-gradient-to-b from-warm-gray to-white">
+        <div className="max-w-[800px] mx-auto">
+          <div className="flex flex-col items-center justify-center gap-4 sm:gap-6">
+            {/* Decorative line with label */}
+            <div className="flex items-center gap-4 sm:gap-6">
+              <div className="h-px w-16 sm:w-24 md:w-32 bg-gradient-to-r from-transparent to-stone-gray/40" />
+              <span className="text-[11px] sm:text-xs uppercase tracking-[0.3em] text-stone-gray/80 font-medium whitespace-nowrap">
                 Fiscal Sponsor
               </span>
-              <div className="h-px w-12 sm:w-20 bg-gradient-to-l from-transparent to-stone-gray/30" />
+              <div className="h-px w-16 sm:w-24 md:w-32 bg-gradient-to-l from-transparent to-stone-gray/40" />
             </div>
             
-            {/* Youth Alliance Logo and Name */}
-            <div className="flex items-center gap-4 sm:gap-5 bg-charcoal/5 backdrop-blur-sm px-6 sm:px-8 py-3 sm:py-4 rounded-2xl border border-charcoal/10">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden bg-white shadow-md flex-shrink-0 border border-warm-gray">
+            {/* Youth Alliance Card */}
+            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 bg-white/80 backdrop-blur-sm px-6 sm:px-10 py-5 sm:py-6 rounded-2xl border border-charcoal/10 shadow-sm">
+              <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-full overflow-hidden bg-white shadow-md flex-shrink-0 border-2 border-warm-gray">
                 <Image
                   src="/images/youth-alliance-logo.svg"
                   alt="Youth Alliance"
-                  width={64}
-                  height={64}
+                  width={80}
+                  height={80}
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="text-left">
-                <h3 className="text-base sm:text-lg md:text-xl font-serif font-semibold text-charcoal tracking-tight">
+              <div className="text-center sm:text-left">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-serif font-semibold text-charcoal tracking-tight">
                   Youth Alliance
                 </h3>
-                <p className="text-[11px] sm:text-xs md:text-sm text-stone-gray">
+                <p className="text-xs sm:text-sm md:text-base text-stone-gray mt-1">
                   501(c)(3) Nonprofit Organization
                 </p>
               </div>
