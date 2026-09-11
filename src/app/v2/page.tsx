@@ -8,7 +8,7 @@ import {
   ChevronDown, Heart, Users, Calendar, MapPin,
   Mail, Phone, Tent, ArrowRight,
   Moon, Sprout, Sparkles, Users2, Shield, Zap, Mountain, Bird,
-  Handshake, Star, Play, Instagram, Facebook, Twitter
+  Handshake, Star, Instagram, Facebook, Twitter
 } from 'lucide-react'
 
 // Custom hook for intersection observer animations
@@ -786,15 +786,6 @@ export default function HomePageV2() {
                   </a>
                   <a href="tel:+18318015530" className="block my-1 text-white/80 hover:text-white transition-colors">
                     (831) 801-5530
-                  </a>
-                </div>
-                <div className="text-center">
-                  <strong className="block text-xl mb-3">Charles Wall</strong>
-                  <a href="mailto:charleswallandfam@gmail.com" className="block my-1 text-white/80 hover:text-white transition-colors">
-                    charleswallandfam@gmail.com
-                  </a>
-                  <a href="tel:+17752710322" className="block my-1 text-white/80 hover:text-white transition-colors">
-                    (775) 271-0322
                   </a>
                 </div>
               </div>

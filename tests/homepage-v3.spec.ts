@@ -102,7 +102,6 @@ test.describe('Homepage V3 - Community Design', () => {
 
     // Check contact information is present
     await expect(page.locator('text=Elvira Zaragoza Robinson')).toBeVisible()
-    await expect(page.locator('text=Charles Wall')).toBeVisible()
   })
 
   test('should have functioning navigation links', async ({ page }) => {
@@ -124,15 +123,9 @@ test.describe('Homepage V3 - Community Design', () => {
     const elviraEmail = page.locator('a[href="mailto:ezrlaw1948@gmail.com"]')
     await expect(elviraEmail).toBeVisible()
 
-    const charlesEmail = page.locator('a[href="mailto:charleswallandfam@gmail.com"]')
-    await expect(charlesEmail).toBeVisible()
-
     // Check phone links
     const elviraPhone = page.locator('a[href="tel:+18318015530"]')
     await expect(elviraPhone).toBeVisible()
-
-    const charlesPhone = page.locator('a[href="tel:+17752710322"]')
-    await expect(charlesPhone).toBeVisible()
   })
 
   test('should apply hover effects to value cards', async ({ page }) => {

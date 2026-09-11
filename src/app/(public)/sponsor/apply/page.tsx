@@ -746,7 +746,7 @@ function SponsorApplyContent() {
                     </h3>
                     <p className="text-stone-gray leading-relaxed">
                       As a valued partner, you&apos;re invited to connect deeply with the land. 
-                      Indian Canyon is the only federally recognized "Indian Country" between 
+                      Indian Canyon is the only federally recognized &ldquo;Indian Country&rdquo; between 
                       Sonoma and Santa Barbara—a sacred space for ceremony and revitalization.
                     </p>
                     <p className="text-sm font-medium text-terracotta">
