@@ -52,7 +52,7 @@ The new homepage uses your existing brand colors from `globals.css`:
 ### 7. Join Section - "Join Our Circle"
 - Large gradient background with circular ornaments
 - 4 action pathways: Donate, Volunteer, Stay Connected, Attend Events
-- Contact information for Elvira and Charles
+- Contact information for Elvira
 - Hover effects on all interactive elements
 
 ## Typography

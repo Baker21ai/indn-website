@@ -34,7 +34,7 @@
 ### ✅ Interactivity Tests (4/4)
 
 8. **Navigation Links** - All internal links functional (/donate, /register, /portal/volunteer/events)
-9. **Contact Links** - Email and phone links for Elvira and Charles work correctly
+9. **Contact Links** - Email and phone links for Elvira work correctly
 10. **Value Card Hovers** - Hover effects on circular value cards function properly
 11. **Program Card Hovers** - Hover effects on program cards work as expected
 
@@ -98,8 +98,8 @@
 - ✅ 3 donate links (header, sidebar, join section)
 - ✅ 2 volunteer links
 - ✅ 1 events link
-- ✅ 2 email links (Elvira, Charles)
-- ✅ 2 phone links (Elvira, Charles)
+- ✅ 1 email link (Elvira)
+- ✅ 1 phone link (Elvira)
 - ✅ 6 value cards with hover
 - ✅ 4 program cards with hover
 

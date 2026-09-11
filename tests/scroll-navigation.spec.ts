@@ -98,7 +98,6 @@ test.describe('Homepage Smooth Scroll Navigation', () => {
     const boardSection = page.locator('#board')
     // Check for board member names as headings within board section
     await expect(boardSection.getByRole('heading', { name: 'Elvira Zaragoza Robinson' })).toBeVisible()
-    await expect(boardSection.getByRole('heading', { name: 'Charles Wall' })).toBeVisible()
     await expect(boardSection.getByRole('heading', { name: /James Whitebear Connor/ })).toBeVisible()
   })
 

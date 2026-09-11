@@ -54,13 +54,17 @@ export default function BoardPage() {
       {/* Board Members Grid */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8">
             {boardMembers.map((member) => (
-              <BoardCard
+              <div
                 key={member.id}
-                member={member}
-                onClick={() => setSelectedMember(member)}
-              />
+                className="w-full sm:w-[calc(50%-0.75rem)] md:w-[calc(50%-1rem)] xl:w-[calc(33.333%-1.34rem)] max-w-md"
+              >
+                <BoardCard
+                  member={member}
+                  onClick={() => setSelectedMember(member)}
+                />
+              </div>
             ))}
           </div>
         </div>

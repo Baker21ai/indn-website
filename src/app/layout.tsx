@@ -26,9 +26,54 @@ const cinzel = Cinzel({
   display: "swap",
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://indn-website.vercel.app";
+const siteDescription =
+  "The Indigenous Nations Diversity Network (INDN) provides year-round Indigenous cultural programming in San Benito County, supporting Native youth, families, and elders through cultural preservation, community gatherings, and youth empowerment.";
+
 export const metadata: Metadata = {
-  title: "Indigenous Nations Diversity Network",
-  description: "Supporting Indigenous communities through donations, volunteer coordination, and cultural preservation.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Indigenous Nations Diversity Network",
+    template: "%s | Indigenous Nations Diversity Network",
+  },
+  description: siteDescription,
+  keywords: [
+    "Indigenous Nations Diversity Network",
+    "INDN",
+    "Indigenous",
+    "Native American",
+    "San Benito County",
+    "Hollister Powwow",
+    "cultural preservation",
+    "youth empowerment",
+    "nonprofit",
+  ],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteUrl,
+    siteName: "Indigenous Nations Diversity Network",
+    title: "Indigenous Nations Diversity Network",
+    description: siteDescription,
+    images: [
+      {
+        url: "/images/logo/indn-full-logo.jpg",
+        width: 1280,
+        height: 1024,
+        alt: "Indigenous Nations Diversity Network",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Indigenous Nations Diversity Network",
+    description: siteDescription,
+    images: ["/images/logo/indn-full-logo.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

@@ -34,17 +34,6 @@ export const boardMembers: BoardMember[] = [
     order: 2,
   },
   {
-    id: 'charles-wall',
-    name: 'Charles Wall',
-    title: 'Director and Educator',
-    tribe: 'Muscogee, Kiowa, Azorean, and Irish Descent',
-    bio: 'Charles Wall is a seasoned director and educator in American Indian programs, Parks & Recreation, and Social Services. With formal training in JEDI (Justice, Equity, Diversity, Inclusion), he brings decades of experience building inclusive, community-centered initiatives. Charles is a graduate of Concordia University and the UC Davis Graduate School of Management.',
-    workExperience: 'Tribal and Municipal Organizations, Parks & Recreation Director; Community-Based Agencies, Social Services Director; American Indian Education Programs, Educator.',
-    volunteer: 'Indigenous Youth Outreach Programs, Speaker & Advocate.',
-    imageUrl: '/images/board/charles-wall.jpg',
-    order: 3,
-  },
-  {
     id: 'jerry-drino',
     name: 'Fr. Jerry Drino',
     title: 'Episcopal Priest & Theologian',
@@ -53,7 +42,7 @@ export const boardMembers: BoardMember[] = [
     workExperience: 'Episcopal Church in Navajoland, Canon Theologian; Vancouver School of Theology, Tutor – Native Ministry Program.',
     volunteer: 'St. Philip\'s Church (San Jose), Co-founder – Native Ministry & Sweat Lodge (with Indian Health Center, Santa Clara County).',
     imageUrl: '/images/board/jerry-drino.jpg',
-    order: 4,
+    order: 3,
   },
   {
     id: 'kanyon-sayers-roods',
@@ -64,7 +53,7 @@ export const boardMembers: BoardMember[] = [
     workExperience: 'Kanyon Konsulting, CEO; Indian Canyon Nation, Tribal Chairwoman.',
     volunteer: 'Indian Canyon Two-Spirit Society, Founder; Costanoan Indian Research, President & Co-Chair; Indian Canyon Mutsun Band of Costanoan Ohlone People, Cultural Representative & Native Monitor.',
     imageUrl: '/images/board/kanyon-sayers-roods.jpg',
-    order: 5,
+    order: 4,
   },
   {
     id: 'bernice-toney',
@@ -75,6 +64,6 @@ export const boardMembers: BoardMember[] = [
     workExperience: 'Santa Clara County District Attorney\'s Office, Program Manager – South County Youth Task Force (SCYTF); City of Gilroy, SCYTF Coordinator; South County HEALs! Initiative (CA ACH Statewide Initiative), Program Lead; Various Nonprofits (Justice, Housing, Empowerment), Director / Program Manager.',
     volunteer: 'Calpulli Tonalehqueh (San Jose, CA), Cultural Steward & Spiritual Healer; Continental Indigenous Gatherings, Cultural Ambassador & Learner.',
     imageUrl: '/images/board/bernice-toney.jpg',
-    order: 6,
+    order: 5,
   },
 ]

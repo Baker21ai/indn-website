@@ -61,15 +61,6 @@ export function Footer() {
                   (831) 801-5530
                 </a>
               </div>
-              <div>
-                <p className="font-medium mb-1 text-sm sm:text-base">Charles Wall</p>
-                <a href="mailto:charleswallandfam@gmail.com" className="block text-white/80 hover:text-white transition-colors text-sm py-0.5">
-                  charleswallandfam@gmail.com
-                </a>
-                <a href="tel:+17752710322" className="block text-white/80 hover:text-white transition-colors text-sm py-0.5">
-                  (775) 271-0322
-                </a>
-              </div>
             </div>
           </div>
         </div>

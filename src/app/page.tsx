@@ -4,7 +4,6 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Card, CardContent } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { boardMembers, type BoardMember } from '@/data/leadership'
 import { BoardCard } from '@/components/BoardCard'
@@ -12,10 +11,9 @@ import { BoardMemberModal } from '@/components/BoardMemberModal'
 import { ExpandableValuesGrid } from '@/components/ExpandableValue'
 import { AnimatedCounter } from '@/components/AnimatedCounter'
 import {
-  Heart, Users, Calendar, MapPin, Mail,
-  Phone, ExternalLink,
-  Moon, Sprout, Sparkles, Users2, Shield, Zap, Mountain,
-  Handshake, Building, User, ArrowRight, Crown
+  Heart, Users, Calendar, MapPin, ExternalLink,
+  Moon, Sprout, Sparkles, Users2, Shield, Zap,
+  Handshake, ArrowRight, Crown
 } from 'lucide-react'
 import { STATIC_SPONSORS } from '@/data/sponsors'
 
@@ -270,13 +268,17 @@ export default function HomePage() {
           </div>
 
           {/* Board Members Grid - Glassmorphism Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8">
             {boardMembers.map((member) => (
-              <BoardCard
+              <div
                 key={member.id}
-                member={member}
-                onClick={() => setSelectedMember(member)}
-              />
+                className="w-full sm:w-[calc(50%-0.75rem)] md:w-[calc(50%-1rem)] xl:w-[calc(33.333%-1.34rem)] max-w-md"
+              >
+                <BoardCard
+                  member={member}
+                  onClick={() => setSelectedMember(member)}
+                />
+              </div>
             ))}
           </div>
         </div>
@@ -790,15 +792,6 @@ export default function HomePage() {
                 </a>
                 <a href="tel:+18318015530" className="block my-1.5 sm:my-2 text-white/90 hover:text-white transition-colors text-sm sm:text-base">
                   (831) 801-5530
-                </a>
-              </div>
-              <div className="text-center">
-                <strong className="block text-base sm:text-lg md:text-xl mb-2 sm:mb-3 md:mb-4 font-medium">Charles Wall</strong>
-                <a href="mailto:charleswallandfam@gmail.com" className="block my-1.5 sm:my-2 text-white/90 hover:text-white transition-colors text-sm sm:text-base">
-                  charleswallandfam@gmail.com
-                </a>
-                <a href="tel:+17752710322" className="block my-1.5 sm:my-2 text-white/90 hover:text-white transition-colors text-sm sm:text-base">
-                  (775) 271-0322
                 </a>
               </div>
             </div>
